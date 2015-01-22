@@ -10,4 +10,8 @@
 
 @interface ESCameraComponent : UIScrollView
 
+@property (weak, nonatomic) IBOutlet UIButton *cameraBtn;
+
++ (ESCameraComponent *)instanceCameraComponent;
+
 @end

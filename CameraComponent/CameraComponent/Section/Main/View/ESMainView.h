@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ESCameraComponent.h"
 
 @interface ESMainView : UIView
 

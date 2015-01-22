@@ -14,6 +14,11 @@
 		84550DA11A6E0F1E00C1B6F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84550DA01A6E0F1E00C1B6F1 /* Images.xcassets */; };
 		84550DA41A6E0F1E00C1B6F1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84550DA21A6E0F1E00C1B6F1 /* LaunchScreen.xib */; };
 		84550DB01A6E0F1E00C1B6F1 /* CameraComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550DAF1A6E0F1E00C1B6F1 /* CameraComponentTests.m */; };
+		84550DBD1A6E0FCD00C1B6F1 /* ESCameraComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550DBC1A6E0FCD00C1B6F1 /* ESCameraComponent.m */; };
+		84550DBF1A6E0FEB00C1B6F1 /* ESCameraComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84550DBE1A6E0FEB00C1B6F1 /* ESCameraComponent.xib */; };
+		84550DC21A6E2CDA00C1B6F1 /* ESCameraButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550DC11A6E2CDA00C1B6F1 /* ESCameraButton.m */; };
+		8460EDFD1A6F5D8E007A0355 /* ESMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460EDFC1A6F5D8E007A0355 /* ESMainView.m */; };
+		8460EE011A6F9D1B007A0355 /* ESViewControllerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460EE001A6F9D1B007A0355 /* ESViewControllerUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +45,15 @@
 		84550DA91A6E0F1E00C1B6F1 /* CameraComponentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CameraComponentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84550DAE1A6E0F1E00C1B6F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84550DAF1A6E0F1E00C1B6F1 /* CameraComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraComponentTests.m; sourceTree = "<group>"; };
+		84550DBB1A6E0FCD00C1B6F1 /* ESCameraComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraComponent.h; path = CameraComponent/General/Camera/ESCameraComponent.h; sourceTree = "<group>"; };
+		84550DBC1A6E0FCD00C1B6F1 /* ESCameraComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraComponent.m; path = CameraComponent/General/Camera/ESCameraComponent.m; sourceTree = "<group>"; };
+		84550DBE1A6E0FEB00C1B6F1 /* ESCameraComponent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ESCameraComponent.xib; path = CameraComponent/General/Camera/ESCameraComponent.xib; sourceTree = "<group>"; };
+		84550DC01A6E2CDA00C1B6F1 /* ESCameraButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraButton.h; path = CameraComponent/General/Camera/ESCameraButton.h; sourceTree = "<group>"; };
+		84550DC11A6E2CDA00C1B6F1 /* ESCameraButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraButton.m; path = CameraComponent/General/Camera/ESCameraButton.m; sourceTree = "<group>"; };
+		8460EDFB1A6F5D8E007A0355 /* ESMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESMainView.h; path = CameraComponent/Section/Main/View/ESMainView.h; sourceTree = "<group>"; };
+		8460EDFC1A6F5D8E007A0355 /* ESMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESMainView.m; path = CameraComponent/Section/Main/View/ESMainView.m; sourceTree = "<group>"; };
+		8460EDFF1A6F9D1B007A0355 /* ESViewControllerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESViewControllerUtil.h; path = CameraComponent/Util/ESViewControllerUtil.h; sourceTree = "<group>"; };
+		8460EE001A6F9D1B007A0355 /* ESViewControllerUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESViewControllerUtil.m; path = CameraComponent/Util/ESViewControllerUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +77,9 @@
 		84550D871A6E0F1E00C1B6F1 = {
 			isa = PBXGroup;
 			children = (
+				8460EDFE1A6F921D007A0355 /* Util */,
+				8460EDF71A6F5CDD007A0355 /* Section */,
+				84550DB91A6E0F2800C1B6F1 /* General */,
 				84550D921A6E0F1E00C1B6F1 /* CameraComponent */,
 				84550DAC1A6E0F1E00C1B6F1 /* CameraComponentTests */,
 				84550D911A6E0F1E00C1B6F1 /* Products */,
@@ -117,6 +134,68 @@
 				84550DAE1A6E0F1E00C1B6F1 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84550DB91A6E0F2800C1B6F1 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				84550DBA1A6E0F3000C1B6F1 /* Camera */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
+		84550DBA1A6E0F3000C1B6F1 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				84550DBB1A6E0FCD00C1B6F1 /* ESCameraComponent.h */,
+				84550DBC1A6E0FCD00C1B6F1 /* ESCameraComponent.m */,
+				84550DBE1A6E0FEB00C1B6F1 /* ESCameraComponent.xib */,
+				84550DC01A6E2CDA00C1B6F1 /* ESCameraButton.h */,
+				84550DC11A6E2CDA00C1B6F1 /* ESCameraButton.m */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		8460EDF71A6F5CDD007A0355 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				8460EDF81A6F5CE7007A0355 /* Main */,
+			);
+			name = Section;
+			sourceTree = "<group>";
+		};
+		8460EDF81A6F5CE7007A0355 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8460EDFA1A6F5CF5007A0355 /* Controller */,
+				8460EDF91A6F5CEE007A0355 /* View */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		8460EDF91A6F5CEE007A0355 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8460EDFB1A6F5D8E007A0355 /* ESMainView.h */,
+				8460EDFC1A6F5D8E007A0355 /* ESMainView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		8460EDFA1A6F5CF5007A0355 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		8460EDFE1A6F921D007A0355 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				8460EDFF1A6F9D1B007A0355 /* ESViewControllerUtil.h */,
+				8460EE001A6F9D1B007A0355 /* ESViewControllerUtil.m */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +280,7 @@
 			files = (
 				84550D9F1A6E0F1E00C1B6F1 /* Main.storyboard in Resources */,
 				84550DA41A6E0F1E00C1B6F1 /* LaunchScreen.xib in Resources */,
+				84550DBF1A6E0FEB00C1B6F1 /* ESCameraComponent.xib in Resources */,
 				84550DA11A6E0F1E00C1B6F1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,8 +300,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				84550D9C1A6E0F1E00C1B6F1 /* ViewController.m in Sources */,
+				8460EDFD1A6F5D8E007A0355 /* ESMainView.m in Sources */,
 				84550D991A6E0F1E00C1B6F1 /* AppDelegate.m in Sources */,
+				84550DBD1A6E0FCD00C1B6F1 /* ESCameraComponent.m in Sources */,
+				84550DC21A6E2CDA00C1B6F1 /* ESCameraButton.m in Sources */,
 				84550D961A6E0F1E00C1B6F1 /* main.m in Sources */,
+				8460EE011A6F9D1B007A0355 /* ESViewControllerUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +496,7 @@
 				84550DB51A6E0F1E00C1B6F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		84550DB61A6E0F1E00C1B6F1 /* Build configuration list for PBXNativeTarget "CameraComponentTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +505,7 @@
 				84550DB81A6E0F1E00C1B6F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

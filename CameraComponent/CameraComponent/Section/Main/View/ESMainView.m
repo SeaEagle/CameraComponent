@@ -10,12 +10,13 @@
 
 @implementation ESMainView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (id)initWithCoder:(NSCoder *)decoder{
+    self = [super initWithCoder:decoder];
+    if (self) {
+        ESCameraComponent *cameraComponent = [ESCameraComponent instanceCameraComponent];
+        [self addSubview:cameraComponent];
+    }
+    return(self);
 }
-*/
 
 @end

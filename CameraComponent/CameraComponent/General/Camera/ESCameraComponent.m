@@ -10,12 +10,21 @@
 
 @implementation ESCameraComponent
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+
++ (ESCameraComponent *)instanceCameraComponent{
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"ESCameraComponent" owner:nil options:nil];
+    return [nibView objectAtIndex:0];
 }
-*/
+
+- (id)initWithCoder:(NSCoder *)decoder{
+    self = [super initWithCoder:decoder];
+    if (self) {
+        CGRect gridRect = self.frame;
+        gridRect.origin.x = 0;
+        gridRect.origin.y = 0;
+        self.frame = gridRect;
+    }
+    return(self);
+}
 
 @end
