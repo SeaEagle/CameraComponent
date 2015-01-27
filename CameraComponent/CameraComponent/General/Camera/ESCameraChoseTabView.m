@@ -29,7 +29,7 @@
         [self drawSplitLine];
         //
         [self customizedTipLabel];
-        //
+        //描绘"本地照片"和"拍照"按钮以及背景图
         [self customizedButton];
     }
     return self;
@@ -199,7 +199,7 @@
     [self addSubview:snapshootImgView];
 }
 
-//自定义
+//"本地相册"按钮
 - (void)customizedPhotoLibraryBtn{
     //设置按钮覆盖背景
     CGRect photoLibraryBtnFrame = CGRectMake(photoLibraryPoint.x, photoLibraryPoint.y, realButtonWidth, realButtonHeight);
@@ -222,7 +222,7 @@
     [self addSubview: snapshootLabel];
 }
 
-//自定义
+//"拍照"按钮
 - (void)customizedSnapshootBtn{
     //设置按钮覆盖背景
     CGRect snapshootBtnFrame = CGRectMake(snapshootPoint.x, snapshootPoint.y, realButtonWidth, realButtonHeight);
