@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "ESViewControllerUtil.h"
+#import "ESCameraChoseView.h"
 
 @interface ESCameraButton : UIButton
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>

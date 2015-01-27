@@ -10,7 +10,15 @@
 
 @implementation ESCameraComponent
 
+#pragma mark - 属性声明
+@synthesize currentViewController;//当前viewController
+@synthesize originalMark;//原图标记
+@synthesize picMaxLimitMark;//图片数量限制标记
+@synthesize picMaxCount;//图片数量最大值
+@synthesize imageArray;//存放图片的数组
 
+#pragma mark -
+//初始化
 + (ESCameraComponent *)instanceCameraComponent{
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"ESCameraComponent" owner:nil options:nil];
     return [nibView objectAtIndex:0];
@@ -26,5 +34,9 @@
     }
     return(self);
 }
+
+#pragma mark - 界面相关
+//界面重绘
+- (void)reloadCameraComponentView{}
 
 @end

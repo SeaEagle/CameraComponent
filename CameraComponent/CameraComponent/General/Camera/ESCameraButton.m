@@ -51,7 +51,7 @@
  * 初始化用户配置
  */
 - (void)initUserOption{
-    pickPictureType = 1;
+    pickPictureType = 4;
 }
 
 /*
@@ -85,13 +85,18 @@
             break;
         default:
             //do nothing
+        {
+            CGRect frame = [[UIScreen mainScreen] applicationFrame];//获取窗口大小
+            ESCameraChoseView *cameraChoseView = [[ESCameraChoseView alloc] initWithFrame:frame];//实例ESCameraChoseView
+            [[[UIApplication sharedApplication] keyWindow] addSubview:cameraChoseView];//
+            [cameraChoseView showChoseTab];//展示选择的Tab
+        }
             break;
     }
 }
 
 #pragma mark - 上拉菜单代理方法的实现
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    
 }
 
 #pragma mark - 相机初始化及启动操作
