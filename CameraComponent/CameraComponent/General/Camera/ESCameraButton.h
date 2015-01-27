@@ -10,16 +10,17 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "ESViewControllerUtil.h"
 #import "ESCameraChoseView.h"
+#import "ESCameraChoseTabView.h"
 
 @interface ESCameraButton : UIButton
-<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
-    //获取图片的方式（可配置项）
-    int pickPictureType;
-    //
-    int finalPictureType;
+    int pickPictureType;//获取图片的方式（可配置项）
+    int finalPictureType;//
+    
+    UIViewController *locateViewController;//CameraButton所在的viewController
+    ESCameraChoseView *cameraChoseView;//
+    ESCameraChoseTabView *cameraChoseTabView;//
 }
-
-@property(strong, nonatomic) UIViewController *locateViewController;//CameraButton所在的viewController
 
 @end

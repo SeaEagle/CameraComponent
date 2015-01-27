@@ -53,7 +53,18 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];//动画的方式
     [UIView setAnimationDuration:0.3];//动画时间
     tabViewFrame.origin.y = tabViewFrame.origin.y - tabViewFrame.size.height;//调整tabView在垂直方向的位置
-    cameraChoseTabView.frame = tabViewFrame;//重置tabViewFrame的位置
+    cameraChoseTabView.frame = tabViewFrame;//
+    [UIView commitAnimations];//动画提交
+}
+
+//隐藏选择Tab
+- (void)hideChoseTab{
+    CGRect tabViewFrame = cameraChoseTabView.frame;//tabView显示在页面底部
+    [UIView beginAnimations:nil context:nil];//动画开始
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];//动画的方式
+    [UIView setAnimationDuration:0.3];//动画时间
+    tabViewFrame.origin.y = tabViewFrame.origin.y + tabViewFrame.size.height;//调整tabView在垂直方向的位置
+    cameraChoseTabView.frame = tabViewFrame;//
     [UIView commitAnimations];//动画提交
 }
 

@@ -31,8 +31,7 @@
         [self addTarget:self action:@selector(pickPicture) forControlEvents:UIControlEventTouchUpInside];
         //
         [self initUserOption];
-        //获取当前的viewcontroller
-        _locateViewController = [ESViewControllerUtil getCurrentViewController];
+        
     }
     return(self);
 }
@@ -43,7 +42,6 @@
 - (void)customizeOutlook{
     [self setTitle:@"拍照" forState:UIControlStateNormal];
     [self setBackgroundColor:[UIColor whiteColor]];
-    //self.frame = CGRectMake(10, 20, 100, 50);
 }
 
 #pragma mark - 用户配置检查
@@ -51,7 +49,7 @@
  * 初始化用户配置
  */
 - (void)initUserOption{
-    pickPictureType = 4;
+    pickPictureType = 1;
 }
 
 /*
@@ -64,20 +62,22 @@
         case 1:
             //获取方式：拍照、相册
         {
-            UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                          initWithTitle:nil
-                                          delegate:self
-                                          cancelButtonTitle:@"取消"
-                                          destructiveButtonTitle:nil
-                                          //直接拍照--index: 0
-                                          //从相册中获取图片--index: 1
-                                          otherButtonTitles:@"直接拍照",@"从相册中获取图片",nil];
-            [actionSheet showInView:_locateViewController.view];
+            if( cameraChoseView == nil ){
+                CGRect frame = [[UIScreen mainScreen] applicationFrame];//获取窗口大小
+                cameraChoseView = [[ESCameraChoseView alloc] initWithFrame:frame];//实例ESCameraChoseView
+                cameraChoseTabView = cameraChoseView.cameraChoseTabView;
+                [cameraChoseTabView.photoLibraryBtn addTarget:self action:@selector(photoLibraryOperation) forControlEvents:UIControlEventTouchUpInside];
+                [cameraChoseTabView.snapshootBtn addTarget:self action:@selector(snapshootOperation) forControlEvents:UIControlEventTouchUpInside];
+            }
+            [[[UIApplication sharedApplication] keyWindow] addSubview:cameraChoseView];//
+            [cameraChoseView showChoseTab];//展示选择的Tab
         }
             break;
         case 2:
             //获取方式：拍照
-        {}
+        {
+            [self launchCamera];
+        }
             break;
         case 3:
             //获取方式：相册
@@ -85,18 +85,34 @@
             break;
         default:
             //do nothing
-        {
-            CGRect frame = [[UIScreen mainScreen] applicationFrame];//获取窗口大小
-            ESCameraChoseView *cameraChoseView = [[ESCameraChoseView alloc] initWithFrame:frame];//实例ESCameraChoseView
-            [[[UIApplication sharedApplication] keyWindow] addSubview:cameraChoseView];//
-            [cameraChoseView showChoseTab];//展示选择的Tab
-        }
+        {}
             break;
     }
 }
 
-#pragma mark - 上拉菜单代理方法的实现
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+#pragma mark - 对选择"拍照"或"本地照片"Tab中的按钮进行处理
+/*
+ * 本地照片按钮的处理
+ */
+- (void)photoLibraryOperation{
+    [cameraChoseView hideChoseTab];//隐藏选择的Tab
+    [cameraChoseView removeFromSuperview];//
+    UIAlertView *alert =
+    [[UIAlertView alloc] initWithTitle:@"提示"
+                               message:@"功能还在开发中……"
+                              delegate:nil
+                     cancelButtonTitle:@"确定"
+                     otherButtonTitles:nil];
+    [alert show];
+}
+
+/*
+ * 拍照按钮的处理
+ */
+- (void)snapshootOperation{
+    [cameraChoseView hideChoseTab];//隐藏选择的Tab
+    [cameraChoseView removeFromSuperview];//
+    [self launchCamera];//启动相机
 }
 
 #pragma mark - 相机初始化及启动操作
@@ -109,7 +125,7 @@
     //picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     //允许编辑图片
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
     picker.delegate = self;
     return(picker);
 }
@@ -131,10 +147,12 @@
  * 启动相机的操作
  */
 - (void)launchCamera{
+    //获取当前的viewcontroller
+    locateViewController = [ESViewControllerUtil getCurrentViewController];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {//相机可用
         UIImagePickerController *picker = [self readyCamera];
         
-        [_locateViewController presentViewController:picker animated:YES completion:NULL];
+        [locateViewController presentViewController:picker animated:YES completion:NULL];
     }else{//不存在相机
         [self noExistCameraTip];
     }
