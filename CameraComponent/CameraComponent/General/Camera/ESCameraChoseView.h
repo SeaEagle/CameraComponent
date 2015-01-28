@@ -20,7 +20,6 @@
 @property ESCameraChoseTabView *cameraChoseTabView;//选择tabView
 
 #pragma mark - 选择"相册"或"拍照"的Tab
-
 //弹出选择Tab
 - (void)showChoseTab;
 

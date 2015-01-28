@@ -41,17 +41,17 @@
     standOutlineHeight = 294.0;//
     standOutlineWidth = 750.0;//
     standTitleHeight = 64.0;//
-    spliteLineWidth = 2.0;//
+    spliteLineWidth = 1.0;//
     spliteLineColorHexValue = @"28a8e3";//
     standHorizonSpliteLineSpan = 24.0;//
     standVerticalSpliteLineSpan = 40.0;//
     standButtonHeight = 180.0;//
     standButtonWidth = 250.0;//
     tipLabelFontColorHexValue = @"28a8e3";//
-    standTipFontSize = 42.0;//
+    standTipFontSize = 35.0;//请选择-字体
     buttonLabelFontColorHexValue = @"28a8e3";
-    standPhotoLibraryLabFontSize = 51.0;//
-    standSnapshootLabFontSize = 51.0;//
+    standPhotoLibraryLabFontSize = 40.0;//本地照片-字体
+    standSnapshootLabFontSize = 40.0;//拍照-字体
     standPhotoLibraryImgViewSize = 150;//
     standSnapshootImgViewSize = 150;//
 }
@@ -139,8 +139,10 @@
 //
 - (void)calculateButtonReleatedPoint{
     //图片
-    photoLibraryImgViewSize = realOutlineHeight*standPhotoLibraryImgViewSize/standOutlineHeight;
-    snapshootImgViewSize = realOutlineHeight*standSnapshootImgViewSize/standOutlineHeight;
+    photoLibraryImg = [UIImage imageNamed:@"photoLibraryBtn@3x.png"];
+    snapshootImg = [UIImage imageNamed:@"snapshootBtn@3x.png"];
+    photoLibraryImgViewSize = photoLibraryImg.size.width;
+    snapshootImgViewSize = snapshootImg.size.width;
     //图片定位
     photoLibraryImgPoint = CGPointMake((realOutlineWidth/2-spliteLineWidth/2-photoLibraryImgViewSize)/2, (realOutlineHeight-photoLibraryImgViewSize)/2);
     snapshootImgPoint = CGPointMake(realOutlineWidth-(realOutlineWidth/2-spliteLineWidth/2+snapshootImgViewSize)/2, (realOutlineHeight-snapshootImgViewSize)/2);
@@ -167,8 +169,7 @@
 
 //
 - (void)customizedPhotoLibraryImg{
-    photoLibraryImg = [UIImage imageNamed:@"photoLibraryBtn"];
-    CGRect photoLibraryImgFrame = CGRectMake(photoLibraryImgPoint.x, photoLibraryImgPoint.y, photoLibraryImgViewSize, photoLibraryImgViewSize);
+    CGRect photoLibraryImgFrame = CGRectMake(photoLibraryImgPoint.x, photoLibraryImgPoint.y, photoLibraryImg.size.width, photoLibraryImg.size.height);
     photoLibraryImgView = [[UIImageView alloc]initWithFrame:photoLibraryImgFrame];
     photoLibraryImgView.backgroundColor = [UIColor clearColor];
     photoLibraryImgView.image = photoLibraryImg;
@@ -191,8 +192,7 @@
 
 //
 - (void)customizedSnapshootImg{
-    snapshootImg = [UIImage imageNamed:@"snapshootBtn"];
-    CGRect snapshootImgFrame = CGRectMake(snapshootImgPoint.x, snapshootImgPoint.y, snapshootImgViewSize, snapshootImgViewSize);
+    CGRect snapshootImgFrame = CGRectMake(snapshootImgPoint.x, snapshootImgPoint.y, snapshootImg.size.width, snapshootImg.size.height);
     snapshootImgView = [[UIImageView alloc]initWithFrame:snapshootImgFrame];
     snapshootImgView.backgroundColor = [UIColor clearColor];
     snapshootImgView.image = snapshootImg;

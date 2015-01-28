@@ -10,13 +10,7 @@
 
 @implementation ESCameraButton
 
-//-(void) drawRect:(CGRect)rect {
-//    [ self.layer setBackgroundColor: [[UIColor whiteColor] CGColor]];
-//    [ self.layer setBorderColor: [[UIColor grayColor] CGColor]];
-//    [ self.layer setBorderWidth: 1.0];
-//    [ self.layer setCornerRadius:8.0f];
-//    [ self.layer setMasksToBounds:YES];
-//}
+@synthesize locateViewController;
 
 #pragma mark - 自定义拍照按钮样式
 /*
@@ -62,7 +56,7 @@
         case 1:
             //获取方式：拍照、相册
         {
-            if( cameraChoseView == nil ){
+            if( nil == cameraChoseView ){
                 CGRect frame = [[UIScreen mainScreen] applicationFrame];//获取窗口大小
                 cameraChoseView = [[ESCameraChoseView alloc] initWithFrame:frame];//实例ESCameraChoseView
                 cameraChoseTabView = cameraChoseView.cameraChoseTabView;
@@ -97,13 +91,15 @@
 - (void)photoLibraryOperation{
     [cameraChoseView hideChoseTab];//隐藏选择的Tab
     [cameraChoseView removeFromSuperview];//
-    UIAlertView *alert =
-    [[UIAlertView alloc] initWithTitle:@"提示"
-                               message:@"功能还在开发中……"
-                              delegate:nil
-                     cancelButtonTitle:@"确定"
-                     otherButtonTitles:nil];
-    [alert show];
+    
+    if ( nil == cameraPicMultiPicViewController ) {
+        cameraPicMultiPicViewController = [[ESCameraPickMultiPicViewController alloc]init];
+        cameraPicMultiPicViewController.multiPicDelegate = self;
+    }
+    locateViewController = [ESViewControllerUtil getCurrentViewController];
+    [locateViewController presentViewController:cameraPicMultiPicViewController animated:YES completion:nil];
+    
+    
 }
 
 /*
@@ -174,6 +170,11 @@
  */
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+//
+- (void) manageMultiPic{
+    
 }
 
 @end

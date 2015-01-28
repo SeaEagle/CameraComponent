@@ -11,6 +11,8 @@
 		8449005C1A77752400EB150B /* ESImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8449005B1A77752400EB150B /* ESImageUtil.m */; };
 		8449005F1A777E3C00EB150B /* photoLibraryBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8449005D1A777E3C00EB150B /* photoLibraryBtn@3x.png */; };
 		844900601A777E3C00EB150B /* snapshootBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8449005E1A777E3C00EB150B /* snapshootBtn@3x.png */; };
+		844B332F1A78ECEA00ACA812 /* noSelected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 844B332D1A78ECEA00ACA812 /* noSelected@3x.png */; };
+		844B33301A78ECEA00ACA812 /* selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 844B332E1A78ECEA00ACA812 /* selected@3x.png */; };
 		84550D961A6E0F1E00C1B6F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550D951A6E0F1E00C1B6F1 /* main.m */; };
 		84550D991A6E0F1E00C1B6F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550D981A6E0F1E00C1B6F1 /* AppDelegate.m */; };
 		84550D9C1A6E0F1E00C1B6F1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550D9B1A6E0F1E00C1B6F1 /* ViewController.m */; };
@@ -21,6 +23,8 @@
 		84550DBD1A6E0FCD00C1B6F1 /* ESCameraComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550DBC1A6E0FCD00C1B6F1 /* ESCameraComponent.m */; };
 		84550DBF1A6E0FEB00C1B6F1 /* ESCameraComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84550DBE1A6E0FEB00C1B6F1 /* ESCameraComponent.xib */; };
 		84550DC21A6E2CDA00C1B6F1 /* ESCameraButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550DC11A6E2CDA00C1B6F1 /* ESCameraButton.m */; };
+		845707691A7888B6005488B8 /* ESCameraMultiPicScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845707681A7888B6005488B8 /* ESCameraMultiPicScanView.m */; };
+		8457076C1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8457076B1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m */; };
 		8460EDFD1A6F5D8E007A0355 /* ESMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460EDFC1A6F5D8E007A0355 /* ESMainView.m */; };
 		8460EE011A6F9D1B007A0355 /* ESViewControllerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460EE001A6F9D1B007A0355 /* ESViewControllerUtil.m */; };
 		84956D121A75EBF100BD3CAC /* ESCameraChoseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84956D111A75EBF100BD3CAC /* ESCameraChoseView.m */; };
@@ -44,6 +48,8 @@
 		8449005B1A77752400EB150B /* ESImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESImageUtil.m; path = CameraComponent/Util/ESImageUtil.m; sourceTree = "<group>"; };
 		8449005D1A777E3C00EB150B /* photoLibraryBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "photoLibraryBtn@3x.png"; path = "CameraComponent/General/Camera/Image/photoLibraryBtn@3x.png"; sourceTree = "<group>"; };
 		8449005E1A777E3C00EB150B /* snapshootBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "snapshootBtn@3x.png"; path = "CameraComponent/General/Camera/Image/snapshootBtn@3x.png"; sourceTree = "<group>"; };
+		844B332D1A78ECEA00ACA812 /* noSelected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noSelected@3x.png"; path = "CameraComponent/General/Camera/Image/noSelected@3x.png"; sourceTree = "<group>"; };
+		844B332E1A78ECEA00ACA812 /* selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "selected@3x.png"; path = "CameraComponent/General/Camera/Image/selected@3x.png"; sourceTree = "<group>"; };
 		84550D901A6E0F1E00C1B6F1 /* CameraComponent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraComponent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84550D941A6E0F1E00C1B6F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84550D951A6E0F1E00C1B6F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -62,6 +68,10 @@
 		84550DBE1A6E0FEB00C1B6F1 /* ESCameraComponent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ESCameraComponent.xib; path = CameraComponent/General/Camera/ESCameraComponent.xib; sourceTree = "<group>"; };
 		84550DC01A6E2CDA00C1B6F1 /* ESCameraButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraButton.h; path = CameraComponent/General/Camera/ESCameraButton.h; sourceTree = "<group>"; };
 		84550DC11A6E2CDA00C1B6F1 /* ESCameraButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraButton.m; path = CameraComponent/General/Camera/ESCameraButton.m; sourceTree = "<group>"; };
+		845707671A7888B6005488B8 /* ESCameraMultiPicScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraMultiPicScanView.h; path = CameraComponent/General/Camera/ESCameraMultiPicScanView.h; sourceTree = "<group>"; };
+		845707681A7888B6005488B8 /* ESCameraMultiPicScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraMultiPicScanView.m; path = CameraComponent/General/Camera/ESCameraMultiPicScanView.m; sourceTree = "<group>"; };
+		8457076A1A7891E3005488B8 /* ESCameraPickMultiPicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraPickMultiPicViewController.h; path = CameraComponent/General/Camera/ESCameraPickMultiPicViewController.h; sourceTree = "<group>"; };
+		8457076B1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraPickMultiPicViewController.m; path = CameraComponent/General/Camera/ESCameraPickMultiPicViewController.m; sourceTree = "<group>"; };
 		8460EDFB1A6F5D8E007A0355 /* ESMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESMainView.h; path = CameraComponent/Section/Main/View/ESMainView.h; sourceTree = "<group>"; };
 		8460EDFC1A6F5D8E007A0355 /* ESMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESMainView.m; path = CameraComponent/Section/Main/View/ESMainView.m; sourceTree = "<group>"; };
 		8460EDFF1A6F9D1B007A0355 /* ESViewControllerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESViewControllerUtil.h; path = CameraComponent/Util/ESViewControllerUtil.h; sourceTree = "<group>"; };
@@ -95,6 +105,8 @@
 		844900551A77342900EB150B /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				844B332D1A78ECEA00ACA812 /* noSelected@3x.png */,
+				844B332E1A78ECEA00ACA812 /* selected@3x.png */,
 				8449005D1A777E3C00EB150B /* photoLibraryBtn@3x.png */,
 				8449005E1A777E3C00EB150B /* snapshootBtn@3x.png */,
 			);
@@ -184,6 +196,10 @@
 				84956D111A75EBF100BD3CAC /* ESCameraChoseView.m */,
 				8405D5CA1A75F35500C7E3E9 /* ESCameraChoseTabView.h */,
 				8405D5CB1A75F35500C7E3E9 /* ESCameraChoseTabView.m */,
+				845707671A7888B6005488B8 /* ESCameraMultiPicScanView.h */,
+				845707681A7888B6005488B8 /* ESCameraMultiPicScanView.m */,
+				8457076A1A7891E3005488B8 /* ESCameraPickMultiPicViewController.h */,
+				8457076B1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -317,8 +333,10 @@
 				844900601A777E3C00EB150B /* snapshootBtn@3x.png in Resources */,
 				8449005F1A777E3C00EB150B /* photoLibraryBtn@3x.png in Resources */,
 				84550D9F1A6E0F1E00C1B6F1 /* Main.storyboard in Resources */,
+				844B332F1A78ECEA00ACA812 /* noSelected@3x.png in Resources */,
 				84550DA41A6E0F1E00C1B6F1 /* LaunchScreen.xib in Resources */,
 				84550DBF1A6E0FEB00C1B6F1 /* ESCameraComponent.xib in Resources */,
+				844B33301A78ECEA00ACA812 /* selected@3x.png in Resources */,
 				84550DA11A6E0F1E00C1B6F1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,11 +361,13 @@
 				8460EDFD1A6F5D8E007A0355 /* ESMainView.m in Sources */,
 				84550D991A6E0F1E00C1B6F1 /* AppDelegate.m in Sources */,
 				84550DBD1A6E0FCD00C1B6F1 /* ESCameraComponent.m in Sources */,
+				845707691A7888B6005488B8 /* ESCameraMultiPicScanView.m in Sources */,
 				84956D121A75EBF100BD3CAC /* ESCameraChoseView.m in Sources */,
 				84550DC21A6E2CDA00C1B6F1 /* ESCameraButton.m in Sources */,
 				84550D961A6E0F1E00C1B6F1 /* main.m in Sources */,
 				8460EE011A6F9D1B007A0355 /* ESViewControllerUtil.m in Sources */,
 				849A4A171A76502600E7304F /* ESColorUtil.m in Sources */,
+				8457076C1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
