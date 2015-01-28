@@ -17,7 +17,7 @@
 - (void) manageMultiPic;
 @end
 
-@interface ESCameraPickMultiPicViewController : UINavigationController
+@interface ESCameraPickMultiPicViewController : UIViewController
 {
     
     NSMutableArray *photoData;//图片的原始数组
@@ -56,11 +56,6 @@
     CGSize stateBarSize;//底部状态栏的大小
     CGPoint stateBarPoint;//底部状态栏的位置
     UIView *stateBarView;//底部状态栏
-    
-    
-    UIButton *backButton;//返回按钮-位于导航栏-左边
-    
-    UIButton *cancleButton;//取消按钮-位于导航栏-右边
     
     UIButton *scanButton;//预览按钮-位于底部状态栏-左边
     

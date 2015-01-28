@@ -27,6 +27,7 @@
     ESCameraChoseView *cameraChoseView;//灰色遮罩
     ESCameraChoseTabView *cameraChoseTabView;//"本地照片"和"拍照"选择Tab
     ESCameraMultiPicScanView *cameraMultiPicScanView;//"多图预览"
+    UINavigationController *cameraPicMultiPicViewNavigationController;//
     ESCameraPickMultiPicViewController *cameraPicMultiPicViewController;//
     
 }

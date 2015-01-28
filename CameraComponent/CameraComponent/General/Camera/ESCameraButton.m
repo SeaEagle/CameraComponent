@@ -96,9 +96,13 @@
         cameraPicMultiPicViewController = [[ESCameraPickMultiPicViewController alloc]init];
         cameraPicMultiPicViewController.multiPicDelegate = self;
     }
-    locateViewController = [ESViewControllerUtil getCurrentViewController];
-    [locateViewController presentViewController:cameraPicMultiPicViewController animated:YES completion:nil];
+    if ( nil == cameraPicMultiPicViewNavigationController ) {
+        cameraPicMultiPicViewNavigationController = [[UINavigationController alloc]initWithRootViewController:cameraPicMultiPicViewController];
+    }
     
+    locateViewController = [ESViewControllerUtil getCurrentViewController];
+    
+    [locateViewController presentViewController:cameraPicMultiPicViewNavigationController animated:YES completion:nil];
     
 }
 

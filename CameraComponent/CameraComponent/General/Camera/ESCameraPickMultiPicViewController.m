@@ -62,6 +62,11 @@
     [alert show];
 }
 
+// 取消并返回上一层
+- (void)cancleAndBack{
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
 #pragma mark - 图片
 // 获取本地相册的所有图片
 - (void)getAllPhotoFromLibrary{
@@ -156,7 +161,7 @@
 
 // 预设值
 - (void)customizedPresetValue{
-    CGRect frame = [[UIScreen mainScreen] applicationFrame];//获取窗口大小;
+    CGRect frame = [[UIScreen mainScreen] bounds];//获取窗口大小;
     //标准值设置
     standStateBarWidth = 750;//
     standStateBarHeight = 110;//
@@ -171,7 +176,7 @@
     stateBarSize = CGSizeMake(frame.size.width, frame.size.width*standStateBarHeight/standStateBarWidth);//
     //图片视图的大小
     pickPhotoViewSize = frame.size;
-    pickPhotoViewSize.height = pickPhotoViewSize.height - self.navigationBar.bounds.size.height - stateBarSize.height;
+    pickPhotoViewSize.height = pickPhotoViewSize.height - stateBarSize.height;
     //每张图的大小
     pickPhotoViewPerPicSize = CGSizeMake(frame.size.width*standPickPhotoViewPerPicSize.width/standStateBarWidth, frame.size.width*standPickPhotoViewPerPicSize.height/standStateBarWidth);
     //与边缘的间距
@@ -190,8 +195,8 @@
     scanSize = CGSizeMake(pickPhotoViewPerPicSize.width*2/3, pickPhotoViewPerPicSize.width*2/3);
     
     //位置计算
-    pickPhotoViewPoint = CGPointMake(0, frame.origin.y+self.navigationBar.bounds.size.height);
-    stateBarPoint = CGPointMake(0, frame.origin.y+self.navigationBar.bounds.size.height+pickPhotoViewSize.height);
+    pickPhotoViewPoint = CGPointMake(0, 0);
+    stateBarPoint = CGPointMake(0, pickPhotoViewSize.height);
     //
     photoStarPoint = CGPointMake(pickPhotoViewSpan, pickPhotoViewVerticalSpace);
     //
@@ -206,9 +211,18 @@
 
 // 导航条样式
 - (void)customizedNavigationBar{
-    self.navigationBar.hidden = NO;
-    self.title = @"navigationcontroller";//设置navigationbar上显示的标题
-    [self.navigationController.navigationBar setBarTintColor:[UIColor purpleColor]];//设置navigationbar的颜色
+    //不隐藏导航栏
+    self.navigationController.navigationBar.hidden = NO;
+    //设置navigationbar上显示的标题
+    self.title = @"选择照片";
+    //设置navigationbar的颜色
+    //[self.navigationController.navigationBar setBarTintColor:[UIColor yellowColor]];
+    //导航栏左边返回按钮
+    UIBarButtonItem *leftBackItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(cancleAndBack)];
+    //导航栏右边取消按钮
+    UIBarButtonItem *rightCancleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancleAndBack)];
+    self.navigationItem.leftBarButtonItem = leftBackItem;
+    self.navigationItem.rightBarButtonItem = rightCancleItem;
 }
 
 // 图片多选视图
@@ -216,7 +230,6 @@
     CGRect pickPhotoViewFrame = CGRectMake(pickPhotoViewPoint.x, pickPhotoViewPoint.y, pickPhotoViewSize.width, pickPhotoViewSize.height);
     pickPhotoView = [[UIScrollView alloc] initWithFrame:pickPhotoViewFrame];
     pickPhotoView.backgroundColor = [ESColorUtil getColorFromHexValue:pickPhotoViewColorHexValue];
-    
     [self.view addSubview:pickPhotoView];
 }
 
