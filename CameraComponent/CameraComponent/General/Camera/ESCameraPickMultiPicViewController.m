@@ -161,7 +161,7 @@
 
 // 预设值
 - (void)customizedPresetValue{
-    CGRect frame = [[UIScreen mainScreen] bounds];//获取窗口大小;
+    CGRect frame = [[UIScreen mainScreen] applicationFrame];//获取窗口大小;
     //标准值设置
     standStateBarWidth = 750;//
     standStateBarHeight = 110;//
@@ -176,7 +176,7 @@
     stateBarSize = CGSizeMake(frame.size.width, frame.size.width*standStateBarHeight/standStateBarWidth);//
     //图片视图的大小
     pickPhotoViewSize = frame.size;
-    pickPhotoViewSize.height = pickPhotoViewSize.height - stateBarSize.height;
+    pickPhotoViewSize.height = pickPhotoViewSize.height - stateBarSize.height - self.navigationController.navigationBar.bounds.size.height;
     //每张图的大小
     pickPhotoViewPerPicSize = CGSizeMake(frame.size.width*standPickPhotoViewPerPicSize.width/standStateBarWidth, frame.size.width*standPickPhotoViewPerPicSize.height/standStateBarWidth);
     //与边缘的间距
@@ -217,6 +217,8 @@
     self.title = @"选择照片";
     //设置navigationbar的颜色
     //[self.navigationController.navigationBar setBarTintColor:[UIColor yellowColor]];
+    //
+    self.navigationController.navigationBar.translucent = NO;
     //导航栏左边返回按钮
     UIBarButtonItem *leftBackItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(cancleAndBack)];
     //导航栏右边取消按钮
