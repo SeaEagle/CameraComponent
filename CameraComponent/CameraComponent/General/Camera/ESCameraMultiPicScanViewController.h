@@ -44,6 +44,12 @@
     CGSize toolBarSize;//底部工具栏的大小
     CGPoint toolBarPoint;//底部工具栏的位置
     UIView *toolBarView;//底部工具栏
+    CGFloat standToolbarButtonSpan;//
+    CGFloat toolbarButtonSpan;//
+    CGFloat toolbarButtonFontSize;//工具栏上按钮的字体大小
+    CGSize finishButtonSize;//
+    CGPoint finishButtonPoint;//
+    UIButton *finishButton;//完成按钮-位于底部工具栏-右边
     
     //手势
     UISwipeGestureRecognizer *leftSwipeGestureRecognizer;

@@ -112,6 +112,11 @@
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
+// 完成数据传送并返回
+- (void)finishAndBack{
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
 #pragma mark - 处理代理事件
 - (void) managePictureState:(NSInteger)index selectedCount:(int)count{
     currentSelectedCount = count;
@@ -124,6 +129,11 @@
     }
 }
 
+- (void)test{
+    if([self.multiPicDelegate respondsToSelector:@selector(multiPicDelegate)]){
+        [self.multiPicDelegate manageMultiPic];
+    }
+}
 #pragma mark - 图片处理
 // 获取本地相册的所有图片
 - (void)getAllPhotoFromLibrary{
@@ -246,6 +256,12 @@
     selectSize = CGSizeMake(pickPhotoViewPerPicSize.width/3, pickPhotoViewPerPicSize.width/3);
     //预览点击框的大小
     scanSize = CGSizeMake(pickPhotoViewPerPicSize.width*2/3, pickPhotoViewPerPicSize.width*2/3);
+    //预览按钮的大小
+    scanButtonSize = CGSizeMake(toolBarSize.width/4, toolBarSize.height);
+    //
+    finishButtonSize = CGSizeMake(toolBarSize.width/4, toolBarSize.height);
+    //工具栏按钮的字体大小
+    toolbarButtonFontSize = toolBarSize.height*0.37;
     
     //位置计算
     pickPhotoViewPoint = CGPointMake(0, 0);
@@ -256,6 +272,10 @@
     selectStarPoint = CGPointMake(photoStarPoint.x+pickPhotoViewPerPicSize.width*2/3, photoStarPoint.y);
     //
     scanStarPoint = CGPointMake(photoStarPoint.x, photoStarPoint.y+pickPhotoViewPerPicSize.width/3);
+    //预览按钮的位置
+    scanButtonPoint = CGPointMake(pickPhotoViewSpan, 0);
+    //
+    finishButtonPoint = CGPointMake(toolBarSize.width-pickPhotoViewSpan-finishButtonSize.width, 0);
     
     //图片
     //选中
@@ -279,7 +299,7 @@
     //导航栏左边返回按钮
     //UIBarButtonItem *leftBackItem = [[UIBarButtonItem alloc] initWithImage:backButtonImg style:UIBarButtonItemStylePlain target:self action:@selector(cancleAndBack)];
     //导航栏右边取消按钮
-    UIBarButtonItem *rightCancleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancleAndBack)];
+    rightCancleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancleAndBack)];
     //self.navigationItem.leftBarButtonItem = leftBackItem;
     self.navigationItem.rightBarButtonItem = rightCancleItem;
 }
@@ -298,12 +318,23 @@
     toolBarView = [[UIView alloc]initWithFrame:stateBarFrame];
     toolBarView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:toolBarView];
-}
-
-- (void)test{
-    if([self.multiPicDelegate respondsToSelector:@selector(multiPicDelegate)]){
-        [self.multiPicDelegate manageMultiPic];
-    }
+    //工具条上的预览按钮
+    scanButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    scanButton.frame = CGRectMake(scanButtonPoint.x, scanButtonPoint.y, scanButtonSize.width, scanButtonSize.height);
+    [scanButton setTitle:@"预览" forState:UIControlStateNormal];
+    scanButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    scanButton.titleLabel.font = [UIFont systemFontOfSize:toolbarButtonFontSize];
+    [scanButton addTarget:self action:@selector(scanSelectedPictures) forControlEvents:UIControlEventTouchUpInside];
+    [toolBarView addSubview:scanButton];
+    //
+    finishButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    finishButton.frame = CGRectMake(finishButtonPoint.x, finishButtonPoint.y, finishButtonSize.width, finishButtonSize.height);
+    [finishButton setTitle:@"完成" forState:UIControlStateNormal];
+    finishButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    finishButton.titleLabel.font = [UIFont systemFontOfSize:toolbarButtonFontSize];
+    [finishButton addTarget:self action:@selector(finishAndBack) forControlEvents:UIControlEventTouchUpInside];
+    [toolBarView addSubview:finishButton];
+    
 }
 
 @end

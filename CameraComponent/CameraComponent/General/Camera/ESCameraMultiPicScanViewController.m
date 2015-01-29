@@ -130,6 +130,10 @@
     [self scanAndPickCommuniccate];
 }
 
+// 完成返回上一层
+- (void)finishOperation{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark - 图片操作
 // 显示图片
 - (void)showImage:(NSInteger)index{
@@ -175,6 +179,7 @@
     //标准值设置
     standToolBarWidth = 750;//
     standToolBarHeight = 110;//
+    standToolbarButtonSpan = 15;
     
     //大小计算
     //工具栏大小
@@ -182,10 +187,18 @@
     //图片视图的大小
     originalImageViewSize = frame.size;
     originalImageViewSize.height = originalImageViewSize.height - toolBarSize.height - self.navigationController.navigationBar.bounds.size.height;
+    //
+    toolbarButtonSpan = toolBarSize.width*standToolbarButtonSpan/standToolBarWidth;
+    //
+    finishButtonSize = CGSizeMake(toolBarSize.width/4, toolBarSize.height);
+    //工具栏按钮的字体大小
+    toolbarButtonFontSize = toolBarSize.height*0.37;
     
     //位置计算
     originalImageViewPoint = CGPointMake(0, 0);
     toolBarPoint = CGPointMake(0, originalImageViewSize.height);
+    //
+    finishButtonPoint = CGPointMake(toolBarSize.width-toolbarButtonSpan-finishButtonSize.width, 0);
     
     //图片
     //选中
@@ -217,5 +230,13 @@
     toolBarView = [[UIView alloc]initWithFrame:CGRectMake(toolBarPoint.x, toolBarPoint.y, toolBarSize.width, toolBarSize.height)];
     toolBarView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:toolBarView];
+    //
+    finishButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    finishButton.frame = CGRectMake(finishButtonPoint.x, finishButtonPoint.y, finishButtonSize.width, finishButtonSize.height);
+    [finishButton setTitle:@"完成" forState:UIControlStateNormal];
+    finishButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    finishButton.titleLabel.font = [UIFont systemFontOfSize:toolbarButtonFontSize];
+    [finishButton addTarget:self action:@selector(finishOperation) forControlEvents:UIControlEventTouchUpInside];
+    [toolBarView addSubview:finishButton];
 }
 @end

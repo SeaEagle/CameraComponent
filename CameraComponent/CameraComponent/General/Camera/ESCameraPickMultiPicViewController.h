@@ -33,6 +33,7 @@
     
     //导航栏
     UIImage *backButtonImg;//返回按钮背景图
+    UIBarButtonItem *rightCancleItem;//
     
     //每张图片
     CGSize standPickPhotoViewPerPicSize;//图片视图每张图片的标准大小
@@ -68,8 +69,13 @@
     UIView *toolBarView;//底部工具栏
     
     //工具栏按钮 - 尺寸与导航栏一致
+    CGFloat toolbarButtonSpan;//
+    CGFloat toolbarButtonFontSize;//工具栏上按钮的字体大小
+    CGSize scanButtonSize;//
+    CGPoint scanButtonPoint;//
     UIButton *scanButton;//预览按钮-位于底部工具栏-左边
-    
+    CGSize finishButtonSize;//
+    CGPoint finishButtonPoint;//
     UIButton *finishButton;//完成按钮-位于底部工具栏-右边
     
     //图片预览
