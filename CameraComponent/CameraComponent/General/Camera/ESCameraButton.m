@@ -95,6 +95,14 @@
     if ( nil == cameraPicMultiPicViewController ) {
         cameraPicMultiPicViewController = [[ESCameraPickMultiPicViewController alloc]init];
         cameraPicMultiPicViewController.multiPicDelegate = self;
+        //是否限制图片数量
+        cameraPicMultiPicViewController.picMaxLimitMark = YES;
+        //图片数量最大值
+        cameraPicMultiPicViewController.picMaxCount = 5;
+        //当前已选择的图片数量
+        cameraPicMultiPicViewController.currentSelectedCount = 0;
+        //清除已选择的图片
+        
     }
     if ( nil == cameraPicMultiPicViewNavigationController ) {
         cameraPicMultiPicViewNavigationController = [[UINavigationController alloc]initWithRootViewController:cameraPicMultiPicViewController];

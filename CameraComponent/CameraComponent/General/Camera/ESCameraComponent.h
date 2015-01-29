@@ -19,11 +19,6 @@
 }
 
 #pragma mark - 属性声明
-@property UIViewController *currentViewController;//当前viewController
-@property BOOL originalMark;//原图标记
-@property BOOL picMaxLimitMark;//图片数量限制标记
-@property int picMaxCount;//图片数量最大值
-@property NSMutableArray *imageArray;//存放图片的数组
 
 @property (weak, nonatomic) IBOutlet UIButton *cameraBtn;
 
