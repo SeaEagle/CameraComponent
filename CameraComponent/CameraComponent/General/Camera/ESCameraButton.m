@@ -16,8 +16,8 @@
 /*
  * 自定义拍照按钮的初始化
  */
-- (id)initWithCoder:(NSCoder *)decoder{
-    self = [super initWithCoder:decoder];
+- (id)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
     if (self) {
         //设置拍照按钮的样式
         [self customizeOutlook];
@@ -75,7 +75,9 @@
             break;
         case 3:
             //获取方式：相册
-        {}
+        {
+            [self launchPhotoLibrary];
+        }
             break;
         default:
             //do nothing
@@ -91,27 +93,8 @@
 - (void)photoLibraryOperation{
     [cameraChoseView hideChoseTab];//隐藏选择的Tab
     [cameraChoseView removeFromSuperview];//
-    
-    if ( nil == cameraPicMultiPicViewController ) {
-        cameraPicMultiPicViewController = [[ESCameraPickMultiPicViewController alloc]init];
-        cameraPicMultiPicViewController.multiPicDelegate = self;
-        //是否限制图片数量
-        cameraPicMultiPicViewController.picMaxLimitMark = YES;
-        //图片数量最大值
-        cameraPicMultiPicViewController.picMaxCount = 5;
-        //当前已选择的图片数量
-        cameraPicMultiPicViewController.currentSelectedCount = 0;
-        //清除已选择的图片
-        
-    }
-    if ( nil == cameraPicMultiPicViewNavigationController ) {
-        cameraPicMultiPicViewNavigationController = [[UINavigationController alloc]initWithRootViewController:cameraPicMultiPicViewController];
-    }
-    
-    locateViewController = [ESViewControllerUtil getCurrentViewController];
-    
-    [locateViewController presentViewController:cameraPicMultiPicViewNavigationController animated:YES completion:nil];
-    
+    //打开本地照片
+    [self launchPhotoLibrary];
 }
 
 /*
@@ -121,6 +104,29 @@
     [cameraChoseView hideChoseTab];//隐藏选择的Tab
     [cameraChoseView removeFromSuperview];//
     [self launchCamera];//启动相机
+}
+
+#pragma mark - 本地照片
+- (void)launchPhotoLibrary{
+    if ( nil == cameraPicMultiPicViewController ) {
+        cameraPicMultiPicViewController = [[ESCameraPickMultiPicViewController alloc]init];
+        cameraPicMultiPicViewController.multiPicDelegate = self;
+    }
+    if ( nil == cameraPicMultiPicViewNavigationController ) {
+        cameraPicMultiPicViewNavigationController = [[UINavigationController alloc]initWithRootViewController:cameraPicMultiPicViewController];
+    }
+    
+    //是否限制图片数量
+    cameraPicMultiPicViewController.picMaxLimitMark = YES;
+    //图片数量最大值
+    cameraPicMultiPicViewController.picMaxCount = 5;
+    //当前已选择的图片数量
+    cameraPicMultiPicViewController.currentSelectedCount = 0;
+    //清除已选择的图片
+    
+    locateViewController = [ESViewControllerUtil getCurrentViewController];
+    
+    [locateViewController presentViewController:cameraPicMultiPicViewNavigationController animated:YES completion:nil];
 }
 
 #pragma mark - 相机初始化及启动操作

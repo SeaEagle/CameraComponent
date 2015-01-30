@@ -22,7 +22,11 @@
 @synthesize photoUrlData;//图片数组
 @synthesize photoSelectState;//选择状态
 @synthesize currentIndex;//当前图片索引
+@synthesize photoSelectData;//存放已选择的图片索引
+@synthesize currentSelectedIndex;//用于指向选中的图片的索引
+@synthesize photoSelectIndexOrder;//已选择图片的顺序(升序)
 
+#pragma mark -
 - (void)viewDidLoad {
     [super viewDidLoad];
     //全局
@@ -42,6 +46,9 @@
 // 刷新界面显示内容
 - (void)viewDidAppear:(BOOL)animated{
     // 展示当前选中的图片
+    if ( NO == scanMark) {
+        currentIndex = [[photoSelectIndexOrder objectAtIndex:currentSelectedIndex] integerValue];
+    }
     [self showImage:currentIndex];
 }
 
@@ -76,7 +83,10 @@
             currentIndex++;
         }
     }else{//浏览选中的图片
-        
+        if ( [photoSelectIndexOrder count] > (currentSelectedIndex+1) ) {
+            currentSelectedIndex++;
+            currentIndex = [[photoSelectIndexOrder objectAtIndex:currentSelectedIndex] integerValue];
+        }
     }
     // 展示下一张的图片
     [self showImage:currentIndex];
@@ -89,7 +99,10 @@
             currentIndex--;
         }
     }else{//浏览选中的图片
-        
+        if ( 0 < currentSelectedIndex ) {
+            currentSelectedIndex--;
+            currentIndex = [[photoSelectIndexOrder objectAtIndex:currentSelectedIndex] integerValue];
+        }
     }
     // 展示上一张选中的图片
     [self showImage:currentIndex];
@@ -115,15 +128,19 @@
                              otherButtonTitles:nil];
             [alert show];
         }else{
-            rightSelectItem.image = selectedImg;//修改背景图
+            [rightButton setImage:selectedImg forState:UIControlStateNormal];;//修改背景图
             state = [NSNumber numberWithInt:1];//修改状态
             currentSelectedCount++;
+            [photoSelectData setObject:[NSString stringWithFormat:@"%ld", currentIndex] forKey:[NSString stringWithFormat:@"%ld", currentIndex]];
         }
     }else{//选中变为不选中
-        rightSelectItem.image = noSelectedImg;//修改背景图
+        [rightButton setImage:noSelectedImg forState:UIControlStateNormal];;//修改背景图
         state = [NSNumber numberWithInt:0];//修改状态
         currentSelectedCount--;
+        [photoSelectData removeObjectForKey:[NSString stringWithFormat:@"%ld", currentIndex]];
     }
+    //修改已选图片数量提示
+    [self changeCurrentSelectedCountTip:currentSelectedCount];
     //修改状态
     [photoSelectState replaceObjectAtIndex:currentIndex withObject:state];
     //通知代理
@@ -139,9 +156,9 @@
 - (void)showImage:(NSInteger)index{
     NSNumber *state = [photoSelectState objectAtIndex:currentIndex];
     if ( 0 == [state intValue] ) {//不选中
-        rightSelectItem.image = noSelectedImg;//修改背景图
+        [rightButton setImage:noSelectedImg forState:UIControlStateNormal];;//修改背景图
     }else{//选中
-        rightSelectItem.image = selectedImg;//修改背景图
+        [rightButton setImage:selectedImg forState:UIControlStateNormal];;//修改背景图
     }
     [library assetForURL:[photoUrlData objectAtIndex:currentIndex]
              resultBlock:^(ALAsset *result){
@@ -179,7 +196,7 @@
     //标准值设置
     standToolBarWidth = 750;//
     standToolBarHeight = 110;//
-    standToolbarButtonSpan = 15;
+    standToolbarButtonSpan = 15;//
     
     //大小计算
     //工具栏大小
@@ -189,8 +206,10 @@
     originalImageViewSize.height = originalImageViewSize.height - toolBarSize.height - self.navigationController.navigationBar.bounds.size.height;
     //
     toolbarButtonSpan = toolBarSize.width*standToolbarButtonSpan/standToolBarWidth;
+    //工具栏的完成按钮大小
+    finishButtonSize = CGSizeMake(toolBarSize.width/7, toolBarSize.height);
     //
-    finishButtonSize = CGSizeMake(toolBarSize.width/4, toolBarSize.height);
+    currentSelectedCountLabelSize = CGSizeMake(toolBarSize.width-finishButtonSize.width-2*toolbarButtonSpan, toolBarSize.height);
     //工具栏按钮的字体大小
     toolbarButtonFontSize = toolBarSize.height*0.37;
     
@@ -199,6 +218,8 @@
     toolBarPoint = CGPointMake(0, originalImageViewSize.height);
     //
     finishButtonPoint = CGPointMake(toolBarSize.width-toolbarButtonSpan-finishButtonSize.width, 0);
+    //
+    currentSelectedCountLabelPoint = CGPointMake(toolbarButtonSpan, 0);
     
     //图片
     //选中
@@ -214,7 +235,12 @@
     //导航栏不透明
     self.navigationController.navigationBar.translucent = NO;
     //导航栏右边的选中与不选中处理
-    rightSelectItem = [[UIBarButtonItem alloc] initWithImage:noSelectedImg style:UIBarButtonItemStylePlain target:self action:@selector(selectOrNotOperation)];
+    //rightSelectItem = [[UIBarButtonItem alloc] initWithImage:noSelectedImg style:UIBarButtonItemStylePlain target:self action:@selector(selectOrNotOperation)];
+    rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightButton.frame = CGRectMake(0, 0, toolBarSize.height*0.6, toolBarSize.height*0.6);
+    [rightButton setImage:noSelectedImg forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(selectOrNotOperation) forControlEvents:UIControlEventTouchUpInside];
+    rightSelectItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightSelectItem;
 }
 
@@ -238,5 +264,21 @@
     finishButton.titleLabel.font = [UIFont systemFontOfSize:toolbarButtonFontSize];
     [finishButton addTarget:self action:@selector(finishOperation) forControlEvents:UIControlEventTouchUpInside];
     [toolBarView addSubview:finishButton];
+    //工具条上的多少张图片
+    currentSelectedCountLabel = [[UILabel alloc]initWithFrame:CGRectMake(currentSelectedCountLabelPoint.x, currentSelectedCountLabelPoint.y, currentSelectedCountLabelSize.width, currentSelectedCountLabelSize.height)];
+    currentSelectedCountLabel.textAlignment = NSTextAlignmentRight;
+    currentSelectedCountLabel.font = [UIFont systemFontOfSize:toolbarButtonFontSize];
+    currentSelectedCountLabel.textColor = finishButton.tintColor;
+    [self changeCurrentSelectedCountTip:currentSelectedCount];
+    [toolBarView addSubview:currentSelectedCountLabel];
+}
+
+// 更新已选择的图片数量提示
+- (void)changeCurrentSelectedCountTip:(int)count{
+    if( 0 == count ){
+        currentSelectedCountLabel.text = @"";
+    }else{
+        currentSelectedCountLabel.text = [NSString stringWithFormat:@"%d", currentSelectedCount];
+    }
 }
 @end

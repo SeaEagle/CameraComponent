@@ -13,7 +13,9 @@
 - (id)initWithCoder:(NSCoder *)decoder{
     self = [super initWithCoder:decoder];
     if (self) {
-        ESCameraComponent *cameraComponent = [ESCameraComponent instanceCameraComponent];
+        CGRect frame = [[UIScreen mainScreen]applicationFrame];
+        frame.origin.y = 0;
+        ESCameraComponent *cameraComponent = [[ESCameraComponent alloc]initWithFrame:frame];
         [self addSubview:cameraComponent];
     }
     return(self);

@@ -28,9 +28,13 @@
     ALAssetsLibrary *library;//相册
     NSMutableArray *photoUrlData;//图片数组
     NSInteger currentIndex;//当前图片索引
+    NSInteger currentSelectedIndex;//用于指向选中的图片的索引--区别于图片索引
     NSMutableArray *photoSelectState;//选择状态, 0表示不选中, 1表示选中
+    NSMutableDictionary *photoSelectData;//存放已选择的图片索引
+    NSArray *photoSelectIndexOrder;//已选择图片的顺序(升序)
     
     //
+    UIButton *rightButton;//
     UIBarButtonItem *rightSelectItem;//导航栏右上角按钮
     
     //中部显示大图
@@ -51,6 +55,11 @@
     CGPoint finishButtonPoint;//
     UIButton *finishButton;//完成按钮-位于底部工具栏-右边
     
+    //工具栏label - 显示已选多少张图片
+    CGSize currentSelectedCountLabelSize;//
+    CGPoint currentSelectedCountLabelPoint;//
+    UILabel *currentSelectedCountLabel;//
+    
     //手势
     UISwipeGestureRecognizer *leftSwipeGestureRecognizer;
     UISwipeGestureRecognizer *rightSwipeGestureRecognizer;
@@ -69,6 +78,9 @@
 @property NSMutableArray *photoUrlData;//图片数组
 @property NSMutableArray *photoSelectState;//选择状态
 @property NSInteger currentIndex;//当前图片索引
+@property NSMutableDictionary *photoSelectData;//存放已选择的图片索引
+@property NSInteger currentSelectedIndex;//用于指向选中的图片的索引
+@property NSArray *photoSelectIndexOrder;//已选择图片的顺序(升序)
 
 #pragma mark - 方法声明
 

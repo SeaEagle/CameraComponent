@@ -30,10 +30,11 @@
     NSMutableArray *photoUrlData;//图片的URL
     NSMutableArray *photoSelectImgViewArray;//缩略图各自选择图image对应imageView
     NSMutableArray *photoSelectState;//选择状态, 0表示不选中, 1表示选中
+    NSMutableDictionary *photoSelectData;//存放已选择的图片索引
     
     //导航栏
     UIImage *backButtonImg;//返回按钮背景图
-    UIBarButtonItem *rightCancleItem;//
+    UIBarButtonItem *rightCancleItem;//右上角取消按钮
     
     //每张图片
     CGSize standPickPhotoViewPerPicSize;//图片视图每张图片的标准大小
@@ -77,6 +78,11 @@
     CGSize finishButtonSize;//
     CGPoint finishButtonPoint;//
     UIButton *finishButton;//完成按钮-位于底部工具栏-右边
+    
+    //工具栏label - 显示已选多少张图片
+    CGSize currentSelectedCountLabelSize;//
+    CGPoint currentSelectedCountLabelPoint;//
+    UILabel *currentSelectedCountLabel;//
     
     //图片预览
     ESCameraMultiPicScanViewController *cameraMultiPicScanViewController;

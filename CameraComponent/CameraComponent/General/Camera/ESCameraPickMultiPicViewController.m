@@ -65,12 +65,15 @@
             selectOrNotView.image = selectedImg;
             state = [NSNumber numberWithInt:1];
             currentSelectedCount++;
+            [photoSelectData setObject:[NSString stringWithFormat:@"%ld", button.tag] forKey:[NSString stringWithFormat:@"%ld", button.tag]];
         }
     }else{//选中变为不选中
         selectOrNotView.image = noSelectedImg;
         state = [NSNumber numberWithInt:0];
         currentSelectedCount--;
+        [photoSelectData removeObjectForKey:[NSString stringWithFormat:@"%ld", button.tag]];
     }
+    [self changeCurrentSelectedCountTip:currentSelectedCount];
     [photoSelectState replaceObjectAtIndex:button.tag withObject:state];
 }
 
@@ -78,13 +81,13 @@
 - (void)scanEvent:(UIButton *)button{
     if( nil == cameraMultiPicScanViewController ){
         cameraMultiPicScanViewController = [[ESCameraMultiPicScanViewController alloc]init];
-        //图片数量限制标记
-        cameraMultiPicScanViewController.picMaxLimitMark = picMaxLimitMark;
-        //图片数量最大值
-        cameraMultiPicScanViewController.picMaxCount = picMaxCount;
         //
         cameraMultiPicScanViewController.scanAndPickCommunicateDelegate = self;
     }
+    //图片数量限制标记
+    cameraMultiPicScanViewController.picMaxLimitMark = picMaxLimitMark;
+    //图片数量最大值
+    cameraMultiPicScanViewController.picMaxCount = picMaxCount;
     //标识浏览所有图片
     cameraMultiPicScanViewController.scanMark = YES;
     //传递照片数据
@@ -93,6 +96,8 @@
     cameraMultiPicScanViewController.currentIndex = button.tag;
     //图片选择状态
     cameraMultiPicScanViewController.photoSelectState = photoSelectState;
+    //
+    cameraMultiPicScanViewController.photoSelectData = photoSelectData;
     //已选择图片的数量
     cameraMultiPicScanViewController.currentSelectedCount = currentSelectedCount;
     //转去浏览图片的界面
@@ -103,6 +108,37 @@
 - (void)scanSelectedPictures{
     if( nil == cameraMultiPicScanViewController ){
         cameraMultiPicScanViewController = [[ESCameraMultiPicScanViewController alloc]init];
+        //
+        cameraMultiPicScanViewController.scanAndPickCommunicateDelegate = self;
+    }
+    //图片数量限制标记
+    cameraMultiPicScanViewController.picMaxLimitMark = picMaxLimitMark;
+    //图片数量最大值
+    cameraMultiPicScanViewController.picMaxCount = picMaxCount;
+    //标识浏览所有图片
+    cameraMultiPicScanViewController.scanMark = NO;
+    //传递照片数据
+    cameraMultiPicScanViewController.photoUrlData = photoUrlData;
+    //图片选择状态
+    cameraMultiPicScanViewController.photoSelectState = photoSelectState;
+    //
+    cameraMultiPicScanViewController.photoSelectData = photoSelectData;
+    //已选择图片的数量
+    cameraMultiPicScanViewController.currentSelectedCount = currentSelectedCount;
+    //
+    cameraMultiPicScanViewController.currentSelectedIndex = 0;
+    //已选择图片的顺序(升序)
+    cameraMultiPicScanViewController.photoSelectIndexOrder = [[photoSelectData allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString *numStr1 = obj1, *numStr2 = obj2;
+        NSInteger number1 = [numStr1 integerValue], number2 = [numStr2 integerValue];
+        if (number1>=number2) {
+            return YES;
+        }else{
+            return NO;
+        }
+    }];
+    for (NSString *key in cameraMultiPicScanViewController.photoSelectIndexOrder) {
+        NSLog(@"%@", key);
     }
     [self.navigationController pushViewController:cameraMultiPicScanViewController animated:NO];
 }
@@ -127,6 +163,7 @@
     }else{
         indexImageView.image = noSelectedImg ;
     }
+    [self changeCurrentSelectedCountTip:currentSelectedCount];
 }
 
 - (void)test{
@@ -137,10 +174,13 @@
 #pragma mark - 图片处理
 // 获取本地相册的所有图片
 - (void)getAllPhotoFromLibrary{
+    //初始化
     photoData = [[NSMutableArray alloc]init];
     photoUrlData = [[NSMutableArray alloc]init];
     photoSelectImgViewArray = [[NSMutableArray alloc]init];
     photoSelectState = [[NSMutableArray alloc]init];
+    photoSelectData = [[NSMutableDictionary alloc]init];
+    
     //获取本地照片
     ALAssetsLibrary *libray = [[ALAssetsLibrary alloc] init];
     //遍历每个相册
@@ -175,7 +215,7 @@
     int currentRow=1, currentColumn=1;
     
     CGSize contentSize = pickPhotoView.contentSize;
-    contentSize.height = verticalShift*([photoData count]/pickPhotoViewRowSize)+verticalShift*0.3;//加多verticalShift*0.3以便显示最底部的相片
+    contentSize.height = verticalShift*([photoData count]/pickPhotoViewRowSize)+verticalShift*0.35;//加多verticalShift*0.3以便显示最底部的相片
     pickPhotoView.contentSize = contentSize;
     //获取到相片的缩略图
     for (ALAsset *data in photoData) {
@@ -192,9 +232,9 @@
         CGRect selectOrNotFrame = CGRectMake(selectStarPoint.x+horizonShift*(currentColumn-1), selectStarPoint.y+verticalShift*(currentRow-1), selectSize.width, selectSize.height);
         UIImageView *selectOrNotView = [[UIImageView alloc]initWithFrame:selectOrNotFrame];
         selectOrNotView.image = noSelectedImg;
-        [photoSelectImgViewArray addObject:selectOrNotView];
+        [photoSelectImgViewArray addObject:selectOrNotView];//保存各个预览图对应的状态背景图
         NSNumber *state = [NSNumber numberWithInt:0];
-        [photoSelectState addObject:state];
+        [photoSelectState addObject:state];//保存状态
         [pickPhotoView addSubview:selectOrNotView];//选中或不选中背景图
         
         UIButton *selectOrNotBtn = [[UIButton alloc]initWithFrame:selectOrNotFrame];
@@ -258,8 +298,10 @@
     scanSize = CGSizeMake(pickPhotoViewPerPicSize.width*2/3, pickPhotoViewPerPicSize.width*2/3);
     //预览按钮的大小
     scanButtonSize = CGSizeMake(toolBarSize.width/4, toolBarSize.height);
+    //完成按钮的大小
+    finishButtonSize = CGSizeMake(toolBarSize.width/7, toolBarSize.height);
     //
-    finishButtonSize = CGSizeMake(toolBarSize.width/4, toolBarSize.height);
+    currentSelectedCountLabelSize = CGSizeMake(toolBarSize.width-scanButtonSize.width-finishButtonSize.width-2*pickPhotoViewSpan, toolBarSize.height);
     //工具栏按钮的字体大小
     toolbarButtonFontSize = toolBarSize.height*0.37;
     
@@ -274,8 +316,10 @@
     scanStarPoint = CGPointMake(photoStarPoint.x, photoStarPoint.y+pickPhotoViewPerPicSize.width/3);
     //预览按钮的位置
     scanButtonPoint = CGPointMake(pickPhotoViewSpan, 0);
-    //
+    //完成按钮的位置
     finishButtonPoint = CGPointMake(toolBarSize.width-pickPhotoViewSpan-finishButtonSize.width, 0);
+    //
+    currentSelectedCountLabelPoint = CGPointMake(pickPhotoViewSpan+scanButtonSize.width, 0);
     
     //图片
     //选中
@@ -326,7 +370,8 @@
     scanButton.titleLabel.font = [UIFont systemFontOfSize:toolbarButtonFontSize];
     [scanButton addTarget:self action:@selector(scanSelectedPictures) forControlEvents:UIControlEventTouchUpInside];
     [toolBarView addSubview:scanButton];
-    //
+    
+    //工具条上的完成按钮
     finishButton = [UIButton buttonWithType:UIButtonTypeSystem];
     finishButton.frame = CGRectMake(finishButtonPoint.x, finishButtonPoint.y, finishButtonSize.width, finishButtonSize.height);
     [finishButton setTitle:@"完成" forState:UIControlStateNormal];
@@ -335,6 +380,27 @@
     [finishButton addTarget:self action:@selector(finishAndBack) forControlEvents:UIControlEventTouchUpInside];
     [toolBarView addSubview:finishButton];
     
+    //工具条上的多少张图片
+    currentSelectedCountLabel = [[UILabel alloc]initWithFrame:CGRectMake(currentSelectedCountLabelPoint.x, currentSelectedCountLabelPoint.y, currentSelectedCountLabelSize.width, currentSelectedCountLabelSize.height)];
+    currentSelectedCountLabel.textAlignment = NSTextAlignmentRight;
+    currentSelectedCountLabel.font = [UIFont systemFontOfSize:toolbarButtonFontSize];
+    currentSelectedCountLabel.textColor = finishButton.tintColor;
+    [self changeCurrentSelectedCountTip:currentSelectedCount];
+    [toolBarView addSubview:currentSelectedCountLabel];
+    
+}
+
+// 更新已选择的图片数量提示
+- (void)changeCurrentSelectedCountTip:(int)count{
+    if( 0 == count ){
+        currentSelectedCountLabel.text = @"";
+        scanButton.enabled = NO;
+        finishButton.enabled = NO;
+    }else{
+        currentSelectedCountLabel.text = [NSString stringWithFormat:@"%d", currentSelectedCount];
+        scanButton.enabled = YES;
+        finishButton.enabled = YES;
+    }
 }
 
 @end

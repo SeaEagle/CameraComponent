@@ -12,25 +12,63 @@
 
 
 #pragma mark -
-//初始化
-+ (ESCameraComponent *)instanceCameraComponent{
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"ESCameraComponent" owner:nil options:nil];
-    return [nibView objectAtIndex:0];
-}
-
-- (id)initWithCoder:(NSCoder *)decoder{
-    self = [super initWithCoder:decoder];
+// 初始化
+- (id)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
     if (self) {
-        CGRect gridRect = self.frame;
-        gridRect.origin.x = 0;
-        gridRect.origin.y = 0;
-        self.frame = gridRect;
+        //
+        [self customizedPresetValue];
+        //
+        [self customizedGlobalView];
+        //
+        [self customizedOriginalOption];
+        //
+        [self customizedCameraButton];
     }
-    return(self);
+    return self;
 }
 
-#pragma mark - 界面相关
-//界面重绘
-- (void)reloadCameraComponentView{}
+#pragma mark - 样式
+// 预设值
+- (void)customizedPresetValue{
+    
+    //
+    CGRect frame = self.frame;
+    componentOutlineSize = frame.size;
+    
+    //标准值
+    standComponentOutlineWidth = 750;//
+    standComponentOutlineHeight = 306;//
+    standComponentHorizonSpan = 24;//
+    standComponentVerticalSpan = 41;//
+    standCameraButtonSize = CGSizeMake(192, 232);//
+    
+    //大小计算
+    componentOutlineSize.height = componentOutlineSize.width*standComponentOutlineHeight/standComponentOutlineWidth;
+    frame.size = componentOutlineSize;
+    self.frame = frame;
+    
+    componentHorizonSpan = componentOutlineSize.width*standComponentHorizonSpan/standComponentOutlineWidth;//
+    componentVerticalSpan = componentOutlineSize.width*standComponentVerticalSpan/standComponentOutlineWidth;//
+    cameraButtonSize = CGSizeMake(componentOutlineSize.width*standCameraButtonSize.width/standComponentOutlineWidth, componentOutlineSize.width*standCameraButtonSize.height/standComponentOutlineWidth);
+    
+    //位置计算
+    cameraButtonPoint = CGPointMake(0, 0);
+}
+
+// 全局view
+- (void)customizedGlobalView{
+    self.backgroundColor = [UIColor purpleColor];
+}
+
+// 原图选项的按钮
+- (void)customizedOriginalOption{}
+
+// 获取图片的按钮
+- (void)customizedCameraButton{
+    cameraButton = [[ESCameraButton alloc]initWithFrame:CGRectMake(cameraButtonPoint.x, cameraButtonPoint.y, cameraButtonSize.width, cameraButtonSize.height)];
+    cameraButton.backgroundColor = [UIColor yellowColor];
+    [self addSubview:cameraButton];
+}
 
 @end
