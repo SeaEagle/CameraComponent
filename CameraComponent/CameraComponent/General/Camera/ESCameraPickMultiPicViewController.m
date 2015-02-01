@@ -137,21 +137,21 @@
 // 取消并返回上一层
 - (void)cancleAndBack{
     //
-    NSArray *selectKeys = [photoSelectData allKeys];
+    //NSArray *selectKeys = [photoSelectData allKeys];
     //还原选择状态
-    for (NSString *key in selectKeys) {
-        NSNumber *falseNum = [NSNumber numberWithInt:0];
-        [photoSelectState replaceObjectAtIndex:[key integerValue] withObject:falseNum];
-        ((UIImageView *)[photoSelectImgViewArray objectAtIndex:[key integerValue]]).image = noSelectedImg;
-    }
+    //for (NSString *key in selectKeys) {
+        //NSNumber *falseNum = [NSNumber numberWithInt:0];
+        //[photoSelectState replaceObjectAtIndex:[key integerValue] withObject:falseNum];
+        //((UIImageView *)[photoSelectImgViewArray objectAtIndex:[key integerValue]]).image = noSelectedImg;
+    //}
     //已选择的项目清空
-    [photoSelectData removeAllObjects];
+    //[photoSelectData removeAllObjects];
     //已生成的图像数据清空
-    [photoSelectImageData removeAllObjects];
+    //[photoSelectImageData removeAllObjects];
     //本地照片已选择的数量置零
-    currentPhotoLibrarySelectedCount = 0;
+    //currentPhotoLibrarySelectedCount = 0;
     //更新已选择数据的显示
-    [self updateCurrentPhotoLibrarySelectedCountTip:currentPhotoLibrarySelectedCount];
+    //[self updateCurrentPhotoLibrarySelectedCountTip:currentPhotoLibrarySelectedCount];
     //关闭页面
     [self dismissViewControllerAnimated:YES completion:^{}];
 }

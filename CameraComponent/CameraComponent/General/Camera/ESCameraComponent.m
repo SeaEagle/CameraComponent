@@ -10,24 +10,30 @@
 
 @implementation ESCameraComponent
 
-#pragma mark -
+#pragma mark - 初始化
 // 初始化
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        //
+        //预设值
         [self customizedPresetValue];
-        //
+        //全局样式
         [self customizedGlobalView];
-        //
+        //控件标志
+        [self customizedComponentSign];
+        //原图操作
         [self customizedOriginalOption];
+        //
+        [self customizedPictureContainer];
         //自定义获取图片的按钮
         [self customizedCameraButton];
+        //
+        [self updateImageViewDisplay];
     }
     return self;
 }
 
-#pragma mark -
+#pragma mark - 其他
 // 获取控件中展示的图片
 - (NSArray *)getImageData{
     if(originalMark){//返回原图
@@ -38,7 +44,8 @@
     return nil;
 }
 
-#pragma mark - 删除图片处理
+#pragma mark - 按钮处理
+//删除图片处理
 - (void)deleteImage:(UIButton *)button{
     //获取即将删除的图片
     UIImage *image = [imageData objectAtIndex:button.tag];
@@ -55,8 +62,23 @@
     }
     //当前选择的数量减1
     currentSelectedCount--;
-    //
+    //从已有的数据中清除
     [imageData removeObject:image];
+    //更新页面显示
+    [self updateImageViewDisplay];
+}
+
+//点击原图按钮的操作
+- (void)originalButtonOperation{
+    if(originalMark){//已选择了使用原图
+        //转为不使用原图
+        originalButtonImageVIew.image = noOriginalOption;
+        originalMark = NO;
+    }else{//没选择原图
+        //转为使用原图
+        originalButtonImageVIew.image = originalOption;
+        originalMark = YES;
+    }
 }
 
 #pragma mark - 属性设置方法
@@ -76,7 +98,58 @@
 
 #pragma mark - 
 // 重新加载图像页面展示
-- (void) reloadImageViewDisplay{
+- (void) updateImageViewDisplay{
+    //清除所有subview
+    NSArray *subviewArray = [imageScrollView subviews];
+    for (UIView *subview in subviewArray) {
+        [subview removeFromSuperview];
+    }
+    //
+    int currentColumn=1, currentRow=1;
+    //显示已添加的图片
+    for (UIImage *image in imageData) {
+        if (currentColumn>imageScrollViewRowSize) {//换行
+            currentRow = currentRow+1;
+            currentColumn = 1;
+        }
+        
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(imageStartPoint.x+(currentColumn-1)*imageHorizonShift, imageStartPoint.y+(currentRow-1)*imageVerticalShift, cameraButton.bounds.size.width, cameraButton.bounds.size.height)];
+        imageView.image = [ESImageUtil shrinkImage:image toSize:cameraButton.bounds.size];
+        [imageScrollView addSubview:imageView];
+        
+        UIImageView *delImageView = [[UIImageView alloc]initWithFrame:CGRectMake(imageStartPoint.x+(currentColumn-1)*imageHorizonShift+imageView.bounds.size.width*0.7, (currentRow-1)*imageVerticalShift, imageView.bounds.size.width*0.3, imageView.bounds.size.width*0.3)];
+        delImageView.backgroundColor = [UIColor redColor];
+        [imageScrollView addSubview:delImageView];
+        
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(imageStartPoint.x+(currentColumn-1)*imageHorizonShift+imageView.bounds.size.width*0.7, (currentRow-1)*imageVerticalShift, imageView.bounds.size.width*0.3, imageView.bounds.size.width*0.3)];
+        button.tag = (currentRow-1)*imageScrollViewRowSize+currentColumn-1;
+        [button addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
+        [imageScrollView addSubview:button];
+        
+        currentColumn = currentColumn+1;//指向下一列
+    }
+    //是否增加添加图片的按钮
+    if( (YES == picMaxLimitMark && currentSelectedCount<picMaxCount) || NO == picMaxLimitMark ){
+        if (currentColumn>imageScrollViewRowSize) {//换行
+            currentRow = currentRow+1;
+            currentColumn = 1;
+        }
+        
+        cameraButton = [[UIButton alloc]initWithFrame:CGRectMake(imageStartPoint.x+(currentColumn-1)*imageHorizonShift, imageStartPoint.y+(currentRow-1)*imageVerticalShift, cameraButtonSize.width, cameraButtonSize.height)];
+        //设置按钮背景图
+        [cameraButton setImage:[ESImageUtil shrinkImage:cameraButtonImage toSize:cameraButtonSize] forState:UIControlStateNormal];
+        //设置拍照按钮的点击行为
+        [cameraButton addTarget:self action:@selector(pickPicture) forControlEvents:UIControlEventTouchUpInside];
+        
+        [imageScrollView addSubview:cameraButton];
+    }
+    CGRect scrollViewFrame = imageScrollView.frame;
+    scrollViewFrame.size.height = currentRow*imageVerticalShift;
+    imageScrollView.frame = scrollViewFrame;
+    
+    CGRect outlineFrame = self.frame;
+    outlineFrame.size.height = scrollViewFrame.size.height+2*componentVerticalSpan+titleHeight;
+    self.frame = outlineFrame;
 }
 
 #pragma mark - 用户配置检查
@@ -189,13 +262,14 @@
     }];
     //按顺序添加图片
     for (NSString *key in dataIndexKey) {
-        [imageData addObject:[dataDictionary objectForKey:key]];
+        if( NO == [imageData containsObject:[dataDictionary objectForKey:key]]){
+            [imageData addObject:[dataDictionary objectForKey:key]];
+            currentPhotoLibrarySelectedCount++;
+            currentSelectedCount++;
+        }
     }
-    //
-    currentPhotoLibrarySelectedCount = (int)[dataIndexKey count] ;
-    currentSelectedCount = currentSelectedCount+currentPhotoLibrarySelectedCount;
     //刷新图片展示
-    [self reloadImageViewDisplay];
+    [self updateImageViewDisplay];
 }
 
 #pragma mark - 相机初始化及启动操作
@@ -251,7 +325,7 @@
         //已选择的图片数量加1
         currentSelectedCount++;
         //刷新图片展示
-        [self reloadImageViewDisplay];
+        [self updateImageViewDisplay];
     }
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -274,44 +348,113 @@
     //标准值
     standComponentOutlineWidth = 750;//
     standComponentOutlineHeight = 306;//
-    standComponentHorizonSpan = 24;//
-    standComponentVerticalSpan = 41;//
+    standComponentHorizonSpan = 15;//
+    standComponentVerticalSpan = 20;//
+    standOriginalOptionSize = CGSizeMake(189, 69);
     standCameraButtonSize = CGSizeMake(192, 232);//
+    imageScrollViewRowSize = 5;//每行显示的图片数量
+    originalMark = NO;//默认不使用原图
+    cameraComponentLabelFontColorHexValue = @"28a8e3";
     
     //大小计算
-    componentOutlineSize.height = componentOutlineSize.width*standComponentOutlineHeight/standComponentOutlineWidth;
-    frame.size = componentOutlineSize;
-    self.frame = frame;
-    
+    //水平间隔
     componentHorizonSpan = componentOutlineSize.width*standComponentHorizonSpan/standComponentOutlineWidth;//
+    //垂直间隔
     componentVerticalSpan = componentOutlineSize.width*standComponentVerticalSpan/standComponentOutlineWidth;//
-    cameraButtonSize = CGSizeMake(componentOutlineSize.width*standCameraButtonSize.width/standComponentOutlineWidth, componentOutlineSize.width*standCameraButtonSize.height/standComponentOutlineWidth);
+    //原图操作的大小
+    originalOptionSize = CGSizeMake(componentOutlineSize.width*standOriginalOptionSize.width/standComponentOutlineWidth, componentOutlineSize.width*standOriginalOptionSize.height/standComponentOutlineWidth);
+    //组件头部的高度与原图操作的高度保持一致
+    titleHeight = originalOptionSize.height;
+    //
+    cameraComponentImageSize = CGSizeMake(titleHeight, titleHeight);
+    //
+    cameraComponentLabelSize = CGSizeMake(componentOutlineSize.width-3*componentHorizonSpan-originalOptionSize.width-cameraComponentImageSize.width, titleHeight);
+    //
+    imageScrollViewSize = CGSizeMake(componentOutlineSize.width-2*componentHorizonSpan, titleHeight);
+    //获取图片按钮
+    CGFloat cameraButtonWidth = (imageScrollViewSize.width-(imageScrollViewRowSize-1)*componentHorizonSpan)/imageScrollViewRowSize;
+    cameraButtonSize = CGSizeMake(cameraButtonWidth, cameraButtonWidth*standCameraButtonSize.height/standCameraButtonSize.width);
+    //
+    imageHorizonShift = componentHorizonSpan+cameraButtonSize.width;
+    //
+    imageVerticalShift = componentVerticalSpan+cameraButtonSize.height;
     
     //位置计算
-    cameraButtonPoint = CGPointMake(0, 0);
+    //
+    cameraComponentImagePoint = CGPointMake(componentHorizonSpan, componentVerticalSpan);
+    //
+    cameraComponentLabelPoint = CGPointMake(componentHorizonSpan+cameraComponentImageSize.width+componentHorizonSpan, componentVerticalSpan);
+    //
+    originalOptionPoint = CGPointMake(componentOutlineSize.width-originalOptionSize.width-componentHorizonSpan, componentVerticalSpan);
+    //获取图片按钮
+    cameraButtonPoint = CGPointMake(componentHorizonSpan, componentVerticalSpan);
+    //
+    imageScrollViewPoint = CGPointMake(componentHorizonSpan, componentVerticalSpan+titleHeight);
+    //
+    imageStartPoint = CGPointMake(0, componentVerticalSpan);
     
     //
     initMark = NO;
     currentSelectedCount = 0;
     imageData = [[NSMutableArray alloc]init];
+    
+    //图像
+    cameraComponentImage = [UIImage imageNamed:@"camera@3x.png"];
+    cameraButtonImage = [UIImage imageNamed:@"cameraBtn@3x.png"];
+    originalOption = [UIImage imageNamed:@"originalPic@3x.png"];
+    noOriginalOption = [UIImage imageNamed:@"noOriginalPic@3x.png"];
 }
 
 // 全局view
 - (void)customizedGlobalView{
-    self.backgroundColor = [UIColor purpleColor];
+    self.backgroundColor = [UIColor whiteColor];
+}
+
+// 控件标志
+- (void)customizedComponentSign{
+    //
+    cameraComponentImageView = [[UIImageView alloc]initWithFrame:CGRectMake(cameraComponentImagePoint.x, cameraComponentImagePoint.y, cameraComponentImageSize.width, cameraComponentImageSize.height)];
+    cameraComponentImageView.image = cameraComponentImage;
+    [self addSubview:cameraComponentImageView];
+    //
+    cameraComponentLabel = [[UILabel alloc]initWithFrame:CGRectMake(cameraComponentLabelPoint.x, cameraComponentLabelPoint.y, cameraComponentLabelSize.width, cameraComponentLabelSize.height)];
+    cameraComponentLabel.font = [UIFont systemFontOfSize:cameraComponentLabelSize.height*0.6];
+    cameraComponentLabel.text = @"拍照：";
+    cameraComponentLabel.textAlignment = NSTextAlignmentLeft;
+    cameraComponentLabel.textColor = [ESColorUtil getColorFromHexValue:cameraComponentLabelFontColorHexValue];
+    [self addSubview:cameraComponentLabel];
 }
 
 // 原图选项的按钮
 - (void)customizedOriginalOption{
+    //
+    originalButtonImageVIew = [[UIImageView alloc]initWithFrame:CGRectMake(originalOptionPoint.x, originalOptionPoint.y, originalOptionSize.width, originalOptionSize.height)];
+    originalButtonImageVIew.image = noOriginalOption;
+    [self addSubview:originalButtonImageVIew];
+    //
+    originalButton = [[UIButton alloc]initWithFrame:CGRectMake(originalOptionPoint.x, originalOptionPoint.y, originalOptionSize.width, originalOptionSize.height)];
+    //
+    originalButton.backgroundColor = [UIColor clearColor];
+    //
+    [originalButton addTarget:self action:@selector(originalButtonOperation) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:originalButton];
+}
+
+//
+- (void)customizedPictureContainer{
+    imageScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(imageScrollViewPoint.x, imageScrollViewPoint.y, imageScrollViewSize.width, imageScrollViewSize.height)];
+    imageScrollView.backgroundColor = [UIColor clearColor];
+    [self addSubview:imageScrollView];
 }
 
 // 获取图片的按钮
 - (void)customizedCameraButton{
-    cameraButton = [[UIButton alloc]initWithFrame:CGRectMake(cameraButtonPoint.x, cameraButtonPoint.y, cameraButtonSize.width, cameraButtonSize.height)];
-    cameraButton.backgroundColor = [UIColor yellowColor];
+    cameraButton = [[UIButton alloc]initWithFrame:CGRectMake(imageStartPoint.x, imageStartPoint.y, cameraButtonSize.width, cameraButtonSize.height)];
+    //设置按钮背景图
+    [cameraButton setImage:[ESImageUtil shrinkImage:cameraButtonImage toSize:cameraButtonSize] forState:UIControlStateNormal];
     //设置拍照按钮的点击行为
     [cameraButton addTarget:self action:@selector(pickPicture) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:cameraButton];
+    [imageScrollView addSubview:cameraButton];
 }
 
 @end

@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 
-//#import "ESCameraButton.h"
 #import "ESViewControllerUtil.h"
 #import "ESCameraDefine.h"
 #import "ESCameraDelegate.h"
@@ -46,19 +45,44 @@
     CGFloat componentHorizonSpan;//控件左右与边缘的间距
     CGFloat standComponentVerticalSpan;//控件上下与边缘的标准间距
     CGFloat componentVerticalSpan;//控件上下与边缘的间距
+    
+    //
     CGFloat standTitleHeight;//原图所在一列为title
     CGFloat titleHeight;//
+    
+    //拍照控件-表示
+    CGSize cameraComponentImageSize;//
+    CGPoint cameraComponentImagePoint;//
+    UIImageView *cameraComponentImageView;//
+    UIImage *cameraComponentImage;//拍照控件的表示图像
+    CGSize cameraComponentLabelSize;//
+    CGPoint cameraComponentLabelPoint;//
+    NSString *cameraComponentLabelFontColorHexValue;//文字颜色十六进制值
+    UILabel *cameraComponentLabel;//拍照控件的文字表示
     
     //原图选项按钮
     UIImage *originalOption;//原图-背景图
     UIImage *noOriginalOption;//不使用原图-背景图
-    UIImageView *originalButtonImageVIew;//
-    UIButton *originalButton;//
+    CGSize standOriginalOptionSize;//原图背景的标准大小
+    CGSize originalOptionSize;//原图背景的实际大小
+    CGPoint originalOptionPoint;//原图背景的位置
+    UIImageView *originalButtonImageVIew;//原图背景对应的imageview
+    UIButton *originalButton;//原图操作按钮
+    
+    //
+    CGFloat imageScrollViewRowSize;//每行显示的图片数量
+    CGSize imageScrollViewSize;//
+    CGPoint imageScrollViewPoint;//
+    CGPoint imageStartPoint;//图片展示的起点位置
+    CGFloat imageHorizonShift;//水平方向的位移
+    CGFloat imageVerticalShift;//垂直方向的位移
+    UIScrollView *imageScrollView;//存放图片展示的view
     
     //获取图片的按钮
-    CGSize standCameraButtonSize;//标准的获取图片按钮的大小
+    CGSize standCameraButtonSize;//标准的获取图片按钮的大小-展示的图片也使用该大小
     CGSize cameraButtonSize;//
     CGPoint cameraButtonPoint;//
+    UIImage *cameraButtonImage;//
     UIButton *cameraButton;//
     
     //获取相片数据的页面
