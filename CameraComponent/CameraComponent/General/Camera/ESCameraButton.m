@@ -10,7 +10,12 @@
 
 @implementation ESCameraButton
 
+#pragma mark - 属性声明
 @synthesize locateViewController;
+@synthesize pickPictureType;//获取图片的方式（可配置项）
+@synthesize picMaxLimitMark;//图片数量限制标记, YES:限制图片数量, NO:不限制图片数量
+@synthesize picMaxCount;//图片数量最大值
+@synthesize currentSelectedCount;//已选择的数量
 
 #pragma mark - 自定义拍照按钮样式
 /*
@@ -19,33 +24,13 @@
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        //设置拍照按钮的样式
-        [self customizeOutlook];
         //设置拍照按钮的点击行为
         [self addTarget:self action:@selector(pickPicture) forControlEvents:UIControlEventTouchUpInside];
-        //
-        [self initUserOption];
-        
     }
     return(self);
 }
 
-/*
- * 自定义拍照按钮的样式
- */
-- (void)customizeOutlook{
-    [self setTitle:@"拍照" forState:UIControlStateNormal];
-    [self setBackgroundColor:[UIColor whiteColor]];
-}
-
 #pragma mark - 用户配置检查
-/*
- * 初始化用户配置
- */
-- (void)initUserOption{
-    pickPictureType = 1;
-}
-
 /*
  * 用户获取图片的方式
  * 1、通过拍照获得
@@ -53,7 +38,7 @@
  */
 - (void)pickPicture{
     switch (pickPictureType) {
-        case 1:
+        case ESPhotoLibraryOrCamera:
             //获取方式：拍照、相册
         {
             if( nil == cameraChoseView ){
@@ -67,13 +52,13 @@
             [cameraChoseView showChoseTab];//展示选择的Tab
         }
             break;
-        case 2:
+        case ESCamera:
             //获取方式：拍照
         {
             [self launchCamera];
         }
             break;
-        case 3:
+        case ESPhotoLibrary:
             //获取方式：相册
         {
             [self launchPhotoLibrary];
@@ -81,7 +66,15 @@
             break;
         default:
             //do nothing
-        {}
+        {
+            UIAlertView *alert =
+            [[UIAlertView alloc] initWithTitle:@"提示"
+                                       message:@"未指定获取相片的方式"
+                                      delegate:nil
+                             cancelButtonTitle:@"确定"
+                             otherButtonTitles:nil];
+            [alert show];
+        }
             break;
     }
 }
@@ -107,6 +100,7 @@
 }
 
 #pragma mark - 本地照片
+// 打开本地照片
 - (void)launchPhotoLibrary{
     if ( nil == cameraPicMultiPicViewController ) {
         cameraPicMultiPicViewController = [[ESCameraPickMultiPicViewController alloc]init];
@@ -117,16 +111,22 @@
     }
     
     //是否限制图片数量
-    cameraPicMultiPicViewController.picMaxLimitMark = YES;
+    cameraPicMultiPicViewController.picMaxLimitMark = picMaxLimitMark;
     //图片数量最大值
-    cameraPicMultiPicViewController.picMaxCount = 5;
+    cameraPicMultiPicViewController.picMaxCount = picMaxCount;
     //当前已选择的图片数量
-    cameraPicMultiPicViewController.currentSelectedCount = 0;
+    cameraPicMultiPicViewController.currentPhotoLibrarySelectedCount = currentSelectedCount;
     //清除已选择的图片
     
     locateViewController = [ESViewControllerUtil getCurrentViewController];
     
     [locateViewController presentViewController:cameraPicMultiPicViewNavigationController animated:YES completion:nil];
+}
+
+#pragma mark - 本地照片代理方法
+//
+- (void) transferMultiPic{
+    
 }
 
 #pragma mark - 相机初始化及启动操作
@@ -172,7 +172,7 @@
     }
 }
 
-#pragma mark - 拍照代理方法的实现
+#pragma mark - 相机代理方法的实现
 /*
  * 拍照结束并选择了图片
  */
@@ -190,9 +190,7 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
-//
-- (void) manageMultiPic{
-    
-}
+#pragma mark - 组件删除图片的代理方法
+
 
 @end

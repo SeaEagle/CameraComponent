@@ -10,13 +10,8 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 #import "ESColorUtil.h"
+#import "ESCameraDelegate.h"
 #import "ESCameraMultiPicScanViewController.h"
-
-//多图数据传递代理
-@protocol ESPickMultiPicDelegate <NSObject>
-@required
-- (void) manageMultiPic;
-@end
 
 @interface ESCameraPickMultiPicViewController : UIViewController
 <ESScanAndPickCommunicateDelegate>
@@ -24,13 +19,17 @@
     //业务数据
     BOOL picMaxLimitMark;//图片数量限制标记, YES:限制图片数量, NO:不限制图片数量
     int picMaxCount;//图片数量最大值
-    int currentSelectedCount;//已选择的数量
+    int currentPhotoLibrarySelectedCount;//已选择的数量(这里的图片数量指的是”本地照片“中已选择的数量, 不包含"拍照"的数量)
     
     NSMutableArray *photoData;//图片的原始数组
     NSMutableArray *photoUrlData;//图片的URL
     NSMutableArray *photoSelectImgViewArray;//缩略图各自选择图image对应imageView
     NSMutableArray *photoSelectState;//选择状态, 0表示不选中, 1表示选中
-    NSMutableDictionary *photoSelectData;//存放已选择的图片索引
+    NSMutableDictionary *photoSelectData;//存放已选择的图片索引-url data
+    NSMutableDictionary *photoSelectImageData;//存放已选择的图片索引-image
+    
+    //
+    ALAssetsLibrary *library;//
     
     //导航栏
     UIImage *backButtonImg;//返回按钮背景图
@@ -92,6 +91,10 @@
 @property(strong, nonatomic) id <ESPickMultiPicDelegate> multiPicDelegate;//
 @property BOOL picMaxLimitMark;//
 @property int picMaxCount;//
-@property int currentSelectedCount;//
+@property int currentPhotoLibrarySelectedCount;//
+
+#pragma mark - 方法说明
+//
+- (void) deleteImageByIndex:(NSString *)index;
 
 @end

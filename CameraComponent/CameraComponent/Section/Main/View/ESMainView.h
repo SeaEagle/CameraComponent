@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+
+//使用拍照控件必须声明的两个头文件
 #import "ESCameraComponent.h"
+#import "ESCameraDefine.h"
 
 @interface ESMainView : UIView
 

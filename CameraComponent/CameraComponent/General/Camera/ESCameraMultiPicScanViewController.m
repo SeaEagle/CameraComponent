@@ -17,7 +17,7 @@
 #pragma mark - 属性说明
 @synthesize picMaxLimitMark;
 @synthesize picMaxCount;
-@synthesize currentSelectedCount;
+@synthesize currentPhotoLibrarySelectedCount;
 @synthesize scanMark;//浏览标识
 @synthesize photoUrlData;//图片数组
 @synthesize photoSelectState;//选择状态
@@ -111,7 +111,9 @@
 #pragma mark - 通过代理通知当前选择的数量以及图片的状态
 //
 - (void)scanAndPickCommuniccate{
-    [self.scanAndPickCommunicateDelegate managePictureState:currentIndex selectedCount:currentSelectedCount];
+    if([self.scanAndPickCommunicateDelegate respondsToSelector:@selector(managePictureState:selectedCount:)]){
+        [self.scanAndPickCommunicateDelegate managePictureState:currentIndex selectedCount:currentPhotoLibrarySelectedCount];
+    }
 }
 
 #pragma mark - 按钮操作
@@ -119,7 +121,7 @@
 - (void)selectOrNotOperation{
     NSNumber *state = [photoSelectState objectAtIndex:currentIndex];
     if ( 0 == [state intValue] ) {//不选中变为选中
-        if (picMaxLimitMark && picMaxCount <= currentSelectedCount ) {
+        if (picMaxLimitMark && picMaxCount <= currentPhotoLibrarySelectedCount ) {
             UIAlertView *alert =
             [[UIAlertView alloc] initWithTitle:@"提示"
                                        message:[NSString stringWithFormat:@"最多只能选择%d图片", picMaxCount]
@@ -130,17 +132,17 @@
         }else{
             [rightButton setImage:selectedImg forState:UIControlStateNormal];;//修改背景图
             state = [NSNumber numberWithInt:1];//修改状态
-            currentSelectedCount++;
+            currentPhotoLibrarySelectedCount++;
             [photoSelectData setObject:[NSString stringWithFormat:@"%ld", currentIndex] forKey:[NSString stringWithFormat:@"%ld", currentIndex]];
         }
     }else{//选中变为不选中
         [rightButton setImage:noSelectedImg forState:UIControlStateNormal];;//修改背景图
         state = [NSNumber numberWithInt:0];//修改状态
-        currentSelectedCount--;
+        currentPhotoLibrarySelectedCount--;
         [photoSelectData removeObjectForKey:[NSString stringWithFormat:@"%ld", currentIndex]];
     }
     //修改已选图片数量提示
-    [self changeCurrentSelectedCountTip:currentSelectedCount];
+    [self changeCurrentSelectedCountTip:currentPhotoLibrarySelectedCount];
     //修改状态
     [photoSelectState replaceObjectAtIndex:currentIndex withObject:state];
     //通知代理
@@ -269,7 +271,7 @@
     currentSelectedCountLabel.textAlignment = NSTextAlignmentRight;
     currentSelectedCountLabel.font = [UIFont systemFontOfSize:toolbarButtonFontSize];
     currentSelectedCountLabel.textColor = finishButton.tintColor;
-    [self changeCurrentSelectedCountTip:currentSelectedCount];
+    [self changeCurrentSelectedCountTip:currentPhotoLibrarySelectedCount];
     [toolBarView addSubview:currentSelectedCountLabel];
 }
 
@@ -278,7 +280,7 @@
     if( 0 == count ){
         currentSelectedCountLabel.text = @"";
     }else{
-        currentSelectedCountLabel.text = [NSString stringWithFormat:@"%d", currentSelectedCount];
+        currentSelectedCountLabel.text = [NSString stringWithFormat:@"%d", currentPhotoLibrarySelectedCount];
     }
 }
 @end

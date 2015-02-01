@@ -10,18 +10,14 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 #import "ESImageUtil.h"
-
-@protocol ESScanAndPickCommunicateDelegate <NSObject>
-@required
-- (void) managePictureState:(NSInteger)index selectedCount:(int)count;
-@end
+#import "ESCameraDelegate.h"
 
 @interface ESCameraMultiPicScanViewController : UIViewController
 {
     //业务数据
     BOOL picMaxLimitMark;//图片数量限制标记, YES:限制图片数量, NO:不限制图片数量
     int picMaxCount;//图片数量最大值
-    int currentSelectedCount;//已选择的数量
+    int currentPhotoLibrarySelectedCount;//已选择的数量
     
     //
     BOOL scanMark;//YES:浏览所有的图片, NO:浏览选中的图片
@@ -73,7 +69,7 @@
 @property(strong, nonatomic) id <ESScanAndPickCommunicateDelegate> scanAndPickCommunicateDelegate;//
 @property BOOL picMaxLimitMark;//图片数量限制标记
 @property int picMaxCount;//图片数量最大值
-@property int currentSelectedCount;//已选择的数量
+@property int currentPhotoLibrarySelectedCount;//已选择的数量
 @property BOOL scanMark;//浏览标识
 @property NSMutableArray *photoUrlData;//图片数组
 @property NSMutableArray *photoSelectState;//选择状态

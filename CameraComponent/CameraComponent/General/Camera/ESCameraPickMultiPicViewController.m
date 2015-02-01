@@ -17,7 +17,7 @@
 #pragma mark - 属性声明
 @synthesize picMaxLimitMark;//是否限制图片数量
 @synthesize picMaxCount;//图片数量最大值
-@synthesize currentSelectedCount;//当前已选择数量
+@synthesize currentPhotoLibrarySelectedCount;//当前已选择数量
 
 #pragma mark - 打开页面的操作
 // 页面第一次显示时
@@ -39,7 +39,6 @@
 
 // 页面再次打开时
 - (void)viewDidAppear:(BOOL)animated{
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +52,7 @@
     NSNumber *state = [photoSelectState objectAtIndex:button.tag];
     UIImageView *selectOrNotView = [photoSelectImgViewArray objectAtIndex:button.tag];
     if ( 0 == [state intValue] ) {//不选中变为选中
-        if (picMaxLimitMark && picMaxCount <= currentSelectedCount ) {
+        if (picMaxLimitMark && picMaxCount <= currentPhotoLibrarySelectedCount ) {
             UIAlertView *alert =
             [[UIAlertView alloc] initWithTitle:@"提示"
                                        message:[NSString stringWithFormat:@"最多只能选择%d图片", picMaxCount]
@@ -64,16 +63,19 @@
         }else{
             selectOrNotView.image = selectedImg;
             state = [NSNumber numberWithInt:1];
-            currentSelectedCount++;
-            [photoSelectData setObject:[NSString stringWithFormat:@"%ld", button.tag] forKey:[NSString stringWithFormat:@"%ld", button.tag]];
+            currentPhotoLibrarySelectedCount++;
+            [photoSelectData setObject:[photoUrlData objectAtIndex:button.tag] forKey:[NSString stringWithFormat:@"%ld", button.tag]];
+            //根据url及索引, 生成图片并保存
+            [self saveImageByAlassetUrl:[photoUrlData objectAtIndex:button.tag] index:button.tag];
         }
     }else{//选中变为不选中
         selectOrNotView.image = noSelectedImg;
         state = [NSNumber numberWithInt:0];
-        currentSelectedCount--;
+        currentPhotoLibrarySelectedCount--;
         [photoSelectData removeObjectForKey:[NSString stringWithFormat:@"%ld", button.tag]];
+        [photoSelectImageData removeObjectForKey:[NSString stringWithFormat:@"%ld", button.tag]];
     }
-    [self changeCurrentSelectedCountTip:currentSelectedCount];
+    [self updateCurrentPhotoLibrarySelectedCountTip:currentPhotoLibrarySelectedCount];
     [photoSelectState replaceObjectAtIndex:button.tag withObject:state];
 }
 
@@ -99,7 +101,7 @@
     //
     cameraMultiPicScanViewController.photoSelectData = photoSelectData;
     //已选择图片的数量
-    cameraMultiPicScanViewController.currentSelectedCount = currentSelectedCount;
+    cameraMultiPicScanViewController.currentPhotoLibrarySelectedCount = currentPhotoLibrarySelectedCount;
     //转去浏览图片的界面
     [self.navigationController pushViewController:cameraMultiPicScanViewController animated:NO];
 }
@@ -124,11 +126,48 @@
     //
     cameraMultiPicScanViewController.photoSelectData = photoSelectData;
     //已选择图片的数量
-    cameraMultiPicScanViewController.currentSelectedCount = currentSelectedCount;
+    cameraMultiPicScanViewController.currentPhotoLibrarySelectedCount = currentPhotoLibrarySelectedCount;
     //
     cameraMultiPicScanViewController.currentSelectedIndex = 0;
     //已选择图片的顺序(升序)
-    cameraMultiPicScanViewController.photoSelectIndexOrder = [[photoSelectData allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    cameraMultiPicScanViewController.photoSelectIndexOrder = [self getSelectIndexOrderArray:[photoSelectData allKeys]];
+    [self.navigationController pushViewController:cameraMultiPicScanViewController animated:NO];
+}
+
+// 取消并返回上一层
+- (void)cancleAndBack{
+    //
+    NSArray *selectKeys = [photoSelectData allKeys];
+    //还原选择状态
+    for (NSString *key in selectKeys) {
+        NSNumber *falseNum = [NSNumber numberWithInt:0];
+        [photoSelectState replaceObjectAtIndex:[key integerValue] withObject:falseNum];
+        ((UIImageView *)[photoSelectImgViewArray objectAtIndex:[key integerValue]]).image = noSelectedImg;
+    }
+    //已选择的项目清空
+    [photoSelectData removeAllObjects];
+    //已生成的图像数据清空
+    [photoSelectImageData removeAllObjects];
+    //本地照片已选择的数量置零
+    currentPhotoLibrarySelectedCount = 0;
+    //更新已选择数据的显示
+    [self updateCurrentPhotoLibrarySelectedCountTip:currentPhotoLibrarySelectedCount];
+    //关闭页面
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+// 完成数据传送并返回
+- (void)finishAndBack{
+    //通过代理返回数据
+    [self transferMultiPicturesData];
+    //关闭当前页面
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+#pragma mark - 其他
+// 获取已选择图片的顺序索引
+- (NSArray *)getSelectIndexOrderArray:(NSArray *)array{
+    return [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString *numStr1 = obj1, *numStr2 = obj2;
         NSInteger number1 = [numStr1 integerValue], number2 = [numStr2 integerValue];
         if (number1>=number2) {
@@ -137,25 +176,41 @@
             return NO;
         }
     }];
-    for (NSString *key in cameraMultiPicScanViewController.photoSelectIndexOrder) {
-        NSLog(@"%@", key);
-    }
-    [self.navigationController pushViewController:cameraMultiPicScanViewController animated:NO];
 }
 
-// 取消并返回上一层
-- (void)cancleAndBack{
-    [self dismissViewControllerAnimated:YES completion:^{}];
+//
+- (void)saveImageByAlassetUrl:(NSURL *)url index:(NSInteger)index{
+    [library assetForURL:url
+             resultBlock:^(ALAsset *result){
+                 [photoSelectImageData setObject:[UIImage imageWithCGImage:[[result defaultRepresentation]fullResolutionImage]]
+                                          forKey:[NSString stringWithFormat:@"%ld", index]];
+             }
+            failureBlock:^(NSError *error){
+            }
+     ];
 }
 
-// 完成数据传送并返回
-- (void)finishAndBack{
-    [self dismissViewControllerAnimated:YES completion:^{}];
+//
+- (void)deleteImageByIndex:(NSString *)index{
+    //修改对应的状态, 调整为未选中
+    NSNumber *state = [photoSelectState objectAtIndex:[index integerValue]];
+    state = [NSNumber numberWithInt:0];
+    [photoSelectState replaceObjectAtIndex:[index integerValue] withObject:state];
+    //从已选择中去除
+    [photoSelectData removeObjectForKey:index];
+    //将图片对应的选中背景图改为不选中
+    UIImageView *imageView = [photoSelectImgViewArray objectAtIndex:[index integerValue]];
+    imageView.image = noSelectedImg;
+    //本地照片已选择的数量减1
+    currentPhotoLibrarySelectedCount--;
+    //更新已选择数量的显示
+    [self updateCurrentPhotoLibrarySelectedCountTip:currentPhotoLibrarySelectedCount];
 }
 
 #pragma mark - 处理代理事件
-- (void) managePictureState:(NSInteger)index selectedCount:(int)count{
-    currentSelectedCount = count;
+// 处理图像的状态
+- (void)managePictureState:(NSInteger)index selectedCount:(int)count{
+    currentPhotoLibrarySelectedCount = count;
     NSNumber *number = [photoSelectState objectAtIndex:index];
     UIImageView *indexImageView = [photoSelectImgViewArray objectAtIndex:index];
     if ( 1 == [number integerValue] ) {//图片已被选中
@@ -163,12 +218,13 @@
     }else{
         indexImageView.image = noSelectedImg ;
     }
-    [self changeCurrentSelectedCountTip:currentSelectedCount];
+    [self updateCurrentPhotoLibrarySelectedCountTip:currentPhotoLibrarySelectedCount];
 }
 
-- (void)test{
-    if([self.multiPicDelegate respondsToSelector:@selector(multiPicDelegate)]){
-        [self.multiPicDelegate manageMultiPic];
+// 
+- (void)transferMultiPicturesData{
+    if([self.multiPicDelegate respondsToSelector:@selector(transferMultiPic:)]){
+        [self.multiPicDelegate transferMultiPic:photoSelectImageData];
     }
 }
 #pragma mark - 图片处理
@@ -180,11 +236,12 @@
     photoSelectImgViewArray = [[NSMutableArray alloc]init];
     photoSelectState = [[NSMutableArray alloc]init];
     photoSelectData = [[NSMutableDictionary alloc]init];
+    photoSelectImageData = [[NSMutableDictionary alloc]init];
     
     //获取本地照片
-    ALAssetsLibrary *libray = [[ALAssetsLibrary alloc] init];
+    library = [[ALAssetsLibrary alloc] init];
     //遍历每个相册
-    [libray enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop){
+    [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop){
         //已遍历完全部照片
         if ( stop ) {
             //布置图片到视图中
@@ -385,19 +442,19 @@
     currentSelectedCountLabel.textAlignment = NSTextAlignmentRight;
     currentSelectedCountLabel.font = [UIFont systemFontOfSize:toolbarButtonFontSize];
     currentSelectedCountLabel.textColor = finishButton.tintColor;
-    [self changeCurrentSelectedCountTip:currentSelectedCount];
+    [self updateCurrentPhotoLibrarySelectedCountTip:currentPhotoLibrarySelectedCount];
     [toolBarView addSubview:currentSelectedCountLabel];
     
 }
 
 // 更新已选择的图片数量提示
-- (void)changeCurrentSelectedCountTip:(int)count{
+- (void)updateCurrentPhotoLibrarySelectedCountTip:(int)count{
     if( 0 == count ){
         currentSelectedCountLabel.text = @"";
         scanButton.enabled = NO;
         finishButton.enabled = NO;
     }else{
-        currentSelectedCountLabel.text = [NSString stringWithFormat:@"%d", currentSelectedCount];
+        currentSelectedCountLabel.text = [NSString stringWithFormat:@"%d", currentPhotoLibrarySelectedCount];
         scanButton.enabled = YES;
         finishButton.enabled = YES;
     }
