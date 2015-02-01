@@ -250,6 +250,7 @@
     //[cameraPicMultiPicViewController deleteImageByIndex:@"1"];
     //
     imageDataFromPhotoLibrary = dataDictionary;
+    NSLog(@"%ld",[dataDictionary count]);
     //增加新图片
     NSArray *dataIndexKey = [[dataDictionary allKeys]sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString *numStr1 = obj1, *numStr2 = obj2;
@@ -260,10 +261,29 @@
             return NO;
         }
     }];
+    
+    //
+    NSArray *dataValue = [dataDictionary allValues];
+    NSMutableArray *delImageArray = [[NSMutableArray alloc]init];
+    for (UIImage *image in imageDataFromPhotoLibraryCache) {
+        if (NO == [dataValue containsObject:image]) {
+            [delImageArray addObject:image];
+        }
+    }
+    for (UIImage *image in delImageArray) {
+        [imageDataFromPhotoLibraryCache removeObject:image];
+        [imageData removeObject:image];
+        currentPhotoLibrarySelectedCount--;
+        currentSelectedCount--;
+    }
+    [delImageArray removeAllObjects];
+    delImageArray = nil;
+    
     //按顺序添加图片
     for (NSString *key in dataIndexKey) {
         if( NO == [imageData containsObject:[dataDictionary objectForKey:key]]){
-            [imageData addObject:[dataDictionary objectForKey:key]];
+            [imageData addObject:[dataDictionary objectForKey:key]];//
+            [imageDataFromPhotoLibraryCache addObject:[dataDictionary objectForKey:key]];
             currentPhotoLibrarySelectedCount++;
             currentSelectedCount++;
         }
@@ -396,6 +416,7 @@
     //
     initMark = NO;
     currentSelectedCount = 0;
+    imageDataFromPhotoLibraryCache = [[NSMutableArray alloc]init];
     imageData = [[NSMutableArray alloc]init];
     
     //图像

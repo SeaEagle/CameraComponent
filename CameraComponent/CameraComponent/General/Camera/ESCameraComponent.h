@@ -31,6 +31,7 @@
     
     //图片数据
     NSMutableDictionary *imageDataFromPhotoLibrary;//保存从本地照片挑选的照片
+    NSMutableArray *imageDataFromPhotoLibraryCache;//保存从本地照片挑选的照片
     NSMutableArray *imageData;//用于展示
     
     //
