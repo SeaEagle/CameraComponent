@@ -16,7 +16,7 @@
 
 #pragma mark - 初始化
 //初始化
-- (id)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         //初始化标准值

@@ -12,7 +12,7 @@
 
 #pragma mark - 初始化
 // 初始化
-- (id)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         //预设值
@@ -68,6 +68,24 @@
     [imageData removeObject:image];
     //更新页面显示
     [self updateImageViewDisplay];
+}
+
+//图片展示
+- (void)showSingleImage:(UIButton *)button{
+    CGRect frame = [[UIScreen mainScreen]bounds];
+    if( nil == cameraShowSinglePicture ){
+        cameraShowSinglePicture = [[ESCameraShowSinglePicture alloc]initWithFrame:frame];
+        //指定
+        [cameraShowSinglePicture.button addTarget:self action:@selector(hideTheSinglePictureShow) forControlEvents:UIControlEventTouchUpInside];
+    }
+    //即将展示的图片
+    UIImage *image = [ESImageUtil shrinkImage:[imageData objectAtIndex:button.tag] toSize:frame.size];
+    cameraShowSinglePicture.imageView.image = image;
+    [[[UIApplication sharedApplication] keyWindow] addSubview:cameraShowSinglePicture];//
+}
+
+- (void)hideTheSinglePictureShow{
+    [cameraShowSinglePicture removeFromSuperview];//
 }
 
 //点击原图按钮的操作
@@ -127,6 +145,11 @@
         button.tag = (currentRow-1)*imageScrollViewRowSize+currentColumn-1;
         [button addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
         [imageScrollView addSubview:button];
+        
+        UIButton *showButton = [[UIButton alloc]initWithFrame:CGRectMake(imageStartPoint.x+(currentColumn-1)*imageHorizonShift, imageStartPoint.y+(currentRow-1)*imageVerticalShift+imageView.bounds.size.height*0.3, imageView.bounds.size.width, imageView.bounds.size.height*0.7)];
+        showButton.tag = (currentRow-1)*imageScrollViewRowSize+currentColumn-1;
+        [showButton addTarget:self action:@selector(showSingleImage:) forControlEvents:UIControlEventTouchUpInside];
+        [imageScrollView addSubview:showButton];
         
         currentColumn = currentColumn+1;//指向下一列
     }

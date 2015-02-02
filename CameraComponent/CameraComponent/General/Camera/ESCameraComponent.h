@@ -16,6 +16,7 @@
 #import "ESCameraChoseTabView.h"
 #import "ESCameraPickMultiPicViewController.h"
 #import "ESCameraMultiPicScanViewController.h"
+#import "ESCameraShowSinglePicture.h"
 
 @interface ESCameraComponent : UIScrollView
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ESPickMultiPicDelegate>
@@ -93,6 +94,7 @@
     UINavigationController *cameraPicMultiPicViewNavigationController;//"本地相册"及"多图预览"的导航管理器
     ESCameraPickMultiPicViewController *cameraPicMultiPicViewController;//"本地相册"
     ESCameraMultiPicScanViewController *cameraMultiPicScanViewController;//"多图预览"
+    ESCameraShowSinglePicture *cameraShowSinglePicture;//图片大图显示
 }
 
 #pragma mark - 属性声明
