@@ -25,7 +25,8 @@
     NSMutableArray *photoUrlData;//图片的URL
     NSMutableArray *photoSelectImgViewArray;//缩略图各自选择图image对应imageView
     NSMutableArray *photoSelectState;//选择状态, 0表示不选中, 1表示选中
-    NSMutableDictionary *photoSelectData;//存放已选择的图片索引-url data
+    NSMutableArray *photoSelectDataCache;//存放已选择的图片索引-缓存
+    NSMutableArray *photoSelectData;//存放已选择的图片索引
     NSMutableDictionary *photoSelectImageData;//存放已选择的图片索引-image
     
     //

@@ -62,20 +62,29 @@
             [alert show];
         }else{
             selectOrNotView.image = selectedImg;
+            //调整选择状态
             state = [NSNumber numberWithInt:1];
+            //已选择的数量加1
             currentPhotoLibrarySelectedCount++;
-            [photoSelectData setObject:[photoUrlData objectAtIndex:button.tag] forKey:[NSString stringWithFormat:@"%ld", button.tag]];
+            //将选择保存到缓存中
+            [photoSelectDataCache addObject:[NSString stringWithFormat:@"%ld", button.tag]];
             //根据url及索引, 生成图片并保存
             [self saveImageByAlassetUrl:[photoUrlData objectAtIndex:button.tag] index:button.tag];
         }
     }else{//选中变为不选中
         selectOrNotView.image = noSelectedImg;
+        //调整选择状态
         state = [NSNumber numberWithInt:0];
+        //已选择的数量减1
         currentPhotoLibrarySelectedCount--;
-        [photoSelectData removeObjectForKey:[NSString stringWithFormat:@"%ld", button.tag]];
-        [photoSelectImageData removeObjectForKey:[NSString stringWithFormat:@"%ld", button.tag]];
+        //将选择从缓存中去掉
+        [photoSelectDataCache removeObject:[NSString stringWithFormat:@"%ld", button.tag]];
+        //
+        //[photoSelectImageData removeObjectForKey:[NSString stringWithFormat:@"%ld", button.tag]];
     }
+    //更新选择数量的提示
     [self updateCurrentPhotoLibrarySelectedCountTip:currentPhotoLibrarySelectedCount];
+    //更新图片的选择状态
     [photoSelectState replaceObjectAtIndex:button.tag withObject:state];
 }
 
@@ -99,7 +108,7 @@
     //图片选择状态
     cameraMultiPicScanViewController.photoSelectState = photoSelectState;
     //
-    cameraMultiPicScanViewController.photoSelectData = photoSelectData;
+    //cameraMultiPicScanViewController.photoSelectData = photoSelectData;
     //已选择图片的数量
     cameraMultiPicScanViewController.currentPhotoLibrarySelectedCount = currentPhotoLibrarySelectedCount;
     //转去浏览图片的界面
@@ -124,40 +133,46 @@
     //图片选择状态
     cameraMultiPicScanViewController.photoSelectState = photoSelectState;
     //
-    cameraMultiPicScanViewController.photoSelectData = photoSelectData;
+    //cameraMultiPicScanViewController.photoSelectData = photoSelectData;
     //已选择图片的数量
     cameraMultiPicScanViewController.currentPhotoLibrarySelectedCount = currentPhotoLibrarySelectedCount;
     //
     cameraMultiPicScanViewController.currentSelectedIndex = 0;
     //已选择图片的顺序(升序)
-    cameraMultiPicScanViewController.photoSelectIndexOrder = [self getSelectIndexOrderArray:[photoSelectData allKeys]];
+    //cameraMultiPicScanViewController.photoSelectIndexOrder = [self getSelectIndexOrderArray:[photoSelectData allKeys]];
     [self.navigationController pushViewController:cameraMultiPicScanViewController animated:NO];
 }
 
 // 取消并返回上一层
 - (void)cancleAndBack{
-    //
-    //NSArray *selectKeys = [photoSelectData allKeys];
     //还原选择状态
-    //for (NSString *key in selectKeys) {
-        //NSNumber *falseNum = [NSNumber numberWithInt:0];
-        //[photoSelectState replaceObjectAtIndex:[key integerValue] withObject:falseNum];
-        //((UIImageView *)[photoSelectImgViewArray objectAtIndex:[key integerValue]]).image = noSelectedImg;
-    //}
-    //已选择的项目清空
-    //[photoSelectData removeAllObjects];
-    //已生成的图像数据清空
-    //[photoSelectImageData removeAllObjects];
-    //本地照片已选择的数量置零
-    //currentPhotoLibrarySelectedCount = 0;
-    //更新已选择数据的显示
-    //[self updateCurrentPhotoLibrarySelectedCountTip:currentPhotoLibrarySelectedCount];
+    for (NSString *key in photoSelectData) {
+        if( NO == [photoSelectDataCache containsObject:key] ){
+            ((UIImageView *)[photoSelectImgViewArray objectAtIndex:[key integerValue]]).image = selectedImg;
+            [photoSelectState replaceObjectAtIndex:[key integerValue] withObject:[NSNumber numberWithInt:1]];
+        }
+    }
+    //还原选择的缓存
+    [photoSelectDataCache removeAllObjects];
+    [photoSelectDataCache addObjectsFromArray:photoSelectData];
+    //更新数量提醒
+    currentPhotoLibrarySelectedCount = (int)[photoSelectData count];
+    [self updateCurrentPhotoLibrarySelectedCountTip:currentPhotoLibrarySelectedCount];
     //关闭页面
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 // 完成数据传送并返回
 - (void)finishAndBack{
+    //清除已保存的图像信息
+    for (NSString *key in photoSelectData) {
+        if ( NO == [photoSelectDataCache containsObject:key] ) {
+            [photoSelectImageData removeObjectForKey:key];
+        }
+    }
+    //将选择的缓存保存起来
+    [photoSelectData removeAllObjects];
+    [photoSelectData addObjectsFromArray:photoSelectDataCache];
     //通过代理返回数据
     [self transferMultiPicturesData];
     //关闭当前页面
@@ -178,7 +193,7 @@
     }];
 }
 
-//
+// 根据图片索引, 及图片URL生成对应的图片并保存
 - (void)saveImageByAlassetUrl:(NSURL *)url index:(NSInteger)index{
     [library assetForURL:url
              resultBlock:^(ALAsset *result){
@@ -190,17 +205,20 @@
      ];
 }
 
-//
+// 控件上删除图像之后的操作
 - (void)deleteImageByIndex:(NSString *)index{
     //修改对应的状态, 调整为未选中
     NSNumber *state = [photoSelectState objectAtIndex:[index integerValue]];
     state = [NSNumber numberWithInt:0];
     [photoSelectState replaceObjectAtIndex:[index integerValue] withObject:state];
-    //从已选择中去除
-    [photoSelectData removeObjectForKey:index];
     //将图片对应的选中背景图改为不选中
     UIImageView *imageView = [photoSelectImgViewArray objectAtIndex:[index integerValue]];
     imageView.image = noSelectedImg;
+    //删除对应的图像数据
+    [photoSelectImageData removeObjectForKey:index];
+    //从已选择中去除
+    [photoSelectDataCache removeObject:index];
+    [photoSelectData removeObject:index];
     //本地照片已选择的数量减1
     currentPhotoLibrarySelectedCount--;
     //更新已选择数量的显示
@@ -221,7 +239,7 @@
     [self updateCurrentPhotoLibrarySelectedCountTip:currentPhotoLibrarySelectedCount];
 }
 
-// 
+// 将图像数据传输给控件
 - (void)transferMultiPicturesData{
     if([self.multiPicDelegate respondsToSelector:@selector(transferMultiPic:)]){
         [self.multiPicDelegate transferMultiPic:photoSelectImageData];
@@ -232,12 +250,13 @@
 // 获取本地相册的所有图片
 - (void)getAllPhotoFromLibrary{
     //初始化
-    photoData = [[NSMutableArray alloc]init];
-    photoUrlData = [[NSMutableArray alloc]init];
-    photoSelectImgViewArray = [[NSMutableArray alloc]init];
-    photoSelectState = [[NSMutableArray alloc]init];
-    photoSelectData = [[NSMutableDictionary alloc]init];
-    photoSelectImageData = [[NSMutableDictionary alloc]init];
+    photoData = [[NSMutableArray alloc]init];//
+    photoUrlData = [[NSMutableArray alloc]init];//
+    photoSelectImgViewArray = [[NSMutableArray alloc]init];//
+    photoSelectState = [[NSMutableArray alloc]init];//
+    photoSelectDataCache = [[NSMutableArray alloc]init];//
+    photoSelectData = [[NSMutableArray alloc]init];//
+    photoSelectImageData = [[NSMutableDictionary alloc]init];//
     
     //获取本地照片
     library = [[ALAssetsLibrary alloc] init];

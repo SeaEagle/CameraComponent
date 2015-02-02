@@ -45,7 +45,7 @@
 }
 
 #pragma mark - 按钮处理
-//删除图片处理
+//删除图片处理 - 需要调整
 - (void)deleteImage:(UIButton *)button{
     //获取即将删除的图片
     UIImage *image = [imageData objectAtIndex:button.tag];
@@ -248,7 +248,7 @@
     [currentViewController presentViewController:cameraPicMultiPicViewNavigationController animated:YES completion:nil];
 }
 
-#pragma mark - 本地照片代理方法
+#pragma mark - 本地照片代理方法 - 需要调整
 //
 - (void) transferMultiPic:(NSMutableDictionary *)dataDictionary{
     //[dataDictionary removeObjectForKey:@"1"];

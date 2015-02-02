@@ -26,6 +26,7 @@
     NSInteger currentIndex;//当前图片索引
     NSInteger currentSelectedIndex;//用于指向选中的图片的索引--区别于图片索引
     NSMutableArray *photoSelectState;//选择状态, 0表示不选中, 1表示选中
+    
     NSMutableDictionary *photoSelectData;//存放已选择的图片索引
     NSArray *photoSelectIndexOrder;//已选择图片的顺序(升序)
     
