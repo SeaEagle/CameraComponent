@@ -27,7 +27,7 @@
     NSInteger currentSelectedIndex;//用于指向选中的图片的索引--区别于图片索引
     NSMutableArray *photoSelectState;//选择状态, 0表示不选中, 1表示选中
     
-    NSMutableDictionary *photoSelectData;//存放已选择的图片索引
+    NSMutableArray *photoSelectDataCache;//存放已选择的图片索引
     NSArray *photoSelectIndexOrder;//已选择图片的顺序(升序)
     
     //
@@ -67,7 +67,7 @@
 }
 
 #pragma mark - 属性说明
-@property(strong, nonatomic) id <ESScanAndPickCommunicateDelegate> scanAndPickCommunicateDelegate;//
+@property(strong, nonatomic) id <ESScanAndPickCommunicateDelegate> selectOrNotOperationDelegate;//
 @property BOOL picMaxLimitMark;//图片数量限制标记
 @property int picMaxCount;//图片数量最大值
 @property int currentPhotoLibrarySelectedCount;//已选择的数量
@@ -75,7 +75,7 @@
 @property NSMutableArray *photoUrlData;//图片数组
 @property NSMutableArray *photoSelectState;//选择状态
 @property NSInteger currentIndex;//当前图片索引
-@property NSMutableDictionary *photoSelectData;//存放已选择的图片索引
+@property NSMutableArray *photoSelectDataCache;//存放已选择的图片索引
 @property NSInteger currentSelectedIndex;//用于指向选中的图片的索引
 @property NSArray *photoSelectIndexOrder;//已选择图片的顺序(升序)
 

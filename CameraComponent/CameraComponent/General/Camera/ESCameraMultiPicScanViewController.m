@@ -22,7 +22,7 @@
 @synthesize photoUrlData;//图片数组
 @synthesize photoSelectState;//选择状态
 @synthesize currentIndex;//当前图片索引
-@synthesize photoSelectData;//存放已选择的图片索引
+@synthesize photoSelectDataCache;//存放已选择的图片索引
 @synthesize currentSelectedIndex;//用于指向选中的图片的索引
 @synthesize photoSelectIndexOrder;//已选择图片的顺序(升序)
 
@@ -110,18 +110,20 @@
 
 #pragma mark - 通过代理通知当前选择的数量以及图片的状态
 //
-- (void)scanAndPickCommuniccate{
-    if([self.scanAndPickCommunicateDelegate respondsToSelector:@selector(managePictureState:selectedCount:)]){
-        [self.scanAndPickCommunicateDelegate managePictureState:currentIndex selectedCount:currentPhotoLibrarySelectedCount];
+- (void)nextSelectOrNotOperation{
+    if([self.selectOrNotOperationDelegate respondsToSelector:@selector(selectOrNotOperationDelegate:currentSelectedCount:)]){
+        [self.selectOrNotOperationDelegate selectOrNotOperationDelegate:currentIndex currentSelectedCount:currentPhotoLibrarySelectedCount];
     }
 }
 
 #pragma mark - 按钮操作
 // 处理选中与不选中
 - (void)selectOrNotOperation{
+    
     NSNumber *state = [photoSelectState objectAtIndex:currentIndex];
+    
     if ( 0 == [state intValue] ) {//不选中变为选中
-        if (picMaxLimitMark && picMaxCount <= currentPhotoLibrarySelectedCount ) {
+        if ( picMaxLimitMark && picMaxCount <= currentPhotoLibrarySelectedCount ) {
             UIAlertView *alert =
             [[UIAlertView alloc] initWithTitle:@"提示"
                                        message:[NSString stringWithFormat:@"最多只能选择%d图片", picMaxCount]
@@ -133,20 +135,22 @@
             [rightButton setImage:selectedImg forState:UIControlStateNormal];;//修改背景图
             state = [NSNumber numberWithInt:1];//修改状态
             currentPhotoLibrarySelectedCount++;
-            [photoSelectData setObject:[NSString stringWithFormat:@"%ld", currentIndex] forKey:[NSString stringWithFormat:@"%ld", currentIndex]];
+            [photoSelectDataCache addObject:[NSString stringWithFormat:@"%ld", currentIndex]];
         }
     }else{//选中变为不选中
         [rightButton setImage:noSelectedImg forState:UIControlStateNormal];;//修改背景图
         state = [NSNumber numberWithInt:0];//修改状态
         currentPhotoLibrarySelectedCount--;
-        [photoSelectData removeObjectForKey:[NSString stringWithFormat:@"%ld", currentIndex]];
+        [photoSelectDataCache removeObject:[NSString stringWithFormat:@"%ld", currentIndex]];
     }
+    
     //修改已选图片数量提示
     [self changeCurrentSelectedCountTip:currentPhotoLibrarySelectedCount];
     //修改状态
     [photoSelectState replaceObjectAtIndex:currentIndex withObject:state];
-    //通知代理
-    [self scanAndPickCommuniccate];
+    
+    //通知代理进行选中或不选中
+    [self nextSelectOrNotOperation];
 }
 
 // 完成返回上一层

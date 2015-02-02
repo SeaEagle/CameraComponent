@@ -13,13 +13,13 @@
 @protocol ESPickMultiPicDelegate <NSObject>
 @required
 //传递已选择的图片数据
-- (void) transferMultiPic:(NSMutableDictionary *)dataDictionary;
+- (void)transferMultiPic:(NSMutableDictionary *)dataDictionary;
 @end
 
 //图片预览代理
 @protocol ESScanAndPickCommunicateDelegate <NSObject>
 @required
-- (void) managePictureState:(NSInteger)index selectedCount:(int)count;
+- (void)selectOrNotOperationDelegate:(NSInteger)index currentSelectedCount:(int)count;
 @end
 
 #endif

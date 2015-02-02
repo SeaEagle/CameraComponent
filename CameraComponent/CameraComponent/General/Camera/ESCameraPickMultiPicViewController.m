@@ -93,7 +93,7 @@
     if( nil == cameraMultiPicScanViewController ){
         cameraMultiPicScanViewController = [[ESCameraMultiPicScanViewController alloc]init];
         //
-        cameraMultiPicScanViewController.scanAndPickCommunicateDelegate = self;
+        cameraMultiPicScanViewController.selectOrNotOperationDelegate = self;
     }
     //图片数量限制标记
     cameraMultiPicScanViewController.picMaxLimitMark = picMaxLimitMark;
@@ -108,7 +108,7 @@
     //图片选择状态
     cameraMultiPicScanViewController.photoSelectState = photoSelectState;
     //
-    //cameraMultiPicScanViewController.photoSelectData = photoSelectData;
+    cameraMultiPicScanViewController.photoSelectDataCache = photoSelectDataCache;
     //已选择图片的数量
     cameraMultiPicScanViewController.currentPhotoLibrarySelectedCount = currentPhotoLibrarySelectedCount;
     //转去浏览图片的界面
@@ -120,7 +120,7 @@
     if( nil == cameraMultiPicScanViewController ){
         cameraMultiPicScanViewController = [[ESCameraMultiPicScanViewController alloc]init];
         //
-        cameraMultiPicScanViewController.scanAndPickCommunicateDelegate = self;
+        cameraMultiPicScanViewController.selectOrNotOperationDelegate = self;
     }
     //图片数量限制标记
     cameraMultiPicScanViewController.picMaxLimitMark = picMaxLimitMark;
@@ -133,13 +133,13 @@
     //图片选择状态
     cameraMultiPicScanViewController.photoSelectState = photoSelectState;
     //
-    //cameraMultiPicScanViewController.photoSelectData = photoSelectData;
+    cameraMultiPicScanViewController.photoSelectDataCache = photoSelectDataCache;
     //已选择图片的数量
     cameraMultiPicScanViewController.currentPhotoLibrarySelectedCount = currentPhotoLibrarySelectedCount;
     //
     cameraMultiPicScanViewController.currentSelectedIndex = 0;
     //已选择图片的顺序(升序)
-    //cameraMultiPicScanViewController.photoSelectIndexOrder = [self getSelectIndexOrderArray:[photoSelectData allKeys]];
+    cameraMultiPicScanViewController.photoSelectIndexOrder = [self getSelectIndexOrderArray:photoSelectDataCache];
     [self.navigationController pushViewController:cameraMultiPicScanViewController animated:NO];
 }
 
@@ -226,14 +226,17 @@
 
 #pragma mark - 处理代理事件
 // 处理图像的状态
-- (void)managePictureState:(NSInteger)index selectedCount:(int)count{
+- (void)selectOrNotOperationDelegate:(NSInteger)index currentSelectedCount:(int)count{
+    //选择的总数
     currentPhotoLibrarySelectedCount = count;
     NSNumber *number = [photoSelectState objectAtIndex:index];
     UIImageView *indexImageView = [photoSelectImgViewArray objectAtIndex:index];
     if ( 1 == [number integerValue] ) {//图片已被选中
-        indexImageView.image = selectedImg ;
+        indexImageView.image = selectedImg;
+        //根据url及索引, 生成图片并保存
+        [self saveImageByAlassetUrl:[photoUrlData objectAtIndex:index] index:index];
     }else{
-        indexImageView.image = noSelectedImg ;
+        indexImageView.image = noSelectedImg;
     }
     [self updateCurrentPhotoLibrarySelectedCountTip:currentPhotoLibrarySelectedCount];
 }
