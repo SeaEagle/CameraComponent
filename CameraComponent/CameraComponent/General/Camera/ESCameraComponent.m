@@ -118,7 +118,7 @@
         [imageScrollView addSubview:imageView];
         
         UIImageView *delImageView = [[UIImageView alloc]initWithFrame:CGRectMake(imageStartPoint.x+(currentColumn-1)*imageHorizonShift+imageView.bounds.size.width*0.7, (currentRow-1)*imageVerticalShift, imageView.bounds.size.width*0.3, imageView.bounds.size.width*0.3)];
-        delImageView.backgroundColor = [UIColor redColor];
+        delImageView.image = delPicButtonImage;
         [imageScrollView addSubview:delImageView];
         
         UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(imageStartPoint.x+(currentColumn-1)*imageHorizonShift+imageView.bounds.size.width*0.7, (currentRow-1)*imageVerticalShift, imageView.bounds.size.width*0.3, imageView.bounds.size.width*0.3)];
@@ -164,6 +164,7 @@
             if( nil == cameraChoseView ){
                 CGRect frame = [[UIScreen mainScreen] applicationFrame];//获取窗口大小
                 cameraChoseView = [[ESCameraChoseView alloc] initWithFrame:frame];//实例ESCameraChoseView
+                [cameraChoseView.globalButton addTarget:self action:@selector(hideTheChoseTab) forControlEvents:UIControlEventTouchUpInside];
                 cameraChoseTabView = cameraChoseView.cameraChoseTabView;
                 [cameraChoseTabView.photoLibraryBtn addTarget:self action:@selector(photoLibraryOperation) forControlEvents:UIControlEventTouchUpInside];
                 [cameraChoseTabView.snapshootBtn addTarget:self action:@selector(snapshootOperation) forControlEvents:UIControlEventTouchUpInside];
@@ -200,12 +201,17 @@
 }
 
 #pragma mark - 对选择"拍照"或"本地照片"Tab中的按钮进行处理
+
+- (void)hideTheChoseTab{
+    [cameraChoseView hideChoseTab];//隐藏选择的Tab
+    [cameraChoseView removeFromSuperview];//
+}
+
 /*
  * 本地照片按钮的处理
  */
 - (void)photoLibraryOperation{
-    [cameraChoseView hideChoseTab];//隐藏选择的Tab
-    [cameraChoseView removeFromSuperview];//
+    [self hideTheChoseTab];
     //打开本地照片
     [self launchPhotoLibrary];
 }
@@ -214,8 +220,7 @@
  * 拍照按钮的处理
  */
 - (void)snapshootOperation{
-    [cameraChoseView hideChoseTab];//隐藏选择的Tab
-    [cameraChoseView removeFromSuperview];//
+    [self hideTheChoseTab];
     [self launchCamera];//启动相机
 }
 
@@ -250,7 +255,6 @@
     //[cameraPicMultiPicViewController deleteImageByIndex:@"1"];
     //
     imageDataFromPhotoLibrary = dataDictionary;
-    NSLog(@"%ld",[dataDictionary count]);
     //增加新图片
     NSArray *dataIndexKey = [[dataDictionary allKeys]sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString *numStr1 = obj1, *numStr2 = obj2;
@@ -382,7 +386,7 @@
     //垂直间隔
     componentVerticalSpan = componentOutlineSize.width*standComponentVerticalSpan/standComponentOutlineWidth;//
     //原图操作的大小
-    originalOptionSize = CGSizeMake(componentOutlineSize.width*standOriginalOptionSize.width/standComponentOutlineWidth, componentOutlineSize.width*standOriginalOptionSize.height/standComponentOutlineWidth);
+    originalOptionSize = CGSizeMake(componentOutlineSize.width*(standOriginalOptionSize.width/1.5)/standComponentOutlineWidth, componentOutlineSize.width*(standOriginalOptionSize.height/1.5)/standComponentOutlineWidth);
     //组件头部的高度与原图操作的高度保持一致
     titleHeight = originalOptionSize.height;
     //
@@ -424,6 +428,7 @@
     cameraButtonImage = [UIImage imageNamed:@"cameraBtn@3x.png"];
     originalOption = [UIImage imageNamed:@"originalPic@3x.png"];
     noOriginalOption = [UIImage imageNamed:@"noOriginalPic@3x.png"];
+    delPicButtonImage = [UIImage imageNamed:@"delPicBtn@3x.png"];
 }
 
 // 全局view

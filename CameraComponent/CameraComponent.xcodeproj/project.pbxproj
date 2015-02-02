@@ -28,6 +28,7 @@
 		8460EE011A6F9D1B007A0355 /* ESViewControllerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460EE001A6F9D1B007A0355 /* ESViewControllerUtil.m */; };
 		846AD6651A7C8D55009E17D1 /* noOriginalPic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846AD6631A7C8D55009E17D1 /* noOriginalPic@3x.png */; };
 		846AD6661A7C8D55009E17D1 /* originalPic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846AD6641A7C8D55009E17D1 /* originalPic@3x.png */; };
+		848BEB321A7F132E00BA578D /* delPicBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 848BEB311A7F132E00BA578D /* delPicBtn@3x.png */; };
 		84956D121A75EBF100BD3CAC /* ESCameraChoseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84956D111A75EBF100BD3CAC /* ESCameraChoseView.m */; };
 		849A4A171A76502600E7304F /* ESColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 849A4A161A76502600E7304F /* ESColorUtil.m */; };
 		84B49BAD1A7B7EE700EE7CA5 /* cameraBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B49BAA1A7B7EE700EE7CA5 /* cameraBtn@3x.png */; };
@@ -85,6 +86,7 @@
 		846AD6631A7C8D55009E17D1 /* noOriginalPic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noOriginalPic@3x.png"; path = "CameraComponent/General/Camera/Image/noOriginalPic@3x.png"; sourceTree = "<group>"; };
 		846AD6641A7C8D55009E17D1 /* originalPic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "originalPic@3x.png"; path = "CameraComponent/General/Camera/Image/originalPic@3x.png"; sourceTree = "<group>"; };
 		846AD6691A7CADA7009E17D1 /* ESCameraDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ESCameraDefine.h; path = CameraComponent/General/Camera/ESCameraDefine.h; sourceTree = "<group>"; };
+		848BEB311A7F132E00BA578D /* delPicBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "delPicBtn@3x.png"; path = "CameraComponent/General/Camera/Image/delPicBtn@3x.png"; sourceTree = "<group>"; };
 		84956D101A75EBF100BD3CAC /* ESCameraChoseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraChoseView.h; path = CameraComponent/General/Camera/ESCameraChoseView.h; sourceTree = "<group>"; };
 		84956D111A75EBF100BD3CAC /* ESCameraChoseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraChoseView.m; path = CameraComponent/General/Camera/ESCameraChoseView.m; sourceTree = "<group>"; };
 		849A4A151A76502600E7304F /* ESColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESColorUtil.h; path = CameraComponent/Util/ESColorUtil.h; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		844900551A77342900EB150B /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				848BEB311A7F132E00BA578D /* delPicBtn@3x.png */,
 				844A37A31A7DE0C300CACD25 /* camera@3x.png */,
 				846AD6631A7C8D55009E17D1 /* noOriginalPic@3x.png */,
 				846AD6641A7C8D55009E17D1 /* originalPic@3x.png */,
@@ -348,6 +351,7 @@
 			files = (
 				84B49BAD1A7B7EE700EE7CA5 /* cameraBtn@3x.png in Resources */,
 				844900601A777E3C00EB150B /* snapshootBtn@3x.png in Resources */,
+				848BEB321A7F132E00BA578D /* delPicBtn@3x.png in Resources */,
 				8449005F1A777E3C00EB150B /* photoLibraryBtn@3x.png in Resources */,
 				84550D9F1A6E0F1E00C1B6F1 /* Main.storyboard in Resources */,
 				846AD6651A7C8D55009E17D1 /* noOriginalPic@3x.png in Resources */,
@@ -511,6 +515,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CameraComponent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -521,6 +526,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CameraComponent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -227,6 +227,7 @@
         [self.multiPicDelegate transferMultiPic:photoSelectImageData];
     }
 }
+
 #pragma mark - 图片处理
 // 获取本地相册的所有图片
 - (void)getAllPhotoFromLibrary{

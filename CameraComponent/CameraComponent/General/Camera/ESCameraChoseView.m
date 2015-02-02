@@ -13,6 +13,7 @@
 
 #pragma mark - 属性声明
 @synthesize cameraChoseTabView;//选择tabView
+@synthesize globalButton;//
 
 #pragma mark - 初始化
 //初始化
@@ -23,6 +24,8 @@
         [self customizedOutlineStyle];
         //添加tabView
         [self addChoseTab];
+        //
+        [self initGlobalButton];
     }
     return self;
 }
@@ -66,6 +69,12 @@
     tabViewFrame.origin.y = tabViewFrame.origin.y + tabViewFrame.size.height;//调整tabView在垂直方向的位置
     cameraChoseTabView.frame = tabViewFrame;//
     [UIView commitAnimations];//动画提交
+}
+
+//全局按钮
+- (void)initGlobalButton{
+    globalButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height-cameraChoseTabView.frame.size.height)];
+    [self addSubview:globalButton];
 }
 
 @end

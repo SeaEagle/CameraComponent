@@ -71,6 +71,7 @@
     UIButton *originalButton;//原图操作按钮
     
     //
+    UIImage *delPicButtonImage;//删除按钮的背景图
     CGFloat imageScrollViewRowSize;//每行显示的图片数量
     CGSize imageScrollViewSize;//
     CGPoint imageScrollViewPoint;//
