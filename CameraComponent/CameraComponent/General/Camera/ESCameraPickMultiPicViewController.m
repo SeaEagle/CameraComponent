@@ -146,11 +146,15 @@
 // 取消并返回上一层
 - (void)cancleAndBack{
     //还原选择状态
+    //先清空选择
+    for (NSString *key in photoSelectDataCache) {
+        ((UIImageView *)[photoSelectImgViewArray objectAtIndex:[key integerValue]]).image = noSelectedImg;
+        [photoSelectState replaceObjectAtIndex:[key integerValue] withObject:[NSNumber numberWithInt:0]];
+    }
+    //再还原选择
     for (NSString *key in photoSelectData) {
-        if( NO == [photoSelectDataCache containsObject:key] ){
-            ((UIImageView *)[photoSelectImgViewArray objectAtIndex:[key integerValue]]).image = selectedImg;
-            [photoSelectState replaceObjectAtIndex:[key integerValue] withObject:[NSNumber numberWithInt:1]];
-        }
+        ((UIImageView *)[photoSelectImgViewArray objectAtIndex:[key integerValue]]).image = selectedImg;
+        [photoSelectState replaceObjectAtIndex:[key integerValue] withObject:[NSNumber numberWithInt:1]];
     }
     //还原选择的缓存
     [photoSelectDataCache removeAllObjects];
