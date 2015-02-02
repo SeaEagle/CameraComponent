@@ -165,7 +165,8 @@
 // 完成数据传送并返回
 - (void)finishAndBack{
     //清除已保存的图像信息
-    for (NSString *key in photoSelectData) {
+    NSArray *keyArray = [photoSelectImageData allKeys];
+    for (NSString *key in keyArray) {
         if ( NO == [photoSelectDataCache containsObject:key] ) {
             [photoSelectImageData removeObjectForKey:key];
         }
@@ -208,9 +209,7 @@
 // 控件上删除图像之后的操作
 - (void)deleteImageByIndex:(NSString *)index{
     //修改对应的状态, 调整为未选中
-    NSNumber *state = [photoSelectState objectAtIndex:[index integerValue]];
-    state = [NSNumber numberWithInt:0];
-    [photoSelectState replaceObjectAtIndex:[index integerValue] withObject:state];
+    [photoSelectState replaceObjectAtIndex:[index integerValue] withObject:[NSNumber numberWithInt:0]];
     //将图片对应的选中背景图改为不选中
     UIImageView *imageView = [photoSelectImgViewArray objectAtIndex:[index integerValue]];
     imageView.image = noSelectedImg;

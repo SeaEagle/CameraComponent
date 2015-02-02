@@ -45,19 +45,21 @@
 }
 
 #pragma mark - 按钮处理
-//删除图片处理 - 需要调整
+//删除图片处理
 - (void)deleteImage:(UIButton *)button{
     //获取即将删除的图片
     UIImage *image = [imageData objectAtIndex:button.tag];
     NSArray *resultKeysArray = [imageDataFromPhotoLibrary allKeysForObject:image];
     if ( 1 == [resultKeysArray count] ) {//说明图片是从本地照片获得的
-        //
+        //获得图片索引
         NSString *key = [resultKeysArray objectAtIndex:0];
-        //
+        //删除已持有的图片索引
+        [imageIndexFromPhotoLibrary removeObject:key];
+        //根据索引删除对应的图像数据
         [imageDataFromPhotoLibrary removeObjectForKey:key];
         //
         [cameraPicMultiPicViewController deleteImageByIndex:key];
-        //
+        //从本地照片选择的图片数量
         currentPhotoLibrarySelectedCount--;
     }
     //当前选择的数量减1
@@ -248,13 +250,9 @@
     [currentViewController presentViewController:cameraPicMultiPicViewNavigationController animated:YES completion:nil];
 }
 
-#pragma mark - 本地照片代理方法 - 需要调整
+#pragma mark - 本地照片代理方法
 //
 - (void) transferMultiPic:(NSMutableDictionary *)dataDictionary{
-    //[dataDictionary removeObjectForKey:@"1"];
-    //[cameraPicMultiPicViewController deleteImageByIndex:@"1"];
-    //
-    imageDataFromPhotoLibrary = dataDictionary;
     //增加新图片
     NSArray *dataIndexKey = [[dataDictionary allKeys]sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString *numStr1 = obj1, *numStr2 = obj2;
@@ -265,32 +263,29 @@
             return NO;
         }
     }];
-    
-    //
-    NSArray *dataValue = [dataDictionary allValues];
-    NSMutableArray *delImageArray = [[NSMutableArray alloc]init];
-    for (UIImage *image in imageDataFromPhotoLibraryCache) {
-        if (NO == [dataValue containsObject:image]) {
-            [delImageArray addObject:image];
-        }
-    }
-    for (UIImage *image in delImageArray) {
-        [imageDataFromPhotoLibraryCache removeObject:image];
-        [imageData removeObject:image];
-        currentPhotoLibrarySelectedCount--;
-        currentSelectedCount--;
-    }
-    [delImageArray removeAllObjects];
-    delImageArray = nil;
-    
     //按顺序添加图片
     for (NSString *key in dataIndexKey) {
-        if( NO == [imageData containsObject:[dataDictionary objectForKey:key]]){
+        if( NO == [imageIndexFromPhotoLibrary containsObject:key] ){
             [imageData addObject:[dataDictionary objectForKey:key]];//
-            [imageDataFromPhotoLibraryCache addObject:[dataDictionary objectForKey:key]];
+            [imageDataFromPhotoLibrary setObject:[dataDictionary objectForKey:key] forKey:key];
+            [imageIndexFromPhotoLibrary addObject:key];
             currentPhotoLibrarySelectedCount++;
             currentSelectedCount++;
         }
+    }
+    //删除在本地照片中取消选择的图片
+    NSMutableArray *delKeyArray = [[NSMutableArray alloc]init];
+    for (NSString *key in imageIndexFromPhotoLibrary) {
+        if ( NO == [dataIndexKey containsObject:key] ) {
+            [delKeyArray addObject:key];
+        }
+    }
+    for (NSString *key in delKeyArray) {
+        [imageData removeObject:[imageDataFromPhotoLibrary objectForKey:key]];
+        [imageDataFromPhotoLibrary removeObjectForKey:key];
+        [imageIndexFromPhotoLibrary removeObject:key];
+        currentPhotoLibrarySelectedCount--;
+        currentSelectedCount--;
     }
     //刷新图片展示
     [self updateImageViewDisplay];
@@ -420,7 +415,8 @@
     //
     initMark = NO;
     currentSelectedCount = 0;
-    imageDataFromPhotoLibraryCache = [[NSMutableArray alloc]init];
+    imageDataFromPhotoLibrary = [[NSMutableDictionary alloc]init];
+    imageIndexFromPhotoLibrary = [[NSMutableArray alloc]init];
     imageData = [[NSMutableArray alloc]init];
     
     //图像
