@@ -284,7 +284,7 @@
     if( 0 == count ){
         currentSelectedCountLabel.text = @"";
     }else{
-        currentSelectedCountLabel.text = [NSString stringWithFormat:@"%d", currentPhotoLibrarySelectedCount];
+        currentSelectedCountLabel.text = [NSString stringWithFormat:@"( %d / %d )", currentPhotoLibrarySelectedCount, picMaxCount];
     }
 }
 @end

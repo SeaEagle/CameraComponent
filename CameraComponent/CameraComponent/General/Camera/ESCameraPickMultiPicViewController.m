@@ -39,6 +39,7 @@
 
 // 页面再次打开时
 - (void)viewDidAppear:(BOOL)animated{
+    [self updateCurrentPhotoLibrarySelectedCountTip:currentPhotoLibrarySelectedCount];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -480,7 +481,7 @@
         scanButton.enabled = NO;
         finishButton.enabled = NO;
     }else{
-        currentSelectedCountLabel.text = [NSString stringWithFormat:@"%d", currentPhotoLibrarySelectedCount];
+        currentSelectedCountLabel.text = [NSString stringWithFormat:@"( %d / %d )", currentPhotoLibrarySelectedCount, picMaxCount];
         scanButton.enabled = YES;
         finishButton.enabled = YES;
     }
