@@ -41,7 +41,7 @@
     }else{//对原图进行压缩
         
     }
-    return nil;
+    return imageData;
 }
 
 #pragma mark - 按钮处理

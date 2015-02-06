@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		8405D5CC1A75F35500C7E3E9 /* ESCameraChoseTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405D5CB1A75F35500C7E3E9 /* ESCameraChoseTabView.m */; };
+		840BECC41A81ED7400320C5D /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECB21A81ED7400320C5D /* AFHTTPClient.m */; };
+		840BECC51A81ED7400320C5D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECB41A81ED7400320C5D /* AFHTTPRequestOperation.m */; };
+		840BECC61A81ED7400320C5D /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECB61A81ED7400320C5D /* AFImageRequestOperation.m */; };
+		840BECC71A81ED7400320C5D /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECB81A81ED7400320C5D /* AFJSONRequestOperation.m */; };
+		840BECC81A81ED7400320C5D /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECBA1A81ED7400320C5D /* AFNetworkActivityIndicatorManager.m */; };
+		840BECC91A81ED7400320C5D /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECBD1A81ED7400320C5D /* AFPropertyListRequestOperation.m */; };
+		840BECCA1A81ED7400320C5D /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECBF1A81ED7400320C5D /* AFURLConnectionOperation.m */; };
+		840BECCB1A81ED7400320C5D /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECC11A81ED7400320C5D /* AFXMLRequestOperation.m */; };
+		840BECCC1A81ED7400320C5D /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECC31A81ED7400320C5D /* UIImageView+AFNetworking.m */; };
 		8433245B1A79E428006CE1BB /* backBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8433245A1A79E428006CE1BB /* backBtn@3x.png */; };
 		8433245E1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8433245D1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.m */; };
 		8449005C1A77752400EB150B /* ESImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8449005B1A77752400EB150B /* ESImageUtil.m */; };
@@ -26,6 +35,7 @@
 		8457076C1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8457076B1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m */; };
 		8460EDFD1A6F5D8E007A0355 /* ESMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460EDFC1A6F5D8E007A0355 /* ESMainView.m */; };
 		8460EE011A6F9D1B007A0355 /* ESViewControllerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460EE001A6F9D1B007A0355 /* ESViewControllerUtil.m */; };
+		8465F37D1A83597F00C74F70 /* SnapshootFeedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8465F37C1A83597F00C74F70 /* SnapshootFeedback.storyboard */; };
 		846AD6651A7C8D55009E17D1 /* noOriginalPic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846AD6631A7C8D55009E17D1 /* noOriginalPic@3x.png */; };
 		846AD6661A7C8D55009E17D1 /* originalPic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846AD6641A7C8D55009E17D1 /* originalPic@3x.png */; };
 		8483ED621A7F8F9100219502 /* ESCameraShowSinglePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483ED611A7F8F9100219502 /* ESCameraShowSinglePicture.m */; };
@@ -50,6 +60,26 @@
 /* Begin PBXFileReference section */
 		8405D5CA1A75F35500C7E3E9 /* ESCameraChoseTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraChoseTabView.h; path = CameraComponent/General/Camera/ESCameraChoseTabView.h; sourceTree = "<group>"; };
 		8405D5CB1A75F35500C7E3E9 /* ESCameraChoseTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraChoseTabView.m; path = CameraComponent/General/Camera/ESCameraChoseTabView.m; sourceTree = "<group>"; };
+		840BECAD1A81C5AB00320C5D /* ESDebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESDebugLog.h; path = CameraComponent/Util/ESDebugLog.h; sourceTree = "<group>"; };
+		840BECB11A81ED7400320C5D /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = CameraComponent/ThirdPath/AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
+		840BECB21A81ED7400320C5D /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = CameraComponent/ThirdPath/AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
+		840BECB31A81ED7400320C5D /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperation.h; path = CameraComponent/ThirdPath/AFNetworking/AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		840BECB41A81ED7400320C5D /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPRequestOperation.m; path = CameraComponent/ThirdPath/AFNetworking/AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		840BECB51A81ED7400320C5D /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFImageRequestOperation.h; path = CameraComponent/ThirdPath/AFNetworking/AFImageRequestOperation.h; sourceTree = "<group>"; };
+		840BECB61A81ED7400320C5D /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFImageRequestOperation.m; path = CameraComponent/ThirdPath/AFNetworking/AFImageRequestOperation.m; sourceTree = "<group>"; };
+		840BECB71A81ED7400320C5D /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFJSONRequestOperation.h; path = CameraComponent/ThirdPath/AFNetworking/AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		840BECB81A81ED7400320C5D /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFJSONRequestOperation.m; path = CameraComponent/ThirdPath/AFNetworking/AFJSONRequestOperation.m; sourceTree = "<group>"; };
+		840BECB91A81ED7400320C5D /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFNetworkActivityIndicatorManager.h; path = CameraComponent/ThirdPath/AFNetworking/AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		840BECBA1A81ED7400320C5D /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFNetworkActivityIndicatorManager.m; path = CameraComponent/ThirdPath/AFNetworking/AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		840BECBB1A81ED7400320C5D /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = CameraComponent/ThirdPath/AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
+		840BECBC1A81ED7400320C5D /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFPropertyListRequestOperation.h; path = CameraComponent/ThirdPath/AFNetworking/AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		840BECBD1A81ED7400320C5D /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFPropertyListRequestOperation.m; path = CameraComponent/ThirdPath/AFNetworking/AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
+		840BECBE1A81ED7400320C5D /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFURLConnectionOperation.h; path = CameraComponent/ThirdPath/AFNetworking/AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		840BECBF1A81ED7400320C5D /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFURLConnectionOperation.m; path = CameraComponent/ThirdPath/AFNetworking/AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		840BECC01A81ED7400320C5D /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFXMLRequestOperation.h; path = CameraComponent/ThirdPath/AFNetworking/AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		840BECC11A81ED7400320C5D /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFXMLRequestOperation.m; path = CameraComponent/ThirdPath/AFNetworking/AFXMLRequestOperation.m; sourceTree = "<group>"; };
+		840BECC21A81ED7400320C5D /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+AFNetworking.h"; path = "CameraComponent/ThirdPath/AFNetworking/UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		840BECC31A81ED7400320C5D /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "CameraComponent/ThirdPath/AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		8433245A1A79E428006CE1BB /* backBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backBtn@3x.png"; path = "CameraComponent/General/Camera/Image/backBtn@3x.png"; sourceTree = "<group>"; };
 		8433245C1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraMultiPicScanViewController.h; path = CameraComponent/General/Camera/ESCameraMultiPicScanViewController.h; sourceTree = "<group>"; };
 		8433245D1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraMultiPicScanViewController.m; path = CameraComponent/General/Camera/ESCameraMultiPicScanViewController.m; sourceTree = "<group>"; };
@@ -84,6 +114,7 @@
 		8460EE001A6F9D1B007A0355 /* ESViewControllerUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESViewControllerUtil.m; path = CameraComponent/Util/ESViewControllerUtil.m; sourceTree = "<group>"; };
 		846523FD1A779FAC00AC2423 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		846523FE1A779FAD00AC2423 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		8465F37C1A83597F00C74F70 /* SnapshootFeedback.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SnapshootFeedback.storyboard; path = CameraComponent/Section/SnapshootFeedback/SnapshootFeedback.storyboard; sourceTree = "<group>"; };
 		846AD6631A7C8D55009E17D1 /* noOriginalPic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noOriginalPic@3x.png"; path = "CameraComponent/General/Camera/Image/noOriginalPic@3x.png"; sourceTree = "<group>"; };
 		846AD6641A7C8D55009E17D1 /* originalPic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "originalPic@3x.png"; path = "CameraComponent/General/Camera/Image/originalPic@3x.png"; sourceTree = "<group>"; };
 		846AD6691A7CADA7009E17D1 /* ESCameraDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ESCameraDefine.h; path = CameraComponent/General/Camera/ESCameraDefine.h; sourceTree = "<group>"; };
@@ -117,6 +148,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		840BEC8F1A81BEF000320C5D /* ThirdPath */ = {
+			isa = PBXGroup;
+			children = (
+				840BEC901A81BEFA00320C5D /* AFNetworking */,
+			);
+			name = ThirdPath;
+			sourceTree = "<group>";
+		};
+		840BEC901A81BEFA00320C5D /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				840BECB11A81ED7400320C5D /* AFHTTPClient.h */,
+				840BECB21A81ED7400320C5D /* AFHTTPClient.m */,
+				840BECB31A81ED7400320C5D /* AFHTTPRequestOperation.h */,
+				840BECB41A81ED7400320C5D /* AFHTTPRequestOperation.m */,
+				840BECB51A81ED7400320C5D /* AFImageRequestOperation.h */,
+				840BECB61A81ED7400320C5D /* AFImageRequestOperation.m */,
+				840BECB71A81ED7400320C5D /* AFJSONRequestOperation.h */,
+				840BECB81A81ED7400320C5D /* AFJSONRequestOperation.m */,
+				840BECB91A81ED7400320C5D /* AFNetworkActivityIndicatorManager.h */,
+				840BECBA1A81ED7400320C5D /* AFNetworkActivityIndicatorManager.m */,
+				840BECBB1A81ED7400320C5D /* AFNetworking.h */,
+				840BECBC1A81ED7400320C5D /* AFPropertyListRequestOperation.h */,
+				840BECBD1A81ED7400320C5D /* AFPropertyListRequestOperation.m */,
+				840BECBE1A81ED7400320C5D /* AFURLConnectionOperation.h */,
+				840BECBF1A81ED7400320C5D /* AFURLConnectionOperation.m */,
+				840BECC01A81ED7400320C5D /* AFXMLRequestOperation.h */,
+				840BECC11A81ED7400320C5D /* AFXMLRequestOperation.m */,
+				840BECC21A81ED7400320C5D /* UIImageView+AFNetworking.h */,
+				840BECC31A81ED7400320C5D /* UIImageView+AFNetworking.m */,
+			);
+			name = AFNetworking;
+			sourceTree = "<group>";
+		};
 		844900551A77342900EB150B /* Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +202,7 @@
 		84550D871A6E0F1E00C1B6F1 = {
 			isa = PBXGroup;
 			children = (
+				840BEC8F1A81BEF000320C5D /* ThirdPath */,
 				8460EDFE1A6F921D007A0355 /* Util */,
 				8460EDF71A6F5CDD007A0355 /* Section */,
 				84550DB91A6E0F2800C1B6F1 /* General */,
@@ -231,6 +297,7 @@
 		8460EDF71A6F5CDD007A0355 /* Section */ = {
 			isa = PBXGroup;
 			children = (
+				8465F3791A8354DE00C74F70 /* SnapshootFeedback(拍照反馈) */,
 				8460EDF81A6F5CE7007A0355 /* Main */,
 			);
 			name = Section;
@@ -264,6 +331,7 @@
 		8460EDFE1A6F921D007A0355 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				840BECAD1A81C5AB00320C5D /* ESDebugLog.h */,
 				8460EDFF1A6F9D1B007A0355 /* ESViewControllerUtil.h */,
 				8460EE001A6F9D1B007A0355 /* ESViewControllerUtil.m */,
 				849A4A151A76502600E7304F /* ESColorUtil.h */,
@@ -272,6 +340,30 @@
 				8449005B1A77752400EB150B /* ESImageUtil.m */,
 			);
 			name = Util;
+			sourceTree = "<group>";
+		};
+		8465F3791A8354DE00C74F70 /* SnapshootFeedback(拍照反馈) */ = {
+			isa = PBXGroup;
+			children = (
+				8465F37B1A83560A00C74F70 /* View */,
+				8465F37A1A83560300C74F70 /* Controller */,
+				8465F37C1A83597F00C74F70 /* SnapshootFeedback.storyboard */,
+			);
+			name = "SnapshootFeedback(拍照反馈)";
+			sourceTree = "<group>";
+		};
+		8465F37A1A83560300C74F70 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		8465F37B1A83560A00C74F70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +415,7 @@
 				TargetAttributes = {
 					84550D8F1A6E0F1E00C1B6F1 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = V7H4E69YN3;
 					};
 					84550DA81A6E0F1E00C1B6F1 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -359,6 +452,7 @@
 				848BEB321A7F132E00BA578D /* delPicBtn@3x.png in Resources */,
 				8449005F1A777E3C00EB150B /* photoLibraryBtn@3x.png in Resources */,
 				84550D9F1A6E0F1E00C1B6F1 /* Main.storyboard in Resources */,
+				8465F37D1A83597F00C74F70 /* SnapshootFeedback.storyboard in Resources */,
 				846AD6651A7C8D55009E17D1 /* noOriginalPic@3x.png in Resources */,
 				8433245B1A79E428006CE1BB /* backBtn@3x.png in Resources */,
 				84B49BAE1A7B7EE700EE7CA5 /* noSelected@3x.png in Resources */,
@@ -384,20 +478,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840BECCA1A81ED7400320C5D /* AFURLConnectionOperation.m in Sources */,
 				84550D9C1A6E0F1E00C1B6F1 /* ViewController.m in Sources */,
 				8405D5CC1A75F35500C7E3E9 /* ESCameraChoseTabView.m in Sources */,
 				8449005C1A77752400EB150B /* ESImageUtil.m in Sources */,
+				840BECC71A81ED7400320C5D /* AFJSONRequestOperation.m in Sources */,
+				840BECCB1A81ED7400320C5D /* AFXMLRequestOperation.m in Sources */,
+				840BECC81A81ED7400320C5D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				8460EDFD1A6F5D8E007A0355 /* ESMainView.m in Sources */,
 				84550D991A6E0F1E00C1B6F1 /* AppDelegate.m in Sources */,
 				84550DBD1A6E0FCD00C1B6F1 /* ESCameraComponent.m in Sources */,
+				840BECC91A81ED7400320C5D /* AFPropertyListRequestOperation.m in Sources */,
+				840BECC61A81ED7400320C5D /* AFImageRequestOperation.m in Sources */,
 				84956D121A75EBF100BD3CAC /* ESCameraChoseView.m in Sources */,
 				84550DC21A6E2CDA00C1B6F1 /* ESCameraButton.m in Sources */,
 				8483ED621A7F8F9100219502 /* ESCameraShowSinglePicture.m in Sources */,
 				84550D961A6E0F1E00C1B6F1 /* main.m in Sources */,
 				8460EE011A6F9D1B007A0355 /* ESViewControllerUtil.m in Sources */,
 				849A4A171A76502600E7304F /* ESColorUtil.m in Sources */,
+				840BECCC1A81ED7400320C5D /* UIImageView+AFNetworking.m in Sources */,
 				8457076C1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m in Sources */,
 				8433245E1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.m in Sources */,
+				840BECC51A81ED7400320C5D /* AFHTTPRequestOperation.m in Sources */,
+				840BECC41A81ED7400320C5D /* AFHTTPClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,7 +578,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -510,7 +613,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

@@ -12,6 +12,11 @@
 #import "ESCameraComponent.h"
 #import "ESCameraDefine.h"
 
+#import "AFNetworking.h"
+
 @interface ESMainView : UIView
+{
+    ESCameraComponent *cameraComponent;
+}
 
 @end
