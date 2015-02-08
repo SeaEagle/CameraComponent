@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,7 +18,24 @@
                     <view key="view" contentMode="scaleToFill" id="k97-z6-1Y3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ia-lJ-a3O">
+                                <rect key="frame" x="21" y="20" width="563" height="104"/>
+                                <color key="backgroundColor" red="0.94033979609999996" green="1" blue="0.33891716" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8Ia-lJ-a3O" secondAttribute="height" multiplier="563:104" id="J8c-OO-9pW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8Ia-lJ-a3O" firstAttribute="top" secondItem="64L-fl-61Y" secondAttribute="bottom" id="Oip-X6-XHw"/>
+                            <constraint firstItem="8Ia-lJ-a3O" firstAttribute="leading" secondItem="k97-z6-1Y3" secondAttribute="leadingMargin" constant="5" id="i5J-RZ-78o"/>
+                            <constraint firstItem="8Ia-lJ-a3O" firstAttribute="trailing" secondItem="k97-z6-1Y3" secondAttribute="trailingMargin" id="vU7-J3-Yyn"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKv-SK-AlM" userLabel="First Responder" sceneMemberID="firstResponder"/>
