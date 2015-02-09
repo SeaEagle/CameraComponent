@@ -9,7 +9,7 @@
         <!--拍照反馈-->
         <scene sceneID="zry-mI-6dF">
             <objects>
-                <viewController id="luX-Up-ew4" sceneMemberID="viewController">
+                <viewController id="luX-Up-ew4" customClass="SnapshootFeedbackViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="64L-fl-61Y"/>
                         <viewControllerLayoutGuide type="bottom" id="Dks-To-bpQ"/>
@@ -159,7 +159,12 @@
                             <constraint firstItem="AHb-Hp-DTW" firstAttribute="leading" secondItem="k97-z6-1Y3" secondAttribute="leadingMargin" constant="-16" id="tES-W0-TIs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="拍照反馈" id="8hv-nz-i0c"/>
+                    <navigationItem key="navigationItem" title="拍照反馈" id="8hv-nz-i0c">
+                        <barButtonItem key="rightBarButtonItem" title="拍照记录" id="0iW-il-diP"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cameraComponent" destination="k17-t1-b1z" id="YZo-TK-U8A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKv-SK-AlM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

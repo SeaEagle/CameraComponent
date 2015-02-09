@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		840093671A889F3000DEB4A8 /* Describe@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840093651A889F3000DEB4A8 /* Describe@3x.png */; };
 		840093681A889F3000DEB4A8 /* Theme@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840093661A889F3000DEB4A8 /* Theme@3x.png */; };
+		8400936B1A88BA5600DEB4A8 /* SnapshootFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8400936A1A88BA5600DEB4A8 /* SnapshootFeedbackViewController.m */; };
 		8405D5CC1A75F35500C7E3E9 /* ESCameraChoseTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405D5CB1A75F35500C7E3E9 /* ESCameraChoseTabView.m */; };
 		840BECC41A81ED7400320C5D /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECB21A81ED7400320C5D /* AFHTTPClient.m */; };
 		840BECC51A81ED7400320C5D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECB41A81ED7400320C5D /* AFHTTPRequestOperation.m */; };
@@ -62,6 +63,8 @@
 /* Begin PBXFileReference section */
 		840093651A889F3000DEB4A8 /* Describe@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Describe@3x.png"; path = "CameraComponent/Section/SnapshootFeedback/Image/Describe@3x.png"; sourceTree = "<group>"; };
 		840093661A889F3000DEB4A8 /* Theme@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Theme@3x.png"; path = "CameraComponent/Section/SnapshootFeedback/Image/Theme@3x.png"; sourceTree = "<group>"; };
+		840093691A88BA5600DEB4A8 /* SnapshootFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SnapshootFeedbackViewController.h; path = CameraComponent/Section/SnapshootFeedback/Controller/SnapshootFeedbackViewController.h; sourceTree = "<group>"; };
+		8400936A1A88BA5600DEB4A8 /* SnapshootFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SnapshootFeedbackViewController.m; path = CameraComponent/Section/SnapshootFeedback/Controller/SnapshootFeedbackViewController.m; sourceTree = "<group>"; };
 		8405D5CA1A75F35500C7E3E9 /* ESCameraChoseTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraChoseTabView.h; path = CameraComponent/General/Camera/ESCameraChoseTabView.h; sourceTree = "<group>"; };
 		8405D5CB1A75F35500C7E3E9 /* ESCameraChoseTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraChoseTabView.m; path = CameraComponent/General/Camera/ESCameraChoseTabView.m; sourceTree = "<group>"; };
 		840BECAD1A81C5AB00320C5D /* ESDebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESDebugLog.h; path = CameraComponent/Util/ESDebugLog.h; sourceTree = "<group>"; };
@@ -369,6 +372,8 @@
 		8465F37A1A83560300C74F70 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				840093691A88BA5600DEB4A8 /* SnapshootFeedbackViewController.h */,
+				8400936A1A88BA5600DEB4A8 /* SnapshootFeedbackViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 				8405D5CC1A75F35500C7E3E9 /* ESCameraChoseTabView.m in Sources */,
 				8449005C1A77752400EB150B /* ESImageUtil.m in Sources */,
 				840BECC71A81ED7400320C5D /* AFJSONRequestOperation.m in Sources */,
+				8400936B1A88BA5600DEB4A8 /* SnapshootFeedbackViewController.m in Sources */,
 				840BECCB1A81ED7400320C5D /* AFXMLRequestOperation.m in Sources */,
 				840BECC81A81ED7400320C5D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				8460EDFD1A6F5D8E007A0355 /* ESMainView.m in Sources */,

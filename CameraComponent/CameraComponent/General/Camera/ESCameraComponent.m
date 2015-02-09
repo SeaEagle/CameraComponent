@@ -11,28 +11,6 @@
 @implementation ESCameraComponent
 
 #pragma mark - 初始化
-//
-- (instancetype)initWithCoder:(NSCoder *)coder{
-    self = [super initWithCoder:coder];
-    if (self) {
-        //预设值
-        [self customizedPresetValue];
-        //全局样式
-        [self customizedGlobalView];
-        //控件标志
-        [self customizedComponentSign];
-        //原图操作
-        [self customizedOriginalOption];
-        //
-        [self customizedPictureContainer];
-        //自定义获取图片的按钮
-        [self customizedCameraButton];
-        //
-        [self updateImageViewDisplay];
-    }
-    return self;
-}
-
 // 初始化
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
