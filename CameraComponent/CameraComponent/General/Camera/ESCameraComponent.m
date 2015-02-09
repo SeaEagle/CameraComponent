@@ -463,8 +463,8 @@
     [self addSubview:cameraComponentImageView];
     //
     cameraComponentLabel = [[UILabel alloc]initWithFrame:CGRectMake(cameraComponentLabelPoint.x, cameraComponentLabelPoint.y, cameraComponentLabelSize.width, cameraComponentLabelSize.height)];
-    cameraComponentLabel.font = [UIFont systemFontOfSize:cameraComponentLabelSize.height*0.6];
-    cameraComponentLabel.text = @"拍照：";
+    cameraComponentLabel.font = [UIFont systemFontOfSize:cameraComponentLabelSize.height*0.7];
+    cameraComponentLabel.text = @"拍照 ：";
     cameraComponentLabel.textAlignment = NSTextAlignmentLeft;
     cameraComponentLabel.textColor = [ESColorUtil getColorFromHexValue:cameraComponentLabelFontColorHexValue];
     [self addSubview:cameraComponentLabel];

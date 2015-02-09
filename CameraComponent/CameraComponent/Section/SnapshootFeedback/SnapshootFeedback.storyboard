@@ -163,7 +163,7 @@
                         <barButtonItem key="rightBarButtonItem" title="拍照记录" id="0iW-il-diP"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="cameraComponent" destination="k17-t1-b1z" id="YZo-TK-U8A"/>
+                        <outlet property="snapshootView" destination="k17-t1-b1z" id="Ma3-Dp-EQa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKv-SK-AlM" userLabel="First Responder" sceneMemberID="firstResponder"/>

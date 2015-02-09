@@ -25,10 +25,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    CGRect frame = _snapshootView.frame;
+    frame.size.height = 2*frame.size.height;
+    _snapshootView.frame = frame;
+    
+    CGRect outline = [[UIScreen mainScreen]bounds];
+    frame.origin.x = 0;
+    frame.origin.y = 0;
+    frame.size.width = outline.size.width;
+    
     //声明拍照组件
-    ESCameraComponent *cameraComponent = [[ESCameraComponent alloc]initWithFrame:_snapshootView.frame];
+    ESCameraComponent *cameraComponent = [[ESCameraComponent alloc]initWithFrame:frame];
     //指定获取相片的方式, 是否限制拍照数量, 拍照数量最大值
-    [cameraComponent configureComponentWithType:ESPhotoLibraryOrCamera maxLimitMark:YES maxCount:5];
+    [cameraComponent configureComponentWithType:ESPhotoLibraryOrCamera maxLimitMark:YES maxCount:7];
     //添加到view
     [_snapshootView addSubview:cameraComponent];
 }
