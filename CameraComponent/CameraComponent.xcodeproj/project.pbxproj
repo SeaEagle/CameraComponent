@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840093671A889F3000DEB4A8 /* Describe@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840093651A889F3000DEB4A8 /* Describe@3x.png */; };
+		840093681A889F3000DEB4A8 /* Theme@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840093661A889F3000DEB4A8 /* Theme@3x.png */; };
 		8405D5CC1A75F35500C7E3E9 /* ESCameraChoseTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405D5CB1A75F35500C7E3E9 /* ESCameraChoseTabView.m */; };
 		840BECC41A81ED7400320C5D /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECB21A81ED7400320C5D /* AFHTTPClient.m */; };
 		840BECC51A81ED7400320C5D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECB41A81ED7400320C5D /* AFHTTPRequestOperation.m */; };
@@ -58,6 +60,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		840093651A889F3000DEB4A8 /* Describe@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Describe@3x.png"; path = "CameraComponent/Section/SnapshootFeedback/Image/Describe@3x.png"; sourceTree = "<group>"; };
+		840093661A889F3000DEB4A8 /* Theme@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Theme@3x.png"; path = "CameraComponent/Section/SnapshootFeedback/Image/Theme@3x.png"; sourceTree = "<group>"; };
 		8405D5CA1A75F35500C7E3E9 /* ESCameraChoseTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraChoseTabView.h; path = CameraComponent/General/Camera/ESCameraChoseTabView.h; sourceTree = "<group>"; };
 		8405D5CB1A75F35500C7E3E9 /* ESCameraChoseTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraChoseTabView.m; path = CameraComponent/General/Camera/ESCameraChoseTabView.m; sourceTree = "<group>"; };
 		840BECAD1A81C5AB00320C5D /* ESDebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESDebugLog.h; path = CameraComponent/Util/ESDebugLog.h; sourceTree = "<group>"; };
@@ -148,6 +152,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		840093641A889E9900DEB4A8 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				840093651A889F3000DEB4A8 /* Describe@3x.png */,
+				840093661A889F3000DEB4A8 /* Theme@3x.png */,
+			);
+			name = Image;
+			sourceTree = "<group>";
+		};
 		840BEC8F1A81BEF000320C5D /* ThirdPath */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +358,7 @@
 		8465F3791A8354DE00C74F70 /* SnapshootFeedback(拍照反馈) */ = {
 			isa = PBXGroup;
 			children = (
+				840093641A889E9900DEB4A8 /* Image */,
 				8465F37B1A83560A00C74F70 /* View */,
 				8465F37A1A83560300C74F70 /* Controller */,
 				8465F37C1A83597F00C74F70 /* SnapshootFeedback.storyboard */,
@@ -449,6 +463,7 @@
 			files = (
 				84B49BAD1A7B7EE700EE7CA5 /* cameraBtn@3x.png in Resources */,
 				844900601A777E3C00EB150B /* snapshootBtn@3x.png in Resources */,
+				840093671A889F3000DEB4A8 /* Describe@3x.png in Resources */,
 				848BEB321A7F132E00BA578D /* delPicBtn@3x.png in Resources */,
 				8449005F1A777E3C00EB150B /* photoLibraryBtn@3x.png in Resources */,
 				84550D9F1A6E0F1E00C1B6F1 /* Main.storyboard in Resources */,
@@ -459,6 +474,7 @@
 				84B49BAF1A7B7EE700EE7CA5 /* selected@3x.png in Resources */,
 				844A37A41A7DE0C300CACD25 /* camera@3x.png in Resources */,
 				84550DA41A6E0F1E00C1B6F1 /* LaunchScreen.xib in Resources */,
+				840093681A889F3000DEB4A8 /* Theme@3x.png in Resources */,
 				84550DA11A6E0F1E00C1B6F1 /* Images.xcassets in Resources */,
 				846AD6661A7C8D55009E17D1 /* originalPic@3x.png in Resources */,
 			);
