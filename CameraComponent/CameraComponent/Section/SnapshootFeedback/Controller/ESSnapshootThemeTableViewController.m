@@ -14,13 +14,17 @@
 
 @implementation ESSnapshootThemeTableViewController
 
+#pragma mark - 初始化
+// 初始化
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    // 初始化拍照主题数据
+    [self initSnapshootThemeData];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // 清除选项
+    // self.clearsSelectionOnViewWillAppear = NO;
+    // 编辑
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
@@ -29,37 +33,69 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+// 初始化拍照主题数据
+- (void)initSnapshootThemeData{
+    // 通过接口获取拍照主题数据
+    // 解析接口返回数据
+    // 初始化主题数据
+    snapshootThemeData = [[NSMutableArray alloc]init];
+    
+    ESSnapshootTheme *theme1 = [[ESSnapshootTheme alloc]init];
+    theme1.themeId = @"1";
+    theme1.themeName = @"theme1";
+    [snapshootThemeData addObject:theme1];
+    theme1.subThemes = [[NSMutableArray alloc]init];
+    ESSnapshootTheme *subtheme11 = [[ESSnapshootTheme alloc]init];
+    subtheme11.themeId = @"11";
+    subtheme11.themeName = @"subtheme11";
+    [theme1.subThemes addObject:subtheme11];
+    ESSnapshootTheme *subtheme12 = [[ESSnapshootTheme alloc]init];
+    subtheme12.themeId = @"12";
+    subtheme12.themeName = @"subtheme12";
+    [theme1.subThemes addObject:subtheme12];
+    
+    ESSnapshootTheme *theme2 = [[ESSnapshootTheme alloc]init];
+    theme2.themeId = @"2";
+    theme2.themeName = @"theme2";
+    [snapshootThemeData addObject:theme2];
+    
+    ESSnapshootTheme *theme3 = [[ESSnapshootTheme alloc]init];
+    theme3.themeId = @"3";
+    theme3.themeName = @"theme3";
+    [snapshootThemeData addObject:theme3];
+    theme3.subThemes = [[NSMutableArray alloc]init];
+    ESSnapshootTheme *subtheme31 = [[ESSnapshootTheme alloc]init];
+    subtheme31.themeId = @"31";
+    subtheme31.themeName = @"subtheme31";
+    [theme3.subThemes addObject:subtheme31];
+    ESSnapshootTheme *subtheme32 = [[ESSnapshootTheme alloc]init];
+    subtheme32.themeId = @"32";
+    subtheme32.themeName = @"subtheme32";
+    [theme3.subThemes addObject:subtheme32];
+}
+
+#pragma mark - 导航跳转前处理
+//
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+}
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 0;
-}
-
+//
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return 0;
+    return [snapshootThemeData count];
 }
 
-/*
+//
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THEMECELLIDENTIFIER forIndexPath:indexPath];
+    
+    ESSnapshootTheme *theme = [snapshootThemeData objectAtIndex:indexPath.row];
+    cell.textLabel.text = theme.themeName;
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -94,7 +130,5 @@
     return YES;
 }
 */
-
-
 
 @end

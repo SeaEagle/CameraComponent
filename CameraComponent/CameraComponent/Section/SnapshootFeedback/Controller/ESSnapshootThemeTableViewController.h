@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ESSnapshootTheme.h"
+
+//
+static NSString *THEMECELLIDENTIFIER = @"SnapshootTheme";
+
 @interface ESSnapshootThemeTableViewController : UITableViewController
+{
+    NSMutableArray *snapshootThemeData;
+}
 
 @end
