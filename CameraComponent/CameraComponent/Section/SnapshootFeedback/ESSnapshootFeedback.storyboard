@@ -9,7 +9,7 @@
         <!--拍照反馈-->
         <scene sceneID="zry-mI-6dF">
             <objects>
-                <viewController id="luX-Up-ew4" customClass="SnapshootFeedbackViewController" sceneMemberID="viewController">
+                <viewController id="luX-Up-ew4" customClass="ESSnapshootFeedbackViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="64L-fl-61Y"/>
                         <viewControllerLayoutGuide type="bottom" id="Dks-To-bpQ"/>
@@ -47,6 +47,9 @@
                                                 <state key="normal">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="oK5-7O-0GG" kind="push" identifier="SnapshootTheme" id="6LQ-1E-Rw7"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,10 +94,14 @@
                                                 <color key="textColor" red="0.15686274510000001" green="0.6588235294" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入描述" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cn5-q1-3YI" userLabel="DescTextInput(描述的文本输入框)">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入描述" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Cn5-q1-3YI" userLabel="DescTextInput(描述的文本输入框)">
                                                 <rect key="frame" x="94" y="20" width="498" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <connections>
+                                                    <action selector="editBegin:" destination="luX-Up-ew4" eventType="editingDidBegin" id="T6h-61-OUA"/>
+                                                    <action selector="editEnd:" destination="luX-Up-ew4" eventType="editingDidEndOnExit" id="Vhl-s8-yfQ"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -160,15 +167,96 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="拍照反馈" id="8hv-nz-i0c">
-                        <barButtonItem key="rightBarButtonItem" title="拍照记录" id="0iW-il-diP"/>
+                        <barButtonItem key="rightBarButtonItem" title="拍照记录" id="0iW-il-diP">
+                            <connections>
+                                <segue destination="V9K-io-Cq1" kind="push" identifier="SnapshootRecords" id="dZt-aa-PRa"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="snapshootView" destination="k17-t1-b1z" id="Ma3-Dp-EQa"/>
+                        <outlet property="containerView" destination="AHb-Hp-DTW" id="lpz-VB-H3w"/>
+                        <outlet property="snapshootView" destination="k17-t1-b1z" id="wcJ-8y-nxq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKv-SK-AlM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="863" y="298"/>
+        </scene>
+        <!--拍照记录-->
+        <scene sceneID="Po3-Wx-MlT">
+            <objects>
+                <tableViewController id="V9K-io-Cq1" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Qp5-ZD-nPG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7aX-HB-WrF">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7aX-HB-WrF" id="kaX-Me-Iuh">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="V9K-io-Cq1" id="f7b-BY-G9P"/>
+                            <outlet property="delegate" destination="V9K-io-Cq1" id="8k9-zp-Nyp"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="拍照记录" id="lbF-g4-Qpp"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EyA-gh-42g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1584" y="-355"/>
+        </scene>
+        <!--拍照主题-->
+        <scene sceneID="CCg-Sz-rKk">
+            <objects>
+                <tableViewController id="oK5-7O-0GG" customClass="ESSnapshootThemeTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VkX-tT-Ffv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SnapshootTheme" id="DhU-2T-Sqb">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DhU-2T-Sqb" id="lZ8-CP-zQ5">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="4SL-aN-10n" kind="push" id="FxD-ty-VKc"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="oK5-7O-0GG" id="5QO-EM-Nf8"/>
+                            <outlet property="delegate" destination="oK5-7O-0GG" id="7a3-XX-Ryq"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="拍照主题" id="Y4L-pn-8lM"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sWV-Wj-gtQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1584" y="298"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hCw-VE-gg9">
+            <objects>
+                <viewController id="4SL-aN-10n" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WdU-fb-mKL"/>
+                        <viewControllerLayoutGuide type="bottom" id="XHi-Yp-5so"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DtM-PL-Gpz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="M98-dZ-4sG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JMu-CB-mgg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2279" y="298"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7FK-gV-EXl">

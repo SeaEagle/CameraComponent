@@ -35,8 +35,8 @@
 - (void)uploadFile{
     NSLog(@"BEGIN: UPLOAD……");
     
-    NSURL *url = [NSURL URLWithString:@"http://10.19.160.65:8090"];
-//    NSURL *url = [NSURL URLWithString:@"http://14.31.15.122:8080"];
+//    NSURL *url = [NSURL URLWithString:@"http://10.19.160.65:8090"];
+    NSURL *url = [NSURL URLWithString:@"http://14.31.15.122:8080"];
     
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
     [httpClient setDefaultHeader:@"x-type" value:@"png"];
