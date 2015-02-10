@@ -22,6 +22,8 @@
     // 初始化拍照主题数据
     [self initSnapshootThemeData];
     
+    // 清除多余的分割线
+    [self clearExtraSperateLine];
     // 清除选项
     // self.clearsSelectionOnViewWillAppear = NO;
     // 编辑
@@ -32,6 +34,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 // 初始化拍照主题数据
 - (void)initSnapshootThemeData{
@@ -72,27 +75,32 @@
     subtheme32.themeId = @"32";
     subtheme32.themeName = @"subtheme32";
     [theme3.subThemes addObject:subtheme32];
+    
+}
+
+// 清空多余的分割线
+- (void)clearExtraSperateLine{
+    UIView *view = [[UIView alloc]init];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
 }
 
 #pragma mark - 导航跳转前处理
-//
+// 跳转之前的准备
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 }
 
 #pragma mark - Table view data source
-//
+// 表的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [snapshootThemeData count];
 }
 
-//
+// 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THEMECELLIDENTIFIER forIndexPath:indexPath];
-    
     ESSnapshootTheme *theme = [snapshootThemeData objectAtIndex:indexPath.row];
     cell.textLabel.text = theme.themeName;
-    
     return cell;
 }
 

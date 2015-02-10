@@ -45,6 +45,7 @@
 		848BEB321A7F132E00BA578D /* delPicBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 848BEB311A7F132E00BA578D /* delPicBtn@3x.png */; };
 		84956D121A75EBF100BD3CAC /* ESCameraChoseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84956D111A75EBF100BD3CAC /* ESCameraChoseView.m */; };
 		849A4A171A76502600E7304F /* ESColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 849A4A161A76502600E7304F /* ESColorUtil.m */; };
+		84A7D8721A8A53C8006502D3 /* ESSnapshootRecordItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A7D8711A8A53C8006502D3 /* ESSnapshootRecordItem.xib */; };
 		84B1C56A1A89FEAB00A77967 /* ESSnapshootThemeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1C5691A89FEAB00A77967 /* ESSnapshootThemeTableViewController.m */; };
 		84B1C56E1A8A04EF00A77967 /* ESSnapshootTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1C56D1A8A04EF00A77967 /* ESSnapshootTheme.m */; };
 		84B49BAD1A7B7EE700EE7CA5 /* cameraBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B49BAA1A7B7EE700EE7CA5 /* cameraBtn@3x.png */; };
@@ -134,6 +135,7 @@
 		84956D111A75EBF100BD3CAC /* ESCameraChoseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraChoseView.m; path = CameraComponent/General/Camera/ESCameraChoseView.m; sourceTree = "<group>"; };
 		849A4A151A76502600E7304F /* ESColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESColorUtil.h; path = CameraComponent/Util/ESColorUtil.h; sourceTree = "<group>"; };
 		849A4A161A76502600E7304F /* ESColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESColorUtil.m; path = CameraComponent/Util/ESColorUtil.m; sourceTree = "<group>"; };
+		84A7D8711A8A53C8006502D3 /* ESSnapshootRecordItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ESSnapshootRecordItem.xib; path = CameraComponent/Section/SnapshootFeedback/View/ESSnapshootRecordItem.xib; sourceTree = "<group>"; };
 		84B1C5671A89F74D00A77967 /* ESSnapshootDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ESSnapshootDelegate.h; path = CameraComponent/Section/SnapshootFeedback/Controller/ESSnapshootDelegate.h; sourceTree = "<group>"; };
 		84B1C5681A89FEAB00A77967 /* ESSnapshootThemeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSnapshootThemeTableViewController.h; path = CameraComponent/Section/SnapshootFeedback/Controller/ESSnapshootThemeTableViewController.h; sourceTree = "<group>"; };
 		84B1C5691A89FEAB00A77967 /* ESSnapshootThemeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSnapshootThemeTableViewController.m; path = CameraComponent/Section/SnapshootFeedback/Controller/ESSnapshootThemeTableViewController.m; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 		8465F37B1A83560A00C74F70 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84A7D8711A8A53C8006502D3 /* ESSnapshootRecordItem.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				8449005F1A777E3C00EB150B /* photoLibraryBtn@3x.png in Resources */,
 				84550D9F1A6E0F1E00C1B6F1 /* Main.storyboard in Resources */,
 				8465F37D1A83597F00C74F70 /* ESSnapshootFeedback.storyboard in Resources */,
+				84A7D8721A8A53C8006502D3 /* ESSnapshootRecordItem.xib in Resources */,
 				846AD6651A7C8D55009E17D1 /* noOriginalPic@3x.png in Resources */,
 				8433245B1A79E428006CE1BB /* backBtn@3x.png in Resources */,
 				84B49BAE1A7B7EE700EE7CA5 /* noSelected@3x.png in Resources */,
