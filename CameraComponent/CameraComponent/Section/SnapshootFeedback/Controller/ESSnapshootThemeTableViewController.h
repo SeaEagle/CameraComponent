@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ESNetworkClient.h"
 #import "ESSnapshootTheme.h"
 
 //

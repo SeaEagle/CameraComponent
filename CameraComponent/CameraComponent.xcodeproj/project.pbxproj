@@ -22,6 +22,8 @@
 		840BECCC1A81ED7400320C5D /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECC31A81ED7400320C5D /* UIImageView+AFNetworking.m */; };
 		8433245B1A79E428006CE1BB /* backBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8433245A1A79E428006CE1BB /* backBtn@3x.png */; };
 		8433245E1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8433245D1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.m */; };
+		8436A8411A8B106A00D81E1A /* ESNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8436A8401A8B106A00D81E1A /* ESNetworkClient.m */; };
+		8436A8461A8B10BD00D81E1A /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8436A8441A8B10BD00D81E1A /* GTMBase64.m */; };
 		8449005C1A77752400EB150B /* ESImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8449005B1A77752400EB150B /* ESImageUtil.m */; };
 		8449005F1A777E3C00EB150B /* photoLibraryBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8449005D1A777E3C00EB150B /* photoLibraryBtn@3x.png */; };
 		844900601A777E3C00EB150B /* snapshootBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8449005E1A777E3C00EB150B /* snapshootBtn@3x.png */; };
@@ -93,6 +95,12 @@
 		8433245A1A79E428006CE1BB /* backBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backBtn@3x.png"; path = "CameraComponent/General/Camera/Image/backBtn@3x.png"; sourceTree = "<group>"; };
 		8433245C1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraMultiPicScanViewController.h; path = CameraComponent/General/Camera/ESCameraMultiPicScanViewController.h; sourceTree = "<group>"; };
 		8433245D1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraMultiPicScanViewController.m; path = CameraComponent/General/Camera/ESCameraMultiPicScanViewController.m; sourceTree = "<group>"; };
+		8436A83F1A8B106A00D81E1A /* ESNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESNetworkClient.h; path = CameraComponent/Util/ESNetworkClient.h; sourceTree = "<group>"; };
+		8436A8401A8B106A00D81E1A /* ESNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESNetworkClient.m; path = CameraComponent/Util/ESNetworkClient.m; sourceTree = "<group>"; };
+		8436A8431A8B10BD00D81E1A /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		8436A8441A8B10BD00D81E1A /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		8436A8451A8B10BD00D81E1A /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		8436A8481A8B31A500D81E1A /* ESAppMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAppMacro.h; sourceTree = "<group>"; };
 		843ECBFC1A7D11E800969366 /* ESCameraDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ESCameraDelegate.h; path = CameraComponent/General/Camera/ESCameraDelegate.h; sourceTree = "<group>"; };
 		8449005A1A77752400EB150B /* ESImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESImageUtil.h; path = CameraComponent/Util/ESImageUtil.h; sourceTree = "<group>"; };
 		8449005B1A77752400EB150B /* ESImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESImageUtil.m; path = CameraComponent/Util/ESImageUtil.m; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 		840BEC8F1A81BEF000320C5D /* ThirdPath */ = {
 			isa = PBXGroup;
 			children = (
+				8436A8421A8B10BD00D81E1A /* base64 */,
 				840BEC901A81BEFA00320C5D /* AFNetworking */,
 			);
 			name = ThirdPath;
@@ -207,6 +216,26 @@
 			name = AFNetworking;
 			sourceTree = "<group>";
 		};
+		8436A8421A8B10BD00D81E1A /* base64 */ = {
+			isa = PBXGroup;
+			children = (
+				8436A8431A8B10BD00D81E1A /* GTMBase64.h */,
+				8436A8441A8B10BD00D81E1A /* GTMBase64.m */,
+				8436A8451A8B10BD00D81E1A /* GTMDefines.h */,
+			);
+			name = base64;
+			path = CameraComponent/ThirdPath/base64;
+			sourceTree = "<group>";
+		};
+		8436A8471A8B31A500D81E1A /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				8436A8481A8B31A500D81E1A /* ESAppMacro.h */,
+			);
+			name = Macro;
+			path = CameraComponent/Macro;
+			sourceTree = "<group>";
+		};
 		844900551A77342900EB150B /* Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +256,7 @@
 		84550D871A6E0F1E00C1B6F1 = {
 			isa = PBXGroup;
 			children = (
+				8436A8471A8B31A500D81E1A /* Macro */,
 				840BEC8F1A81BEF000320C5D /* ThirdPath */,
 				8460EDFE1A6F921D007A0355 /* Util */,
 				8460EDF71A6F5CDD007A0355 /* Section */,
@@ -363,6 +393,8 @@
 				849A4A161A76502600E7304F /* ESColorUtil.m */,
 				8449005A1A77752400EB150B /* ESImageUtil.h */,
 				8449005B1A77752400EB150B /* ESImageUtil.m */,
+				8436A83F1A8B106A00D81E1A /* ESNetworkClient.h */,
+				8436A8401A8B106A00D81E1A /* ESNetworkClient.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -523,6 +555,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8436A8411A8B106A00D81E1A /* ESNetworkClient.m in Sources */,
 				840BECCA1A81ED7400320C5D /* AFURLConnectionOperation.m in Sources */,
 				84550D9C1A6E0F1E00C1B6F1 /* ViewController.m in Sources */,
 				8405D5CC1A75F35500C7E3E9 /* ESCameraChoseTabView.m in Sources */,
@@ -549,6 +582,7 @@
 				8433245E1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.m in Sources */,
 				840BECC51A81ED7400320C5D /* AFHTTPRequestOperation.m in Sources */,
 				840BECC41A81ED7400320C5D /* AFHTTPClient.m in Sources */,
+				8436A8461A8B10BD00D81E1A /* GTMBase64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,8 +39,27 @@
 // 初始化拍照主题数据
 - (void)initSnapshootThemeData{
     // 通过接口获取拍照主题数据
+    ESNetworkClient *networkClient = [[ESNetworkClient alloc]initManager];
+    
+    NSDictionary *token = [[NSDictionary alloc]initWithObjectsAndKeys:@"1010100", @"x-action-type", @"111", @"x-session-id", nil];
+    NSDictionary *paramer = [[NSDictionary alloc]init];
+    [networkClient
+     getJson:token
+     params:paramer
+     onCompletion:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
+
+         NSString *resultContent = [JSON objectForKey:@"result"];
+         NSData *resultData = [resultContent dataUsingEncoding:NSUTF8StringEncoding];
+         NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:resultData options:NSJSONReadingMutableLeaves error:nil];
+         NSLog(@"%@", resultDictionary);
+         
+     }onError:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+         
+     }];
+    
     // 解析接口返回数据
     // 初始化主题数据
+    
     snapshootThemeData = [[NSMutableArray alloc]init];
     
     ESSnapshootTheme *theme1 = [[ESSnapshootTheme alloc]init];
