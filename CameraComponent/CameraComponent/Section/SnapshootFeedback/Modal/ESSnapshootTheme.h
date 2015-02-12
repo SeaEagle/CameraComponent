@@ -14,6 +14,8 @@
 @property NSString *themeId;
 // 主题名称
 @property NSString *themeName;
+// 主题名称 - 显示
+@property NSString *displayThemeName;
 // 子主题
 @property NSMutableArray *subThemes;
 

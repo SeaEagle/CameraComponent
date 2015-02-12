@@ -38,6 +38,7 @@
 		84550DBD1A6E0FCD00C1B6F1 /* ESCameraComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550DBC1A6E0FCD00C1B6F1 /* ESCameraComponent.m */; };
 		84550DC21A6E2CDA00C1B6F1 /* ESCameraButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550DC11A6E2CDA00C1B6F1 /* ESCameraButton.m */; };
 		8457076C1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8457076B1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m */; };
+		845966DA1A8CDD75007014E9 /* ESSnapshootSubThemeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845966D91A8CDD75007014E9 /* ESSnapshootSubThemeTableView.m */; };
 		8460EDFD1A6F5D8E007A0355 /* ESMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460EDFC1A6F5D8E007A0355 /* ESMainView.m */; };
 		8460EE011A6F9D1B007A0355 /* ESViewControllerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460EE001A6F9D1B007A0355 /* ESViewControllerUtil.m */; };
 		8465F37D1A83597F00C74F70 /* ESSnapshootFeedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8465F37C1A83597F00C74F70 /* ESSnapshootFeedback.storyboard */; };
@@ -126,6 +127,8 @@
 		84550DC11A6E2CDA00C1B6F1 /* ESCameraButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraButton.m; path = CameraComponent/General/Camera/ESCameraButton.m; sourceTree = "<group>"; };
 		8457076A1A7891E3005488B8 /* ESCameraPickMultiPicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraPickMultiPicViewController.h; path = CameraComponent/General/Camera/ESCameraPickMultiPicViewController.h; sourceTree = "<group>"; };
 		8457076B1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraPickMultiPicViewController.m; path = CameraComponent/General/Camera/ESCameraPickMultiPicViewController.m; sourceTree = "<group>"; };
+		845966D81A8CDD75007014E9 /* ESSnapshootSubThemeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSnapshootSubThemeTableView.h; path = CameraComponent/Section/SnapshootFeedback/View/ESSnapshootSubThemeTableView.h; sourceTree = "<group>"; };
+		845966D91A8CDD75007014E9 /* ESSnapshootSubThemeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSnapshootSubThemeTableView.m; path = CameraComponent/Section/SnapshootFeedback/View/ESSnapshootSubThemeTableView.m; sourceTree = "<group>"; };
 		8460EDFB1A6F5D8E007A0355 /* ESMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESMainView.h; path = CameraComponent/Section/Main/View/ESMainView.h; sourceTree = "<group>"; };
 		8460EDFC1A6F5D8E007A0355 /* ESMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESMainView.m; path = CameraComponent/Section/Main/View/ESMainView.m; sourceTree = "<group>"; };
 		8460EDFF1A6F9D1B007A0355 /* ESViewControllerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESViewControllerUtil.h; path = CameraComponent/Util/ESViewControllerUtil.h; sourceTree = "<group>"; };
@@ -427,6 +430,8 @@
 			isa = PBXGroup;
 			children = (
 				84A7D8711A8A53C8006502D3 /* ESSnapshootRecordItem.xib */,
+				845966D81A8CDD75007014E9 /* ESSnapshootSubThemeTableView.h */,
+				845966D91A8CDD75007014E9 /* ESSnapshootSubThemeTableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -560,6 +565,7 @@
 				84550D9C1A6E0F1E00C1B6F1 /* ViewController.m in Sources */,
 				8405D5CC1A75F35500C7E3E9 /* ESCameraChoseTabView.m in Sources */,
 				84B1C56E1A8A04EF00A77967 /* ESSnapshootTheme.m in Sources */,
+				845966DA1A8CDD75007014E9 /* ESSnapshootSubThemeTableView.m in Sources */,
 				8449005C1A77752400EB150B /* ESImageUtil.m in Sources */,
 				84B1C56A1A89FEAB00A77967 /* ESSnapshootThemeTableViewController.m in Sources */,
 				840BECC71A81ED7400320C5D /* AFJSONRequestOperation.m in Sources */,

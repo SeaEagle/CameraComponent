@@ -9,17 +9,21 @@
 #import <UIKit/UIKit.h>
 
 #import "ESNetworkClient.h"
+
+#import "ESSnapshootSubThemeTableView.h"
 #import "ESSnapshootTheme.h"
 
-//
+// 拍照主题Cell
 static NSString *THEMECELLIDENTIFIER = @"SnapshootTheme";
-// 列的高度
-static CGFloat CELLHEIGHT = 70;
 
 @interface ESSnapshootThemeTableViewController : UITableViewController
 {
-    NSMutableArray *snapshootThemeData;
-    UIView *view;
+    // 
+    NSArray *snapshootThemeData;
+    // 是否已展示子主题页面
+    BOOL showSubThemeMark;
+    // 子主题tableview
+    ESSnapshootSubThemeTableView *subThemeView;
 }
 
 @property NSArray *snapshootThemeData;
