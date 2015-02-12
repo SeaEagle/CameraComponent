@@ -17,4 +17,7 @@
 // 子主题
 @property NSMutableArray *subThemes;
 
+
++ (NSArray *)initSnapshootThemeData:(NSArray *)dataArray;
+
 @end

@@ -13,10 +13,15 @@
 
 //
 static NSString *THEMECELLIDENTIFIER = @"SnapshootTheme";
+// 列的高度
+static CGFloat CELLHEIGHT = 70;
 
 @interface ESSnapshootThemeTableViewController : UITableViewController
 {
     NSMutableArray *snapshootThemeData;
+    UIView *view;
 }
+
+@property NSArray *snapshootThemeData;
 
 @end

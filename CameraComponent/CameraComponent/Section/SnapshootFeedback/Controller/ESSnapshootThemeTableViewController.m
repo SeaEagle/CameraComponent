@@ -14,6 +14,8 @@
 
 @implementation ESSnapshootThemeTableViewController
 
+@synthesize snapshootThemeData;
+
 #pragma mark - 初始化
 // 初始化
 - (void)viewDidLoad {
@@ -24,6 +26,14 @@
     
     // 清除多余的分割线
     [self clearExtraSperateLine];
+    
+    CGRect frame = self.tableView.frame;
+    frame.origin.y = frame.origin.y + 5;
+    view = [[UIView alloc]initWithFrame:frame];
+    view.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:view];
+    
+    NSLog(@"%f", frame.origin.y);
     // 清除选项
     // self.clearsSelectionOnViewWillAppear = NO;
     // 编辑
@@ -32,36 +42,34 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
 
 // 初始化拍照主题数据
 - (void)initSnapshootThemeData{
     // 通过接口获取拍照主题数据
     ESNetworkClient *networkClient = [[ESNetworkClient alloc]initManager];
-    
+    // 设置参数
     NSDictionary *token = [[NSDictionary alloc]initWithObjectsAndKeys:@"1010100", @"x-action-type", @"111", @"x-session-id", nil];
     NSDictionary *paramer = [[NSDictionary alloc]init];
-    [networkClient
-     getJson:token
-     params:paramer
-     onCompletion:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
-
-         NSString *resultContent = [JSON objectForKey:@"result"];
-         NSData *resultData = [resultContent dataUsingEncoding:NSUTF8StringEncoding];
-         NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:resultData options:NSJSONReadingMutableLeaves error:nil];
-         NSLog(@"%@", resultDictionary);
-         
-     }onError:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
-         
-     }];
+    // 请求数据
+//    [networkClient
+//     getJson:token
+//     params:paramer
+//     onCompletion:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
+//         // 解析接口返回数据
+//         NSString *resultContent = [JSON objectForKey:@"result"];
+//         NSData *resultData = [resultContent dataUsingEncoding:NSUTF8StringEncoding];
+//         NSArray *resultArray = [NSJSONSerialization JSONObjectWithData:resultData options:0 error:nil];
+//         // 初始化主题数据
+//         snapshootThemeData = [ESSnapshootTheme initSnapshootThemeData:resultArray];
+//         //刷新数据
+//         [self.tableView reloadData];
+//     }onError:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+//         
+//     }];
     
-    // 解析接口返回数据
-    // 初始化主题数据
-    
+    //测试数据
     snapshootThemeData = [[NSMutableArray alloc]init];
-    
     ESSnapshootTheme *theme1 = [[ESSnapshootTheme alloc]init];
     theme1.themeId = @"1";
     theme1.themeName = @"theme1";
@@ -75,12 +83,10 @@
     subtheme12.themeId = @"12";
     subtheme12.themeName = @"subtheme12";
     [theme1.subThemes addObject:subtheme12];
-    
     ESSnapshootTheme *theme2 = [[ESSnapshootTheme alloc]init];
     theme2.themeId = @"2";
     theme2.themeName = @"theme2";
     [snapshootThemeData addObject:theme2];
-    
     ESSnapshootTheme *theme3 = [[ESSnapshootTheme alloc]init];
     theme3.themeId = @"3";
     theme3.themeName = @"theme3";
@@ -94,7 +100,6 @@
     subtheme32.themeId = @"32";
     subtheme32.themeName = @"subtheme32";
     [theme3.subThemes addObject:subtheme32];
-    
 }
 
 // 清空多余的分割线
@@ -115,47 +120,26 @@
     return [snapshootThemeData count];
 }
 
-// 
+// 表的每一列
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THEMECELLIDENTIFIER forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THEMECELLIDENTIFIER];
+    if(cell==nil){
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THEMECELLIDENTIFIER];
+    }
     ESSnapshootTheme *theme = [snapshootThemeData objectAtIndex:indexPath.row];
     cell.textLabel.text = theme.themeName;
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+// 设置每一列的高度
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return CELLHEIGHT;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+// 选择某列之后
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    // 取消选择
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 @end
