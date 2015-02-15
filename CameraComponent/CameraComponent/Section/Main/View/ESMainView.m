@@ -39,6 +39,7 @@
     NSURL *url = [NSURL URLWithString:@"http://14.31.15.122:8080"];
     
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    [httpClient setDefaultHeader:@"x-session-id" value:@"111"];
     [httpClient setDefaultHeader:@"x-type" value:@"png"];
     [httpClient setDefaultHeader:@"x-ticket" value:@"abcdefg123456789"];
     

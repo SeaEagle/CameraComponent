@@ -44,6 +44,7 @@
 		8465F37D1A83597F00C74F70 /* ESSnapshootFeedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8465F37C1A83597F00C74F70 /* ESSnapshootFeedback.storyboard */; };
 		846AD6651A7C8D55009E17D1 /* noOriginalPic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846AD6631A7C8D55009E17D1 /* noOriginalPic@3x.png */; };
 		846AD6661A7C8D55009E17D1 /* originalPic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846AD6641A7C8D55009E17D1 /* originalPic@3x.png */; };
+		847417DB1A9046B200D0429C /* ESSnapshootFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 847417DA1A9046B200D0429C /* ESSnapshootFeedback.m */; };
 		8483ED621A7F8F9100219502 /* ESCameraShowSinglePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483ED611A7F8F9100219502 /* ESCameraShowSinglePicture.m */; };
 		848BEB321A7F132E00BA578D /* delPicBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 848BEB311A7F132E00BA578D /* delPicBtn@3x.png */; };
 		84956D121A75EBF100BD3CAC /* ESCameraChoseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84956D111A75EBF100BD3CAC /* ESCameraChoseView.m */; };
@@ -139,6 +140,8 @@
 		846AD6631A7C8D55009E17D1 /* noOriginalPic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noOriginalPic@3x.png"; path = "CameraComponent/General/Camera/Image/noOriginalPic@3x.png"; sourceTree = "<group>"; };
 		846AD6641A7C8D55009E17D1 /* originalPic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "originalPic@3x.png"; path = "CameraComponent/General/Camera/Image/originalPic@3x.png"; sourceTree = "<group>"; };
 		846AD6691A7CADA7009E17D1 /* ESCameraDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ESCameraDefine.h; path = CameraComponent/General/Camera/ESCameraDefine.h; sourceTree = "<group>"; };
+		847417D91A9046B200D0429C /* ESSnapshootFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSnapshootFeedback.h; path = CameraComponent/Section/SnapshootFeedback/Modal/ESSnapshootFeedback.h; sourceTree = "<group>"; };
+		847417DA1A9046B200D0429C /* ESSnapshootFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSnapshootFeedback.m; path = CameraComponent/Section/SnapshootFeedback/Modal/ESSnapshootFeedback.m; sourceTree = "<group>"; };
 		8483ED601A7F8F9100219502 /* ESCameraShowSinglePicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraShowSinglePicture.h; path = CameraComponent/General/Camera/ESCameraShowSinglePicture.h; sourceTree = "<group>"; };
 		8483ED611A7F8F9100219502 /* ESCameraShowSinglePicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraShowSinglePicture.m; path = CameraComponent/General/Camera/ESCameraShowSinglePicture.m; sourceTree = "<group>"; };
 		848BEB311A7F132E00BA578D /* delPicBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "delPicBtn@3x.png"; path = "CameraComponent/General/Camera/Image/delPicBtn@3x.png"; sourceTree = "<group>"; };
@@ -441,6 +444,8 @@
 			children = (
 				84B1C56C1A8A04EF00A77967 /* ESSnapshootTheme.h */,
 				84B1C56D1A8A04EF00A77967 /* ESSnapshootTheme.m */,
+				847417D91A9046B200D0429C /* ESSnapshootFeedback.h */,
+				847417DA1A9046B200D0429C /* ESSnapshootFeedback.m */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -562,6 +567,7 @@
 			files = (
 				8436A8411A8B106A00D81E1A /* ESNetworkClient.m in Sources */,
 				840BECCA1A81ED7400320C5D /* AFURLConnectionOperation.m in Sources */,
+				847417DB1A9046B200D0429C /* ESSnapshootFeedback.m in Sources */,
 				84550D9C1A6E0F1E00C1B6F1 /* ViewController.m in Sources */,
 				8405D5CC1A75F35500C7E3E9 /* ESCameraChoseTabView.m in Sources */,
 				84B1C56E1A8A04EF00A77967 /* ESSnapshootTheme.m in Sources */,

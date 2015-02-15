@@ -10,13 +10,15 @@
 
 #import "ESNetworkClient.h"
 
-#import "ESSnapshootSubThemeTableView.h"
+#import "ESSnapshootDelegate.h"
 #import "ESSnapshootTheme.h"
+#import "ESSnapshootSubThemeTableView.h"
 
 // 拍照主题Cell
 static NSString *THEMECELLIDENTIFIER = @"SnapshootTheme";
 
 @interface ESSnapshootThemeTableViewController : UITableViewController
+<ESSnapshootFeedbacSubThemeDelegate>
 {
     // 
     NSArray *snapshootThemeData;
@@ -27,5 +29,6 @@ static NSString *THEMECELLIDENTIFIER = @"SnapshootTheme";
 }
 
 @property NSArray *snapshootThemeData;
+@property id <ESSnapshootFeedbacThemekDelegate> themeDelegate;
 
 @end

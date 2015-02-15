@@ -136,6 +136,9 @@
                                             <color key="titleColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="uploadSnapshootFeedbackData:" destination="luX-Up-ew4" eventType="touchUpInside" id="OL2-jE-qYs"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -175,6 +178,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="AHb-Hp-DTW" id="lpz-VB-H3w"/>
+                        <outlet property="snapshootRemarkField" destination="Cn5-q1-3YI" id="58A-ld-wok"/>
+                        <outlet property="snapshootThemeField" destination="HwJ-d2-c5W" id="WHO-BH-jFb"/>
                         <outlet property="snapshootView" destination="k17-t1-b1z" id="wcJ-8y-nxq"/>
                     </connections>
                 </viewController>

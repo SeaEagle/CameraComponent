@@ -14,7 +14,10 @@
 
 @implementation ESSnapshootThemeTableViewController
 
+//
 @synthesize snapshootThemeData;
+//
+@synthesize themeDelegate;
 
 #pragma mark - 初始化
 // 初始化
@@ -111,6 +114,7 @@
     frame.origin.x = frame.origin.x + frame.size.width;
     frame.size.width = frame.size.width * 0.6;
     subThemeView = [[ESSnapshootSubThemeTableView alloc]initWithFrame:frame];
+    subThemeView.subThemeDelegate = self;
     [self.view addSubview:subThemeView];
 }
 
@@ -118,6 +122,28 @@
 // 跳转之前的准备
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //}
+
+#pragma mark - 
+// 确定选择了某个主题
+- (void)submitTheTheme:(ESSnapshootTheme *)theme{
+    // 通过代理通知选择了哪个主题
+    if( [self.themeDelegate respondsToSelector:@selector(handleThemeOperation:)] ){
+        [self.themeDelegate handleThemeOperation:theme];
+    }
+    // 返回rootviewcontroller
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+#pragma mark - 代理方法
+- (void)handleSubThemeOperation:(ESSnapshootTheme *)subTheme{
+    // 通过代理从子主题tableview获取数据
+    [self submitTheTheme:subTheme];
+    // 隐藏子主题tableview
+    if ( YES == showSubThemeMark ) {
+        [self hideSubThemeView];
+        showSubThemeMark = NO;
+    }
+}
 
 #pragma mark - Table view data source
 // 表的行数
@@ -151,6 +177,7 @@
             showSubThemeMark = NO;
         }
         // 通知选择了没有子主题的顶层主题
+        [self submitTheTheme:theme];
     }else{// 存在子主题
         if( NO == showSubThemeMark ){// 没打开子主题显示view
             [self showSubThemeView];// 显示子主题view
@@ -159,7 +186,7 @@
     }
     [subThemeView reloadData];// 刷新子主题view数据显示
     // 取消选择
-    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - 子主题页面

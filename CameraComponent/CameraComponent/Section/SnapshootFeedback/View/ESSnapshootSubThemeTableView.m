@@ -11,6 +11,7 @@
 @implementation ESSnapshootSubThemeTableView
 
 @synthesize themeData;
+@synthesize subThemeDelegate;
 
 #pragma mark - 初始化
 //
@@ -54,6 +55,17 @@
 // 设置每一列的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return CELLHEIGHT;
+}
+
+// 选择某列之后
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //
+    ESSnapshootTheme *theme = [themeData objectAtIndex:indexPath.row];
+    if ( [self.subThemeDelegate respondsToSelector:@selector(handleSubThemeOperation:)] ) {
+        [self.subThemeDelegate handleSubThemeOperation:theme];
+    }
+    // 取消选择
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

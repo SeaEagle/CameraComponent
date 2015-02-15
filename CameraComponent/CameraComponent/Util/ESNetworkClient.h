@@ -17,7 +17,11 @@
     //
     NSURL *baseURL;
     //
+    NSURL *fileURL;
+    //
     AFHTTPClient *httpClient;
+    //
+    AFHTTPClient *fileHttpClient;
 }
 
 // 成功回调
@@ -27,7 +31,11 @@ typedef void ( ^CurrencyJsonResponseErrorBlock ) ( NSURLRequest *request , NSHTT
 
 - (ESNetworkClient *)initManager;
 
--(AFHTTPRequestOperation *)getJson:(NSDictionary *)token params:(NSDictionary *)params
+- (AFHTTPRequestOperation *)getJson:(NSDictionary *)token params:(NSDictionary *)params
+                      onCompletion:(CurrencyJsonResponseSuccessBlock) successBlock
+                           onError:(CurrencyJsonResponseErrorBlock) errorBlock;
+
+- (AFHTTPRequestOperation *)uploadFile:(NSDictionary *)token params:(NSDictionary *)params
                       onCompletion:(CurrencyJsonResponseSuccessBlock) successBlock
                            onError:(CurrencyJsonResponseErrorBlock) errorBlock;
 @end

@@ -11,7 +11,11 @@
 
 #define ApplicationDelegate ((ESAppDelegate *)[UIApplication sharedApplication].delegate)
 
-#define SERVER_URL @"http://14.31.15.122:8080/?" //测试环境
+#define SERVER_URL @"http://14.31.15.122:8080/" //测试环境
+//#define SERVER_URL @"http://10.19.160.65:8090/" //测试环境
+
+#define FILE_URL @"http://14.31.15.122:8081/" //测试环境
+//#define FILE_URL @"http://10.19.160.65:8090/" //测试环境
 
 #define deviceWidth [UIScreen mainScreen].bounds.size.width
 #define deviceHeight [UIScreen mainScreen].bounds.size.height
