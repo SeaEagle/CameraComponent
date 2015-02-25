@@ -25,38 +25,35 @@
                       onCompletion:(CurrencyJsonResponseSuccessBlock) successBlock
                            onError:(CurrencyJsonResponseErrorBlock) errorBlock{
     
-    // 将参数及数据转成json格式并且base64编码
+    // 将数据转成json格式并且base64编码
     NSData *data =[NSJSONSerialization dataWithJSONObject:params
                                                   options:NSJSONWritingPrettyPrinted
                                                     error:nil];
     NSString *pstring = [[NSString alloc] initWithData:[GTMBase64 encodeData:data]  encoding:NSUTF8StringEncoding];
     NSMutableDictionary *paramsTarget = [[NSMutableDictionary alloc] initWithDictionary:@{@"p":pstring}];
     
-    ESWQINFO(@"url：%@p=%@",SERVER_URL,pstring);
-    
-    // 设置HTTP头部参数, token表示码表
-    [httpClient setDefaultHeader:@"x-action-type" value:[token objectForKey:@"x-action-type"]];
-    [httpClient setDefaultHeader:@"x-session-id" value:[token objectForKey:@"x-session-id"]];
-    // 创建请求
+    // 设置HTTP头部参数, token存放头参数对应的数据
+    for (NSString *key in [token allKeys]) {
+        [httpClient setDefaultHeader:key value:[token objectForKey:key]];
+    }
+    // 创建GET请求
     NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET" path:@"" parameters:paramsTarget];
+    
     // 根据请求创建操作
     AFJSONRequestOperation *operation = [AFJSONRequestOperation
                                          JSONRequestOperationWithRequest:request
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                              // 成功返回数据
-                                             NSLog(@"Request: %@", request.URL);
-                                             NSLog(@"Status Code: %ld", response.statusCode );
-                                             NSLog(@"Result: %@", JSON);
-                                             successBlock(request, response, JSON);
-                                             
+                                             NSLog(@"Request: %@", request.URL);// 请求的URL链接
+                                             NSLog(@"Status Code: %ld", response.statusCode );// 返回的状态码
+                                             NSLog(@"Result: %@", JSON);// 返回的JSON数据
+                                             successBlock(request, response, JSON);//
                                          }failure:^(NSURLRequest *request , NSHTTPURLResponse *response , NSError *error , id JSON ){
                                              // 失败处理
-                                             
-                                             NSLog(@"Error: %@", error);
-                                             NSLog(@"Status Code: %ld", response.statusCode );
-                                             NSLog(@"Result: %@",JSON);
-                                             errorBlock(request, response, errorBlock, JSON);
-                                             
+                                             NSLog(@"Error: %@", error);// 发生的错误
+                                             NSLog(@"Status Code: %ld", response.statusCode );// 返回的状态码
+                                             NSLog(@"Result: %@",JSON);// 返回的JSON数据
+                                             errorBlock(request, response, errorBlock, JSON);//
                                          }];
     // 开始执行请求操作
     [operation start];
