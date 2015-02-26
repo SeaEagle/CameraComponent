@@ -44,15 +44,15 @@
                                          JSONRequestOperationWithRequest:request
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                              // 成功返回数据
-                                             NSLog(@"Request: %@", request.URL);// 请求的URL链接
-                                             NSLog(@"Status Code: %ld", response.statusCode );// 返回的状态码
-                                             NSLog(@"Result: %@", JSON);// 返回的JSON数据
+                                             ESWQINFO(@"Request: %@", request.URL);// 请求的URL链接
+                                             ESWQINFO(@"Status Code: %ld", response.statusCode );// 返回的状态码
+                                             ESWQINFO(@"Result: %@", JSON);// 返回的JSON数据
                                              successBlock(request, response, JSON);//
                                          }failure:^(NSURLRequest *request , NSHTTPURLResponse *response , NSError *error , id JSON ){
                                              // 失败处理
-                                             NSLog(@"Error: %@", error);// 发生的错误
-                                             NSLog(@"Status Code: %ld", response.statusCode );// 返回的状态码
-                                             NSLog(@"Result: %@",JSON);// 返回的JSON数据
+                                             ESWQERROR(@"Error: %@", error);// 发生的错误
+                                             ESWQERROR(@"Status Code: %ld", response.statusCode );// 返回的状态码
+                                             ESWQERROR(@"Result: %@",JSON);// 返回的JSON数据
                                              errorBlock(request, response, errorBlock, JSON);//
                                          }];
     // 开始执行请求操作
