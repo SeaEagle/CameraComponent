@@ -7,57 +7,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="513" height="254"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtB-kB-tfn" userLabel="ContainerView">
-                    <rect key="frame" x="0.0" y="0.0" width="513" height="254"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTI-WP-7ji">
-                            <rect key="frame" x="8" y="33" width="497" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.15686274510000001" green="0.6588235294" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPy-ak-emn">
-                            <rect key="frame" x="0.0" y="81" width="513" height="71"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="71" id="VvV-Us-46Y"/>
-                            </constraints>
-                        </scrollView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgv-QB-rZ6">
-                            <rect key="frame" x="0.0" y="152" width="513" height="107"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="107" id="2mX-By-eRt"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="DPy-ak-emn" firstAttribute="top" secondItem="HtB-kB-tfn" secondAttribute="top" constant="81" id="EMi-ab-ssq"/>
-                        <constraint firstItem="jgv-QB-rZ6" firstAttribute="leading" secondItem="HtB-kB-tfn" secondAttribute="leading" id="LH7-CT-OjG"/>
-                        <constraint firstItem="jgv-QB-rZ6" firstAttribute="top" secondItem="DPy-ak-emn" secondAttribute="bottom" id="QgU-9T-YcW"/>
-                        <constraint firstItem="DPy-ak-emn" firstAttribute="leading" secondItem="HtB-kB-tfn" secondAttribute="leading" id="VCs-IU-ajd"/>
-                        <constraint firstAttribute="trailing" secondItem="ZTI-WP-7ji" secondAttribute="trailing" constant="8" id="eeM-OJ-tXF"/>
-                        <constraint firstItem="ZTI-WP-7ji" firstAttribute="leading" secondItem="HtB-kB-tfn" secondAttribute="leading" constant="8" id="hWn-FG-3P6"/>
-                        <constraint firstAttribute="trailing" secondItem="jgv-QB-rZ6" secondAttribute="trailing" id="jZa-vY-HP6"/>
-                        <constraint firstItem="ZTI-WP-7ji" firstAttribute="top" secondItem="HtB-kB-tfn" secondAttribute="top" constant="33" id="pPh-XX-zS5"/>
-                        <constraint firstAttribute="trailing" secondItem="DPy-ak-emn" secondAttribute="trailing" id="vmI-6r-oVW"/>
-                    </constraints>
-                </view>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="HtB-kB-tfn" secondAttribute="bottom" id="7iJ-Ra-VaJ"/>
-                <constraint firstItem="HtB-kB-tfn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="TF1-8U-4Gn"/>
-                <constraint firstAttribute="trailing" secondItem="HtB-kB-tfn" secondAttribute="trailing" id="VNC-e3-nlE"/>
-                <constraint firstItem="HtB-kB-tfn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cJX-KB-scg"/>
-            </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="345.5" y="110"/>
-        </view>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="194" id="8bh-Ie-gka">
+            <rect key="frame" x="0.0" y="0.0" width="513" height="194"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8bh-Ie-gka" id="yAp-HO-fyx">
+                <autoresizingMask key="autoresizingMask"/>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="374.5" y="214"/>
+        </tableViewCell>
     </objects>
 </document>

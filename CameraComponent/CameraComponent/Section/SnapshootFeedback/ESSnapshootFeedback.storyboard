@@ -170,7 +170,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="拍照反馈" id="8hv-nz-i0c">
-                        <barButtonItem key="rightBarButtonItem" title="拍照记录" id="0iW-il-diP">
+                        <barButtonItem key="rightBarButtonItem" image="SnapshootList@3x.png" id="0iW-il-diP">
                             <connections>
                                 <segue destination="V9K-io-Cq1" kind="push" identifier="SnapshootRecords" id="dZt-aa-PRa"/>
                             </connections>
@@ -190,19 +190,11 @@
         <!--拍照记录-->
         <scene sceneID="Po3-Wx-MlT">
             <objects>
-                <tableViewController id="V9K-io-Cq1" sceneMemberID="viewController">
+                <tableViewController id="V9K-io-Cq1" customClass="ESSnapshootRecordTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Qp5-ZD-nPG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7aX-HB-WrF">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7aX-HB-WrF" id="kaX-Me-Iuh">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="V9K-io-Cq1" id="f7b-BY-G9P"/>
                             <outlet property="delegate" destination="V9K-io-Cq1" id="8k9-zp-Nyp"/>
@@ -254,6 +246,7 @@
     </scenes>
     <resources>
         <image name="Describe@3x.png" width="60" height="60"/>
+        <image name="SnapshootList@3x.png" width="68" height="68"/>
         <image name="Theme@3x.png" width="60" height="60"/>
     </resources>
 </document>

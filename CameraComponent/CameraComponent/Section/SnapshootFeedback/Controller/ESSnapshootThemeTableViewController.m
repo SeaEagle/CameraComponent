@@ -153,10 +153,7 @@
 
 // 表的每一列
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THEMECELLIDENTIFIER];
-    if(cell==nil){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THEMECELLIDENTIFIER];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THEMECELLIDENTIFIER forIndexPath:indexPath];
     ESSnapshootTheme *theme = [snapshootThemeData objectAtIndex:indexPath.row];
     cell.textLabel.text = theme.themeName;
     return cell;

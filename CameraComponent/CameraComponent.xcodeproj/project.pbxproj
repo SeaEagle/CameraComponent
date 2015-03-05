@@ -24,6 +24,7 @@
 		8433245E1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8433245D1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.m */; };
 		8436A8411A8B106A00D81E1A /* ESNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8436A8401A8B106A00D81E1A /* ESNetworkClient.m */; };
 		8436A8461A8B10BD00D81E1A /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8436A8441A8B10BD00D81E1A /* GTMBase64.m */; };
+		843F144C1AA6F2AE00AAA76D /* SnapshootList@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 843F144B1AA6F2AE00AAA76D /* SnapshootList@3x.png */; };
 		8449005C1A77752400EB150B /* ESImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8449005B1A77752400EB150B /* ESImageUtil.m */; };
 		8449005F1A777E3C00EB150B /* photoLibraryBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8449005D1A777E3C00EB150B /* photoLibraryBtn@3x.png */; };
 		844900601A777E3C00EB150B /* snapshootBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8449005E1A777E3C00EB150B /* snapshootBtn@3x.png */; };
@@ -38,6 +39,7 @@
 		84550DBD1A6E0FCD00C1B6F1 /* ESCameraComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550DBC1A6E0FCD00C1B6F1 /* ESCameraComponent.m */; };
 		84550DC21A6E2CDA00C1B6F1 /* ESCameraButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550DC11A6E2CDA00C1B6F1 /* ESCameraButton.m */; };
 		8457076C1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8457076B1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m */; };
+		845831641AA842ED00D9E5C0 /* ESSnapshootRecordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845831631AA842ED00D9E5C0 /* ESSnapshootRecordTableViewController.m */; };
 		845966DA1A8CDD75007014E9 /* ESSnapshootSubThemeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845966D91A8CDD75007014E9 /* ESSnapshootSubThemeTableView.m */; };
 		8460EDFD1A6F5D8E007A0355 /* ESMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460EDFC1A6F5D8E007A0355 /* ESMainView.m */; };
 		8460EE011A6F9D1B007A0355 /* ESViewControllerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460EE001A6F9D1B007A0355 /* ESViewControllerUtil.m */; };
@@ -104,6 +106,7 @@
 		8436A8451A8B10BD00D81E1A /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		8436A8481A8B31A500D81E1A /* ESAppMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAppMacro.h; sourceTree = "<group>"; };
 		843ECBFC1A7D11E800969366 /* ESCameraDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ESCameraDelegate.h; path = CameraComponent/General/Camera/ESCameraDelegate.h; sourceTree = "<group>"; };
+		843F144B1AA6F2AE00AAA76D /* SnapshootList@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SnapshootList@3x.png"; path = "CameraComponent/Section/SnapshootFeedback/Image/SnapshootList@3x.png"; sourceTree = "<group>"; };
 		8449005A1A77752400EB150B /* ESImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESImageUtil.h; path = CameraComponent/Util/ESImageUtil.h; sourceTree = "<group>"; };
 		8449005B1A77752400EB150B /* ESImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESImageUtil.m; path = CameraComponent/Util/ESImageUtil.m; sourceTree = "<group>"; };
 		8449005D1A777E3C00EB150B /* photoLibraryBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "photoLibraryBtn@3x.png"; path = "CameraComponent/General/Camera/Image/photoLibraryBtn@3x.png"; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 		84550DC11A6E2CDA00C1B6F1 /* ESCameraButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraButton.m; path = CameraComponent/General/Camera/ESCameraButton.m; sourceTree = "<group>"; };
 		8457076A1A7891E3005488B8 /* ESCameraPickMultiPicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraPickMultiPicViewController.h; path = CameraComponent/General/Camera/ESCameraPickMultiPicViewController.h; sourceTree = "<group>"; };
 		8457076B1A7891E3005488B8 /* ESCameraPickMultiPicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraPickMultiPicViewController.m; path = CameraComponent/General/Camera/ESCameraPickMultiPicViewController.m; sourceTree = "<group>"; };
+		845831621AA842ED00D9E5C0 /* ESSnapshootRecordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSnapshootRecordTableViewController.h; path = CameraComponent/Section/SnapshootFeedback/Controller/ESSnapshootRecordTableViewController.h; sourceTree = "<group>"; };
+		845831631AA842ED00D9E5C0 /* ESSnapshootRecordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSnapshootRecordTableViewController.m; path = CameraComponent/Section/SnapshootFeedback/Controller/ESSnapshootRecordTableViewController.m; sourceTree = "<group>"; };
 		845966D81A8CDD75007014E9 /* ESSnapshootSubThemeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSnapshootSubThemeTableView.h; path = CameraComponent/Section/SnapshootFeedback/View/ESSnapshootSubThemeTableView.h; sourceTree = "<group>"; };
 		845966D91A8CDD75007014E9 /* ESSnapshootSubThemeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSnapshootSubThemeTableView.m; path = CameraComponent/Section/SnapshootFeedback/View/ESSnapshootSubThemeTableView.m; sourceTree = "<group>"; };
 		8460EDFB1A6F5D8E007A0355 /* ESMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESMainView.h; path = CameraComponent/Section/Main/View/ESMainView.h; sourceTree = "<group>"; };
@@ -181,6 +186,7 @@
 		840093641A889E9900DEB4A8 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				843F144B1AA6F2AE00AAA76D /* SnapshootList@3x.png */,
 				840093651A889F3000DEB4A8 /* Describe@3x.png */,
 				840093661A889F3000DEB4A8 /* Theme@3x.png */,
 			);
@@ -425,6 +431,8 @@
 				84B1C5671A89F74D00A77967 /* ESSnapshootDelegate.h */,
 				84B1C5681A89FEAB00A77967 /* ESSnapshootThemeTableViewController.h */,
 				84B1C5691A89FEAB00A77967 /* ESSnapshootThemeTableViewController.m */,
+				845831621AA842ED00D9E5C0 /* ESSnapshootRecordTableViewController.h */,
+				845831631AA842ED00D9E5C0 /* ESSnapshootRecordTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -544,6 +552,7 @@
 				84B49BAE1A7B7EE700EE7CA5 /* noSelected@3x.png in Resources */,
 				84B49BAF1A7B7EE700EE7CA5 /* selected@3x.png in Resources */,
 				844A37A41A7DE0C300CACD25 /* camera@3x.png in Resources */,
+				843F144C1AA6F2AE00AAA76D /* SnapshootList@3x.png in Resources */,
 				84550DA41A6E0F1E00C1B6F1 /* LaunchScreen.xib in Resources */,
 				840093681A889F3000DEB4A8 /* Theme@3x.png in Resources */,
 				84550DA11A6E0F1E00C1B6F1 /* Images.xcassets in Resources */,
@@ -565,6 +574,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				845831641AA842ED00D9E5C0 /* ESSnapshootRecordTableViewController.m in Sources */,
 				8436A8411A8B106A00D81E1A /* ESNetworkClient.m in Sources */,
 				840BECCA1A81ED7400320C5D /* AFURLConnectionOperation.m in Sources */,
 				847417DB1A9046B200D0429C /* ESSnapshootFeedback.m in Sources */,
