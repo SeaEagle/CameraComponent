@@ -12,6 +12,8 @@
 
 #pragma mark - 初始化
 - (void)viewDidLoad{
+    UINib *nib = [UINib nibWithNibName:@"BIDNameAndColorCell" bundle:nil];
+    [tableView registerNib:nib forCellReuseIdentifier:CellTableIdentifier];
 }
 
 #pragma mark - Table view data source
