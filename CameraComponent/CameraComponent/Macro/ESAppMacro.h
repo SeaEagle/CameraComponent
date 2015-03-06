@@ -26,6 +26,4 @@
 
 #define mainColor [UIColor colorWithRed:0/255.0f green:166/255.0f blue:233/255.0f alpha:1.0f]
 
-#define CELLHEIGHT 70 // 列的高度
-
 #endif

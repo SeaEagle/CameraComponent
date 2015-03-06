@@ -57,12 +57,22 @@
      onCompletion:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
          // 解析接口返回数据
          NSString *resultContent = [JSON objectForKey:@"result"];
-         NSData *resultData = [resultContent dataUsingEncoding:NSUTF8StringEncoding];
-         NSArray *resultArray = [NSJSONSerialization JSONObjectWithData:resultData options:0 error:nil];
-         // 初始化主题数据
-         snapshootThemeData = [ESSnapshootTheme initSnapshootThemeData:resultArray];
-         //刷新数据
-         [self.tableView reloadData];
+         if ( nil != resultContent ) {
+             NSData *resultData = [resultContent dataUsingEncoding:NSUTF8StringEncoding];
+             NSArray *resultArray = [NSJSONSerialization JSONObjectWithData:resultData options:0 error:nil];
+             // 初始化主题数据
+             snapshootThemeData = [ESSnapshootTheme initSnapshootThemeData:resultArray];
+             //刷新数据
+             [self.tableView reloadData];
+         }else{
+             [[[UIAlertView alloc]initWithTitle:@"提示"
+                                        message:@"获取不到主题数据"
+                                       delegate:nil
+                              cancelButtonTitle:@"取消"
+                              otherButtonTitles: nil]
+              show];
+         }
+         
      }onError:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
          
      }];
@@ -153,7 +163,10 @@
 
 // 表的每一列
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THEMECELLIDENTIFIER forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THEMECELLIDENTIFIER];
+    if(cell==nil){
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THEMECELLIDENTIFIER];
+    }
     ESSnapshootTheme *theme = [snapshootThemeData objectAtIndex:indexPath.row];
     cell.textLabel.text = theme.themeName;
     return cell;

@@ -29,6 +29,7 @@
 		8449005F1A777E3C00EB150B /* photoLibraryBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8449005D1A777E3C00EB150B /* photoLibraryBtn@3x.png */; };
 		844900601A777E3C00EB150B /* snapshootBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8449005E1A777E3C00EB150B /* snapshootBtn@3x.png */; };
 		844A37A41A7DE0C300CACD25 /* camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 844A37A31A7DE0C300CACD25 /* camera@3x.png */; };
+		844B67941AA93EBE0094EC14 /* Location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 844B67931AA93EBE0094EC14 /* Location@3x.png */; };
 		84550D961A6E0F1E00C1B6F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550D951A6E0F1E00C1B6F1 /* main.m */; };
 		84550D991A6E0F1E00C1B6F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550D981A6E0F1E00C1B6F1 /* AppDelegate.m */; };
 		84550D9C1A6E0F1E00C1B6F1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84550D9B1A6E0F1E00C1B6F1 /* ViewController.m */; };
@@ -113,6 +114,7 @@
 		8449005D1A777E3C00EB150B /* photoLibraryBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "photoLibraryBtn@3x.png"; path = "CameraComponent/General/Camera/Image/photoLibraryBtn@3x.png"; sourceTree = "<group>"; };
 		8449005E1A777E3C00EB150B /* snapshootBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "snapshootBtn@3x.png"; path = "CameraComponent/General/Camera/Image/snapshootBtn@3x.png"; sourceTree = "<group>"; };
 		844A37A31A7DE0C300CACD25 /* camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera@3x.png"; path = "CameraComponent/General/Camera/Image/camera@3x.png"; sourceTree = "<group>"; };
+		844B67931AA93EBE0094EC14 /* Location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Location@3x.png"; path = "CameraComponent/Section/SnapshootFeedback/Image/Location@3x.png"; sourceTree = "<group>"; };
 		84550D901A6E0F1E00C1B6F1 /* CameraComponent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraComponent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84550D941A6E0F1E00C1B6F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84550D951A6E0F1E00C1B6F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 		840093641A889E9900DEB4A8 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				844B67931AA93EBE0094EC14 /* Location@3x.png */,
 				843F144B1AA6F2AE00AAA76D /* SnapshootList@3x.png */,
 				840093651A889F3000DEB4A8 /* Describe@3x.png */,
 				840093661A889F3000DEB4A8 /* Theme@3x.png */,
@@ -550,6 +553,7 @@
 				848BEB321A7F132E00BA578D /* delPicBtn@3x.png in Resources */,
 				8449005F1A777E3C00EB150B /* photoLibraryBtn@3x.png in Resources */,
 				84550D9F1A6E0F1E00C1B6F1 /* Main.storyboard in Resources */,
+				844B67941AA93EBE0094EC14 /* Location@3x.png in Resources */,
 				8465F37D1A83597F00C74F70 /* ESSnapshootFeedback.storyboard in Resources */,
 				84A7D8721A8A53C8006502D3 /* ESSnapshootRecordItem.xib in Resources */,
 				846AD6651A7C8D55009E17D1 /* noOriginalPic@3x.png in Resources */,
