@@ -17,5 +17,12 @@ static NSString *SNAPSHOOTRECORDCELLIDENTIFIER = @"SnapshootRecordItem";
 static CGFloat CELLHEIGHT = 274;
 
 @interface ESSnapshootRecordTableViewController : UITableViewController
+{
+    ESNetworkClient *networkClient;
+    NSMutableArray *snapshootRecord;
+    
+}
+
+@property NSMutableArray *snapshootRecord;
 
 @end

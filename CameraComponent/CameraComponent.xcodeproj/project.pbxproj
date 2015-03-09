@@ -43,6 +43,7 @@
 		845831641AA842ED00D9E5C0 /* ESSnapshootRecordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845831631AA842ED00D9E5C0 /* ESSnapshootRecordTableViewController.m */; };
 		845831671AA869AF00D9E5C0 /* ESSnapshootRecordItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 845831661AA869AF00D9E5C0 /* ESSnapshootRecordItem.m */; };
 		845966DA1A8CDD75007014E9 /* ESSnapshootSubThemeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845966D91A8CDD75007014E9 /* ESSnapshootSubThemeTableView.m */; };
+		845DF66E1AADB14700DD23D9 /* ESSnapshootRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 845DF66D1AADB14700DD23D9 /* ESSnapshootRecord.m */; };
 		8460EDFD1A6F5D8E007A0355 /* ESMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460EDFC1A6F5D8E007A0355 /* ESMainView.m */; };
 		8460EE011A6F9D1B007A0355 /* ESViewControllerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460EE001A6F9D1B007A0355 /* ESViewControllerUtil.m */; };
 		8465F37D1A83597F00C74F70 /* ESSnapshootFeedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8465F37C1A83597F00C74F70 /* ESSnapshootFeedback.storyboard */; };
@@ -140,6 +141,8 @@
 		845831661AA869AF00D9E5C0 /* ESSnapshootRecordItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSnapshootRecordItem.m; path = CameraComponent/Section/SnapshootFeedback/View/ESSnapshootRecordItem.m; sourceTree = "<group>"; };
 		845966D81A8CDD75007014E9 /* ESSnapshootSubThemeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSnapshootSubThemeTableView.h; path = CameraComponent/Section/SnapshootFeedback/View/ESSnapshootSubThemeTableView.h; sourceTree = "<group>"; };
 		845966D91A8CDD75007014E9 /* ESSnapshootSubThemeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSnapshootSubThemeTableView.m; path = CameraComponent/Section/SnapshootFeedback/View/ESSnapshootSubThemeTableView.m; sourceTree = "<group>"; };
+		845DF66C1AADB14700DD23D9 /* ESSnapshootRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSnapshootRecord.h; path = CameraComponent/Section/SnapshootFeedback/Modal/ESSnapshootRecord.h; sourceTree = "<group>"; };
+		845DF66D1AADB14700DD23D9 /* ESSnapshootRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSnapshootRecord.m; path = CameraComponent/Section/SnapshootFeedback/Modal/ESSnapshootRecord.m; sourceTree = "<group>"; };
 		8460EDFB1A6F5D8E007A0355 /* ESMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESMainView.h; path = CameraComponent/Section/Main/View/ESMainView.h; sourceTree = "<group>"; };
 		8460EDFC1A6F5D8E007A0355 /* ESMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESMainView.m; path = CameraComponent/Section/Main/View/ESMainView.m; sourceTree = "<group>"; };
 		8460EDFF1A6F9D1B007A0355 /* ESViewControllerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESViewControllerUtil.h; path = CameraComponent/Util/ESViewControllerUtil.h; sourceTree = "<group>"; };
@@ -462,6 +465,8 @@
 				84B1C56D1A8A04EF00A77967 /* ESSnapshootTheme.m */,
 				847417D91A9046B200D0429C /* ESSnapshootFeedback.h */,
 				847417DA1A9046B200D0429C /* ESSnapshootFeedback.m */,
+				845DF66C1AADB14700DD23D9 /* ESSnapshootRecord.h */,
+				845DF66D1AADB14700DD23D9 /* ESSnapshootRecord.m */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -605,6 +610,7 @@
 				84956D121A75EBF100BD3CAC /* ESCameraChoseView.m in Sources */,
 				84550DC21A6E2CDA00C1B6F1 /* ESCameraButton.m in Sources */,
 				8483ED621A7F8F9100219502 /* ESCameraShowSinglePicture.m in Sources */,
+				845DF66E1AADB14700DD23D9 /* ESSnapshootRecord.m in Sources */,
 				84550D961A6E0F1E00C1B6F1 /* main.m in Sources */,
 				845831671AA869AF00D9E5C0 /* ESSnapshootRecordItem.m in Sources */,
 				8460EE011A6F9D1B007A0355 /* ESViewControllerUtil.m in Sources */,

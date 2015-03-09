@@ -98,21 +98,22 @@
 // 上传拍照反馈表单数据
 - (IBAction)uploadSnapshootFeedbackData:(id)sender {
     // 获取相关的参数
+    
     // 获取拍照控件的图片数据
     snapshootFeedback.imageData = [cameraComponent getImageData];
     // 拍照反馈描述
     snapshootFeedback.remark = _snapshootRemarkField.text;
     // 拍照反馈坐标数据
     
-    // 通过接口获取拍照主题数据
+    // 通过接口提交数据
     if ( nil == networkClient ) {
         networkClient = [[ESNetworkClient alloc]initManager];
     }
-    // 设置参数
+    // 设置参数 - (此处参数需要动态获得)
     NSDictionary *token = [[NSDictionary alloc]initWithObjectsAndKeys:@"1000100", @"x-action-type", @"111", @"x-session-id", nil];
     NSDictionary *paramer = snapshootFeedback.getParameterDictionary;
     
-    // 请求数据
+    // 提交数据
     [networkClient
      getJson:token
      params:paramer
@@ -133,12 +134,14 @@
 // 上传拍照反馈使用的图片数据
 - (void)uploadSnapshootFeedbackImageData:(NSArray *)imageData withTicket:(NSArray *)ticketArray{
     for(NSInteger index=0; index<[ticketArray count]; index++){
+        // 设置参数 - (此处参数需要动态设置)
         NSDictionary *token = [[NSDictionary alloc]initWithObjectsAndKeys:
                                @"2019900", @"x-action-type",
                                @"111", @"x-session-id",
                                @"jpg", @"x-type",
                                [ticketArray objectAtIndex:index], @"x-ticket",
                                nil];
+        // 设置对应的图片
         NSDictionary *paramer = [[NSDictionary alloc]initWithObjectsAndKeys:
                                  (UIImage *)[imageData objectAtIndex:index],@"image",
                                  nil];
@@ -147,11 +150,16 @@
          uploadFile:token
          params:paramer
          onCompletion:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-             
+             // 图片上传回调
          } onError:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+             //
              NSLog(@"Error: %@", error.description);
          }];
     }
+}
+
+// 图片上传回调接口
+- (void)uploadImageDataFeedback{
 }
 
 @end
