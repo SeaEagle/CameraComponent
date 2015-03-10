@@ -10,6 +10,19 @@
 
 #import "ESSnapshootRecord.h"
 @interface ESSnapshootRecordItem : UITableViewCell
+{
+    // 缩略图
+    NSMutableArray *smallImages;
+    // 大图
+    NSMutableArray *bigImages;
+    // 图片显示大小
+    // 图片的宽
+    CGFloat imageWidth;
+    // 图片的高
+    CGFloat imageHeight;
+    // 图片之间的间隔
+    CGFloat imageGap;
+}
 
 #pragma mark - 属性
 // 拍照主题

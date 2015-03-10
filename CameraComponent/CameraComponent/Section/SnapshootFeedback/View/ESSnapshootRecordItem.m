@@ -26,16 +26,36 @@
     _snapshootTime.text = snapshootRecord.uploadTime;//上传时间
     _snapshootDescription.text = snapshootRecord.remark;//备注
     _snapshootLocation.text = snapshootRecord.address;//地址
-    [self updateImagesDisplay:snapshootRecord.photos];
+    [self updateImagesData:snapshootRecord.photos];
 }
 
-// 更新图片显示
-- (void)updateImagesDisplay:(NSArray *)images{
+// 更新图片数据
+- (void)updateImagesData:(NSArray *)images{
+    if(nil==smallImages){
+        smallImages = [[NSMutableArray alloc]init];
+        bigImages = [[NSMutableArray alloc]init];
+    }else{
+        [smallImages removeAllObjects];
+        [bigImages removeAllObjects];
+    }
     for (NSDictionary *data in images) {
         // data对应的key有:
         // picType: 图片类型
         // picLocation: 小图
         // bigPicLocation: 大图
+        [smallImages addObject: [data objectForKey:@"picLocation"]];
+        [bigImages addObject: [data objectForKey:@"bigPicLocation"]];
+    }
+    // 更新图片显示
+    [self updateImagesDisplay];
+}
+
+// 更新图片显示
+- (void)updateImagesDisplay{
+    // 设置图片显示大小
+    if( 0 == imageWidth && 0 == imageHeight ){
+        
+    }else{
         
     }
 }
