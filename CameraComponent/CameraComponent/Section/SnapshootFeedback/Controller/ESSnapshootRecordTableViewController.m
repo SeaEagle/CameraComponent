@@ -66,6 +66,7 @@
                               otherButtonTitles: nil]
               show];
          }
+         [self.tableView reloadData];
      }onError:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
          //
          NSLog(@"Error: %@", error.description);
@@ -74,25 +75,45 @@
 
 // 处理获取到的记录数据
 - (void)manageSnapshootRecord:(NSArray *)dataArray{
-    NSLog(@"%@",dataArray);
+    for (NSDictionary *data in dataArray) {
+        // 注: data的key要跟接口返回对应上
+        ESSnapshootRecord *record = [[ESSnapshootRecord alloc]init];
+        record.address = [data objectForKey:@"address"];
+        record.mobile = [data objectForKey:@"mobile"];
+        record.remark = [data objectForKey:@"remark"];
+        record.title = [data objectForKey:@"title"];
+        record.uploadName = [data objectForKey:@"uploadName"];
+        record.uploadTime = [data objectForKey:@"uploadTime"];
+        record.photos = [data objectForKey:@"photos"];
+        [snapshootRecord addObject:record];//
+    }
 }
 
 #pragma mark - Table view data source
 // 表的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    if (nil==snapshootRecord) {
+        //
+        snapshootRecord = [[NSMutableArray alloc]init];
+    }
+    return [snapshootRecord count];
 }
 
 // 表的每一列
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ESSnapshootRecordItem *cell = [tableView dequeueReusableCellWithIdentifier:SNAPSHOOTRECORDCELLIDENTIFIER forIndexPath:indexPath];
-    [cell updateDisplayContent:nil];
+    [cell updateDisplayContent:[snapshootRecord objectAtIndex:indexPath.row]];
     return cell;
 }
 
 // 设置每一列的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return CELLHEIGHT;
+}
+
+// 选择某列之后
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 @end

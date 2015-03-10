@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ESSnapshootRecord.h"
 @interface ESSnapshootRecordItem : UITableViewCell
 
 #pragma mark - 属性
@@ -24,6 +25,6 @@
 
 #pragma mark -
 //
-- (void)updateDisplayContent:(NSDictionary *)contentDictionary;
+- (void)updateDisplayContent:(ESSnapshootRecord *)snapshootRecord;
 
 @end

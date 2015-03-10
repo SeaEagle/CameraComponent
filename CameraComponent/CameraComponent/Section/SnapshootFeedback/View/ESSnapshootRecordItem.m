@@ -20,11 +20,24 @@
 }
 
 #pragma mark - 根据数据刷新显示的内容
-- (void)updateDisplayContent:(NSDictionary *)contentDictionary{
-    _snapshootThemeTitle.text = @"拍照主题";
-    _snapshootTime.text = @"2015-03-06 08:30";
-    _snapshootDescription.text = @"这只是一个备注";
-    _snapshootLocation.text = @"红星美卡龙";
+//
+- (void)updateDisplayContent:(ESSnapshootRecord *)snapshootRecord{
+    _snapshootThemeTitle.text = snapshootRecord.title;//主题
+    _snapshootTime.text = snapshootRecord.uploadTime;//上传时间
+    _snapshootDescription.text = snapshootRecord.remark;//备注
+    _snapshootLocation.text = snapshootRecord.address;//地址
+    [self updateImagesDisplay:snapshootRecord.photos];
+}
+
+// 更新图片显示
+- (void)updateImagesDisplay:(NSArray *)images{
+    for (NSDictionary *data in images) {
+        // data对应的key有:
+        // picType: 图片类型
+        // picLocation: 小图
+        // bigPicLocation: 大图
+        
+    }
 }
 
 @end
