@@ -20,6 +20,8 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:SNAPSHOOTRECORDCELLIDENTIFIER];
     
     // 获取拍照记录数据
+    currentPage = 0;
+    size = 10;
     [self getSnapshootRecord];
     
     // 清除多余的分割线
@@ -42,9 +44,10 @@
     if ( nil == networkClient ) {
         networkClient = [[ESNetworkClient alloc]initManager];
     }
+    
     // 设置参数 - (此处参数需要动态获得)
     NSDictionary *token = [[NSDictionary alloc]initWithObjectsAndKeys:@"1010200", @"x-action-type", @"111", @"x-session-id", nil];
-    NSDictionary *paramer = [[NSDictionary alloc]initWithObjectsAndKeys:@"10", @"max", @"0", @"offset", nil];
+    NSDictionary *paramer = [[NSDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"%ld", size], @"max", [NSString stringWithFormat:@"%ld", currentPage], @"offset", nil];
     
     // 提交数据
     [networkClient
@@ -57,6 +60,7 @@
              NSData *resultData = [resultContent dataUsingEncoding:NSUTF8StringEncoding];
              NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:resultData options:0 error:nil];
              [self manageSnapshootRecord:[resultDictionary objectForKey:@"photoFeedbacks"]];
+             pages = [[resultDictionary objectForKey:@"totalPn"]integerValue];
          }else{
              NSLog(@"%@", [JSON objectForKey:@"statusText"]);
              [[[UIAlertView alloc]initWithTitle:@"提示"
@@ -125,7 +129,10 @@
 // 手机离开屏幕后触发 - 此处用来处理上拉加载更多
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     if (scrollView.contentOffset.y + (scrollView.frame.size.height) >= scrollView.contentSize.height ){
-        NSLog(@"最后一行");
+        if ( currentPage+1 < pages ) {
+            currentPage++;// 指向下一页
+            [self getSnapshootRecord];
+        }
     }
 }
 @end

@@ -20,6 +20,9 @@ static CGFloat CELLHEIGHT = 274;
 {
     ESNetworkClient *networkClient;
     NSMutableArray *snapshootRecord;
+    NSInteger currentPage;
+    NSInteger size;
+    NSInteger pages;
     
 }
 

@@ -66,10 +66,18 @@
         imageHeight = imageWidth * standImageHeight / standImageWidth;
         
     }
+    //
+    for (UIView *subView in [_snapshootImages subviews]) {
+        [subView removeFromSuperview];
+    }
+    //
     for ( int i=0; i<[smallImages count]; i++ ) {
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(imageGap+(imageGap+imageWidth)*i, imageGap, imageWidth, imageHeight)];
-        view.backgroundColor = [UIColor redColor];
-        [_snapshootImages addSubview:view];
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(imageGap+(imageGap+imageWidth)*i, imageGap, imageWidth, imageHeight)];
+        UIImage * image;
+        NSData * imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[smallImages objectAtIndex:i]]];
+        image = [UIImage imageWithData:imageData];
+        imageView.image = image;
+        [_snapshootImages addSubview:imageView];
     }
 }
 
