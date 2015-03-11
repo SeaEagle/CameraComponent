@@ -20,6 +20,7 @@
 		840BECCA1A81ED7400320C5D /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECBF1A81ED7400320C5D /* AFURLConnectionOperation.m */; };
 		840BECCB1A81ED7400320C5D /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECC11A81ED7400320C5D /* AFXMLRequestOperation.m */; };
 		840BECCC1A81ED7400320C5D /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BECC31A81ED7400320C5D /* UIImageView+AFNetworking.m */; };
+		840F84541AB08E20009FCFAE /* ESUrlImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 840F84531AB08E20009FCFAE /* ESUrlImageCache.m */; };
 		8433245B1A79E428006CE1BB /* backBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8433245A1A79E428006CE1BB /* backBtn@3x.png */; };
 		8433245E1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8433245D1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.m */; };
 		8436A8411A8B106A00D81E1A /* ESNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8436A8401A8B106A00D81E1A /* ESNetworkClient.m */; };
@@ -99,6 +100,8 @@
 		840BECC11A81ED7400320C5D /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFXMLRequestOperation.m; path = CameraComponent/ThirdPath/AFNetworking/AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		840BECC21A81ED7400320C5D /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+AFNetworking.h"; path = "CameraComponent/ThirdPath/AFNetworking/UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		840BECC31A81ED7400320C5D /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "CameraComponent/ThirdPath/AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		840F84521AB08E20009FCFAE /* ESUrlImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESUrlImageCache.h; path = CameraComponent/Util/ESUrlImageCache.h; sourceTree = "<group>"; };
+		840F84531AB08E20009FCFAE /* ESUrlImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESUrlImageCache.m; path = CameraComponent/Util/ESUrlImageCache.m; sourceTree = "<group>"; };
 		8433245A1A79E428006CE1BB /* backBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backBtn@3x.png"; path = "CameraComponent/General/Camera/Image/backBtn@3x.png"; sourceTree = "<group>"; };
 		8433245C1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESCameraMultiPicScanViewController.h; path = CameraComponent/General/Camera/ESCameraMultiPicScanViewController.h; sourceTree = "<group>"; };
 		8433245D1A79FF52006CE1BB /* ESCameraMultiPicScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESCameraMultiPicScanViewController.m; path = CameraComponent/General/Camera/ESCameraMultiPicScanViewController.m; sourceTree = "<group>"; };
@@ -416,6 +419,8 @@
 				8449005B1A77752400EB150B /* ESImageUtil.m */,
 				8436A83F1A8B106A00D81E1A /* ESNetworkClient.h */,
 				8436A8401A8B106A00D81E1A /* ESNetworkClient.m */,
+				840F84521AB08E20009FCFAE /* ESUrlImageCache.h */,
+				840F84531AB08E20009FCFAE /* ESUrlImageCache.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -598,6 +603,7 @@
 				845966DA1A8CDD75007014E9 /* ESSnapshootSubThemeTableView.m in Sources */,
 				8449005C1A77752400EB150B /* ESImageUtil.m in Sources */,
 				84B1C56A1A89FEAB00A77967 /* ESSnapshootThemeTableViewController.m in Sources */,
+				840F84541AB08E20009FCFAE /* ESUrlImageCache.m in Sources */,
 				840BECC71A81ED7400320C5D /* AFJSONRequestOperation.m in Sources */,
 				8400936B1A88BA5600DEB4A8 /* ESSnapshootFeedbackViewController.m in Sources */,
 				840BECCB1A81ED7400320C5D /* AFXMLRequestOperation.m in Sources */,

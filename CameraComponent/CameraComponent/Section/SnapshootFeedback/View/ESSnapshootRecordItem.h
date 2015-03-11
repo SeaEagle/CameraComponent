@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 #import "ESSnapshootRecord.h"
+#import "ESUrlImageCache.h"
+
 @interface ESSnapshootRecordItem : UITableViewCell
 {
     // 缩略图

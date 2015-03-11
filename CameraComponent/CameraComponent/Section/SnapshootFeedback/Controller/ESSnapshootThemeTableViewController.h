@@ -16,8 +16,6 @@
 
 // 拍照主题Cell
 static NSString *THEMECELLIDENTIFIER = @"SnapshootTheme";
-//
-static CGFloat CELLHEIGHT = 70;
 
 @interface ESSnapshootThemeTableViewController : UITableViewController
 <ESSnapshootFeedbacSubThemeDelegate>

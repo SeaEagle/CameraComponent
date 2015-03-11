@@ -73,9 +73,7 @@
     //
     for ( int i=0; i<[smallImages count]; i++ ) {
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(imageGap+(imageGap+imageWidth)*i, imageGap, imageWidth, imageHeight)];
-        UIImage * image;
-        NSData * imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[smallImages objectAtIndex:i]]];
-        image = [UIImage imageWithData:imageData];
+        UIImage *image = [ESUrlImageCache getImageWithUrl:[smallImages objectAtIndex:i]];
         imageView.image = image;
         [_snapshootImages addSubview:imageView];
     }
