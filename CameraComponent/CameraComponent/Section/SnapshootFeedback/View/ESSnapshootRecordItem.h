@@ -16,11 +16,15 @@
     // 大图
     NSMutableArray *bigImages;
     // 图片显示大小
+    CGFloat standScreenWidth;
     // 图片的宽
+    CGFloat standImageWidth;
     CGFloat imageWidth;
     // 图片的高
+    CGFloat standImageHeight;
     CGFloat imageHeight;
     // 图片之间的间隔
+    CGFloat standImageGap;
     CGFloat imageGap;
 }
 

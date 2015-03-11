@@ -89,6 +89,7 @@
     }
 }
 
+
 #pragma mark - Table view data source
 // 表的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -116,4 +117,15 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
+#pragma mark - 
+// 滚动时触发
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+}
+
+// 手机离开屏幕后触发 - 此处用来处理上拉加载更多
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (scrollView.contentOffset.y + (scrollView.frame.size.height) >= scrollView.contentSize.height ){
+        NSLog(@"最后一行");
+    }
+}
 @end

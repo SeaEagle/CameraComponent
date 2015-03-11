@@ -54,9 +54,22 @@
 - (void)updateImagesDisplay{
     // 设置图片显示大小
     if( 0 == imageWidth && 0 == imageHeight ){
+        CGFloat currentScreenWidth = [[UIScreen mainScreen]bounds].size.width;
+        //
+        standScreenWidth = 375;
+        standImageGap = 12;
+        standImageWidth = 57;
+        standImageHeight = 71;
+        //
+        imageGap = currentScreenWidth * standImageGap / standScreenWidth;
+        imageWidth = (currentScreenWidth - 6 * imageGap) / 5;
+        imageHeight = imageWidth * standImageHeight / standImageWidth;
         
-    }else{
-        
+    }
+    for ( int i=0; i<[smallImages count]; i++ ) {
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(imageGap+(imageGap+imageWidth)*i, imageGap, imageWidth, imageHeight)];
+        view.backgroundColor = [UIColor redColor];
+        [_snapshootImages addSubview:view];
     }
 }
 
