@@ -10,7 +10,8 @@
 
 @implementation ESUrlImageCache
 
-+ (UIImage *)getImageWithUrl:(NSString *)imageUrl{
++ (UIImage *)getImageWithUrl:(NSString *)url{
+    NSString *imageUrl = [NSString stringWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     //
     if( nil == urlImageCache ){
         urlImageCache = [[NSMutableDictionary alloc]init];
